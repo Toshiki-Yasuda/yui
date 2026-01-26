@@ -885,6 +885,7 @@ ul {
     padding: var(--space-lg);
     border-radius: var(--radius-lg);
     border: 1px solid rgba(0, 0, 0, 0.05);
+    text-align: center;
 }
 
 .ticket-purchase h3 {
@@ -940,12 +941,14 @@ ul {
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 100%;
 }
 
 .ticket-qr img {
     border-radius: var(--radius-sm);
     box-shadow: var(--shadow-sm);
     display: block;
+    margin: 0 auto;
 }
 
 .qr-caption {
