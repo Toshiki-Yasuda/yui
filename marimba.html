@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>マリンバってどんな楽器？ | 第18回マリンバ北星会 午後のコンサート〜結〜</title>
+    <meta name="description" content="マリンバは木の板を並べた大きな打楽器です。木琴の仲間で、温かく柔らかな音色が特徴。マリンバの魅力をわかりやすく解説します。">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;600;700&family=Noto+Serif+JP:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* マリンバページ専用スタイル */
+        .marimba-page {
+            padding-top: calc(var(--nav-height) + var(--space-lg));
+            padding-bottom: var(--space-xl);
+            min-height: 100vh;
+        }
+
+        .marimba-hero {
+            text-align: center;
+            margin-bottom: var(--space-xl);
+        }
+
+        .marimba-hero-title {
+            font-family: var(--font-serif);
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 400;
+            color: var(--color-main-dark);
+            margin-bottom: var(--space-sm);
+            letter-spacing: 0.05em;
+        }
+
+        .marimba-hero-subtitle {
+            font-size: 1rem;
+            color: var(--color-text-light);
+        }
+
+        .marimba-section {
+            max-width: 800px;
+            margin: 0 auto var(--space-xl);
+        }
+
+        .marimba-section-title {
+            font-family: var(--font-serif);
+            font-size: 1.5rem;
+            font-weight: 400;
+            color: var(--color-text);
+            margin-bottom: var(--space-md);
+            padding-bottom: var(--space-xs);
+            border-bottom: 2px solid var(--color-main-light);
+        }
+
+        .marimba-text {
+            font-size: 1rem;
+            line-height: 2;
+            color: var(--color-text-light);
+            margin-bottom: var(--space-md);
+        }
+
+        .marimba-text strong {
+            color: var(--color-text);
+            font-weight: 600;
+        }
+
+        .marimba-highlight {
+            background: linear-gradient(135deg, var(--color-main-light) 0%, var(--color-bg-alt) 100%);
+            padding: var(--space-lg);
+            border-radius: var(--radius-lg);
+            margin: var(--space-lg) 0;
+        }
+
+        .marimba-highlight-title {
+            font-family: var(--font-serif);
+            font-size: 1.25rem;
+            color: var(--color-main-dark);
+            margin-bottom: var(--space-sm);
+            text-align: center;
+        }
+
+        .marimba-highlight-text {
+            font-size: 1rem;
+            line-height: 2;
+            color: var(--color-text);
+            text-align: center;
+        }
+
+        .marimba-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--space-md);
+            margin: var(--space-lg) 0;
+        }
+
+        .marimba-feature {
+            background: var(--color-white);
+            padding: var(--space-md);
+            border-radius: var(--radius-md);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            text-align: center;
+        }
+
+        .marimba-feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: var(--space-sm);
+        }
+
+        .marimba-feature-title {
+            font-family: var(--font-serif);
+            font-size: 1.1rem;
+            color: var(--color-text);
+            margin-bottom: var(--space-xs);
+        }
+
+        .marimba-feature-text {
+            font-size: 0.9rem;
+            color: var(--color-text-light);
+            line-height: 1.8;
+        }
+
+        .marimba-comparison {
+            background: var(--color-white);
+            padding: var(--space-lg);
+            border-radius: var(--radius-lg);
+            margin: var(--space-lg) 0;
+        }
+
+        .marimba-comparison-title {
+            font-family: var(--font-serif);
+            font-size: 1.25rem;
+            color: var(--color-text);
+            margin-bottom: var(--space-md);
+            text-align: center;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .comparison-table th,
+        .comparison-table td {
+            padding: var(--space-sm);
+            text-align: left;
+            border-bottom: 1px solid var(--color-main-light);
+        }
+
+        .comparison-table th {
+            font-weight: 600;
+            color: var(--color-accent);
+            font-size: 0.9rem;
+        }
+
+        .comparison-table td {
+            font-size: 0.95rem;
+            color: var(--color-text-light);
+        }
+
+        .comparison-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-xs);
+            color: var(--color-accent);
+            font-weight: 500;
+            padding: 0.75rem 1.5rem;
+            border: 1px solid var(--color-accent-light);
+            border-radius: var(--radius-full);
+            transition: all var(--transition-normal);
+            margin-top: var(--space-lg);
+        }
+
+        .back-link:hover {
+            background: var(--color-accent);
+            color: var(--color-white);
+            border-color: var(--color-accent);
+        }
+
+        .back-link-icon {
+            transition: transform var(--transition-fast);
+        }
+
+        .back-link:hover .back-link-icon {
+            transform: translateX(-4px);
+        }
+
+        .cta-section {
+            text-align: center;
+            padding: var(--space-xl) 0;
+            background: linear-gradient(135deg, var(--color-bg) 0%, var(--color-main-light) 100%);
+            border-radius: var(--radius-lg);
+            margin-top: var(--space-xl);
+        }
+
+        .cta-title {
+            font-family: var(--font-serif);
+            font-size: 1.5rem;
+            color: var(--color-text);
+            margin-bottom: var(--space-sm);
+        }
+
+        .cta-text {
+            color: var(--color-text-light);
+            margin-bottom: var(--space-md);
+        }
+
+        .cta-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-xs);
+            background: var(--color-main-dark);
+            color: var(--color-white);
+            font-weight: 600;
+            padding: 1rem 2.5rem;
+            border-radius: var(--radius-full);
+            transition: all var(--transition-normal);
+        }
+
+        .cta-btn:hover {
+            background: var(--color-main);
+            color: var(--color-white);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-lg);
+        }
+    </style>
+</head>
+<body>
+    <!-- ナビゲーション -->
+    <nav class="nav">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">結</a>
+            <button class="nav-toggle" aria-label="メニューを開く">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-menu">
+                <li><a href="index.html#concept">コンセプト</a></li>
+                <li><a href="index.html#program">プログラム</a></li>
+                <li><a href="index.html#artists">出演者</a></li>
+                <li><a href="index.html#ticket">チケット</a></li>
+                <li><a href="index.html#access">アクセス</a></li>
+                <li><a href="index.html#contact">お問い合わせ</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="marimba-page">
+        <div class="container">
+            <!-- ヒーロー -->
+            <div class="marimba-hero fade-in">
+                <h1 class="marimba-hero-title">マリンバってどんな楽器？</h1>
+                <p class="marimba-hero-subtitle">木の温もりが奏でる、癒しの打楽器</p>
+            </div>
+
+            <!-- 基本説明 -->
+            <section class="marimba-section fade-in">
+                <h2 class="marimba-section-title">マリンバとは</h2>
+                <p class="marimba-text">
+                    マリンバは<strong>木の板を並べた大きな打楽器</strong>です。
+                    「マレット」と呼ばれる先端に毛糸や綿を巻いたバチを使って、木の板（音板）を叩いて演奏します。
+                </p>
+                <p class="marimba-text">
+                    見た目は小学校などで見かける「木琴（もっきん）」に似ていますが、
+                    マリンバはより大きく、<strong>音域が広い</strong>のが特徴です。
+                    ピアノと同じくらいの音域を持ち、低い音から高い音まで演奏できます。
+                </p>
+                <p class="marimba-text">
+                    名前の「マリンバ（Marimba）」は、アフリカの言葉で「木の板が並んでいるもの」という意味があるとされています。
+                </p>
+            </section>
+
+            <!-- ハイライト -->
+            <div class="marimba-highlight fade-in">
+                <h3 class="marimba-highlight-title">マリンバは「弦楽器」ではありません</h3>
+                <p class="marimba-highlight-text">
+                    「マリンバ」という名前から「マンドリン」のような弦楽器を想像される方もいらっしゃいますが、<br>
+                    マリンバは木を叩いて音を出す<strong>「打楽器」</strong>です。<br>
+                    オーケストラでは、ティンパニや小太鼓と同じ打楽器セクションに所属します。
+                </p>
+            </div>
+
+            <!-- 特徴 -->
+            <section class="marimba-section fade-in">
+                <h2 class="marimba-section-title">マリンバの魅力</h2>
+                <div class="marimba-features">
+                    <div class="marimba-feature">
+                        <div class="marimba-feature-icon">🌳</div>
+                        <h3 class="marimba-feature-title">温かい木の音色</h3>
+                        <p class="marimba-feature-text">
+                            ローズウッドやパドックなどの木材から生まれる、
+                            柔らかく温かみのある音色が最大の魅力です。
+                        </p>
+                    </div>
+                    <div class="marimba-feature">
+                        <div class="marimba-feature-icon">🎵</div>
+                        <h3 class="marimba-feature-title">幅広い表現力</h3>
+                        <p class="marimba-feature-text">
+                            優しいささやきから力強い響きまで、
+                            マレットの使い分けで多彩な表現が可能です。
+                        </p>
+                    </div>
+                    <div class="marimba-feature">
+                        <div class="marimba-feature-icon">👀</div>
+                        <h3 class="marimba-feature-title">演奏を「見る」楽しさ</h3>
+                        <p class="marimba-feature-text">
+                            4本のマレットを操る演奏は視覚的にも楽しく、
+                            お子様からご年配の方まで飽きずに楽しめます。
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 仕組み -->
+            <section class="marimba-section fade-in">
+                <h2 class="marimba-section-title">マリンバの仕組み</h2>
+                <p class="marimba-text">
+                    マリンバは主に以下の部分で構成されています：
+                </p>
+                <p class="marimba-text">
+                    <strong>音板（おんばん）</strong><br>
+                    木製の板で、これを叩くと音が出ます。
+                    長さや厚みが異なり、それぞれ違う高さの音が出ます。
+                    ピアノの鍵盤と同じように、低い音は左側、高い音は右側に並んでいます。
+                </p>
+                <p class="marimba-text">
+                    <strong>共鳴管（きょうめいかん）</strong><br>
+                    音板の下にぶら下がっている金属のパイプです。
+                    音板の振動を増幅させ、より豊かで大きな音を響かせる役割があります。
+                </p>
+                <p class="marimba-text">
+                    <strong>マレット</strong><br>
+                    演奏に使うバチのことです。
+                    先端に毛糸やゴムが巻かれており、硬さによって音色が変わります。
+                    演奏者は曲に合わせて使い分け、時には4本同時に使って和音を奏でます。
+                </p>
+            </section>
+
+            <!-- 比較表 -->
+            <div class="marimba-comparison fade-in">
+                <h3 class="marimba-comparison-title">木琴・シロフォンとの違い</h3>
+                <table class="comparison-table">
+                    <tr>
+                        <th></th>
+                        <th>マリンバ</th>
+                        <th>シロフォン</th>
+                        <th>木琴（学校用）</th>
+                    </tr>
+                    <tr>
+                        <td><strong>音色</strong></td>
+                        <td>柔らかく温かい</td>
+                        <td>明るく硬い</td>
+                        <td>軽やかで明るい</td>
+                    </tr>
+                    <tr>
+                        <td><strong>音域</strong></td>
+                        <td>広い（約4〜5オクターブ）</td>
+                        <td>やや狭い（約3.5オクターブ）</td>
+                        <td>狭い（約2オクターブ）</td>
+                    </tr>
+                    <tr>
+                        <td><strong>共鳴管</strong></td>
+                        <td>あり（長い）</td>
+                        <td>あり（短い）</td>
+                        <td>なし</td>
+                    </tr>
+                    <tr>
+                        <td><strong>用途</strong></td>
+                        <td>ソロ・アンサンブル・オーケストラ</td>
+                        <td>オーケストラ・吹奏楽</td>
+                        <td>教育・入門</td>
+                    </tr>
+                </table>
+            </div>
+
+            <!-- 演奏曲目 -->
+            <section class="marimba-section fade-in">
+                <h2 class="marimba-section-title">どんな曲が演奏できるの？</h2>
+                <p class="marimba-text">
+                    マリンバはとても幅広いジャンルの曲を演奏できます：
+                </p>
+                <p class="marimba-text">
+                    <strong>クラシック</strong> - バッハの名曲から現代音楽まで<br>
+                    <strong>ポップス</strong> - ジブリ音楽、J-POP、映画音楽<br>
+                    <strong>童謡・唱歌</strong> - 「赤とんぼ」「ふるさと」など懐かしい曲<br>
+                    <strong>マリンバオリジナル曲</strong> - マリンバのために作曲された専門曲
+                </p>
+                <p class="marimba-text">
+                    今回のコンサートでも、ジブリメドレーや「戦場のメリークリスマス」、
+                    日本の名曲「赤とんぼ」など、幅広いジャンルの曲をお届けします。
+                </p>
+            </section>
+
+            <!-- CTA -->
+            <div class="cta-section fade-in">
+                <h3 class="cta-title">マリンバの音色を体験しませんか？</h3>
+                <p class="cta-text">2026年10月25日（日）、HITARUクリエイティブスタジオにて</p>
+                <a href="index.html#ticket" class="cta-btn">
+                    コンサート詳細を見る
+                </a>
+            </div>
+
+            <!-- 戻るリンク -->
+            <div style="text-align: center;">
+                <a href="index.html" class="back-link">
+                    <span class="back-link-icon">←</span>
+                    トップページに戻る
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <!-- フッター -->
+    <footer class="footer">
+        <div class="container">
+            <p class="footer-title">第18回マリンバ北星会 午後のコンサート〜結〜</p>
+            <p class="footer-date">2026年10月25日（日）13:30開演</p>
+            <p class="footer-copyright">
+                &copy; 2026 Marimba Hokuseikai. All rights reserved.
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // ナビゲーションのトグル
+        const navToggle = document.querySelector('.nav-toggle');
+        const navMenu = document.querySelector('.nav-menu');
+
+        navToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            navToggle.classList.toggle('active');
+        });
+
+        // スクロールアニメーション
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
