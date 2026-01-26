@@ -653,9 +653,9 @@ ul {
 }
 
 .concept-body {
-    max-width: 700px;
+    max-width: 640px;
     margin: 0 auto;
-    text-align: center;
+    text-align: left;
 }
 
 .concept-body p {
@@ -665,6 +665,7 @@ ul {
     line-height: 2.2;
     margin-bottom: var(--space-md);
     letter-spacing: 0.02em;
+    text-indent: 1em;
 }
 
 .concept-body p:last-child {
