@@ -1275,7 +1275,7 @@ ul {
         top: var(--nav-height);
         left: 0;
         right: 0;
-        background: var(--color-white);
+        background: #FDF8F8;
         flex-direction: column;
         align-items: center;
         padding: var(--space-md);
