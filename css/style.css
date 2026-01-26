@@ -498,6 +498,16 @@ ul {
     margin-top: var(--space-md);
 }
 
+.program-others {
+    text-align: center;
+    font-style: italic;
+    color: var(--color-text-light);
+}
+
+.program-others .program-name {
+    color: var(--color-text-light);
+}
+
 /* ============================================
    出演者セクション
    ============================================ */
