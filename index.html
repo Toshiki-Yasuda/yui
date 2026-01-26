@@ -20,6 +20,78 @@
 
     <!-- Styles -->
     <link rel="stylesheet" href="css/style.css">
+
+    <!-- 構造化データ (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "MusicEvent",
+        "name": "第18回マリンバ北星会 午後のコンサート〜結〜",
+        "description": "人と人、音と心を結ぶ。未就学児からお年寄りまで、誰もが楽しめるマリンバコンサート。ジブリメドレー、戦場のメリークリスマスなど、世代を超えて楽しめる名曲をお届けします。",
+        "startDate": "2026-10-25T13:30:00+09:00",
+        "endDate": "2026-10-25T15:15:00+09:00",
+        "eventStatus": "https://schema.org/EventScheduled",
+        "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+        "location": {
+            "@type": "Place",
+            "name": "HITARU クリエイティブスタジオ",
+            "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "北1条西1丁目 さっぽろ創世スクエア内（札幌市民交流プラザ 3階）",
+                "addressLocality": "札幌市中央区",
+                "addressRegion": "北海道",
+                "postalCode": "060-0001",
+                "addressCountry": "JP"
+            }
+        },
+        "performer": {
+            "@type": "Person",
+            "name": "安田 愛",
+            "description": "マリンバ奏者。マリンバ北星会第59号師範免状取得。"
+        },
+        "organizer": {
+            "@type": "Organization",
+            "name": "マリンバ北星会",
+            "url": "https://toshiki-yasuda.github.io/yui/"
+        },
+        "offers": [
+            {
+                "@type": "Offer",
+                "name": "一般",
+                "price": "2000",
+                "priceCurrency": "JPY",
+                "availability": "https://schema.org/InStock",
+                "validFrom": "2026-05-01"
+            },
+            {
+                "@type": "Offer",
+                "name": "学生",
+                "price": "1000",
+                "priceCurrency": "JPY",
+                "availability": "https://schema.org/InStock",
+                "validFrom": "2026-05-01"
+            },
+            {
+                "@type": "Offer",
+                "name": "未就学児（座席使用）",
+                "price": "500",
+                "priceCurrency": "JPY",
+                "availability": "https://schema.org/InStock",
+                "validFrom": "2026-05-01"
+            },
+            {
+                "@type": "Offer",
+                "name": "未就学児（膝上）",
+                "price": "0",
+                "priceCurrency": "JPY",
+                "availability": "https://schema.org/InStock",
+                "validFrom": "2026-05-01"
+            }
+        ],
+        "image": "https://toshiki-yasuda.github.io/yui/images/ogp.jpg",
+        "url": "https://toshiki-yasuda.github.io/yui/"
+    }
+    </script>
 </head>
 <body>
     <!-- ナビゲーション -->
@@ -37,6 +109,7 @@
                 <li><a href="#artists">出演者</a></li>
                 <li><a href="#ticket">チケット</a></li>
                 <li><a href="#access">アクセス</a></li>
+                <li><a href="#faq">FAQ</a></li>
                 <li><a href="#contact">お問い合わせ</a></li>
             </ul>
         </div>
@@ -62,6 +135,21 @@
                 </p>
             </div>
             <a href="#ticket" class="hero-cta">チケットを購入する</a>
+
+            <!-- カウントダウンタイマー -->
+            <div class="countdown" id="countdown">
+                <p class="countdown-label">コンサートまで</p>
+                <div class="countdown-timer">
+                    <div class="countdown-item">
+                        <span class="countdown-number" id="countdown-days">0</span>
+                        <span class="countdown-unit">日</span>
+                    </div>
+                    <div class="countdown-item">
+                        <span class="countdown-number" id="countdown-hours">0</span>
+                        <span class="countdown-unit">時間</span>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="hero-decoration">
             <span class="hero-note">♪</span>
@@ -100,23 +188,11 @@
                         人と人、音と心を結ぶ。<br>
                         〜未就学児からお年寄りまで、誰もが楽しめるコンサート〜
                     </p>
-                    <p class="concept-intro fade-in">
-                        木の温もりあふれるマリンバの音色を通し、世代を超えて音楽が結びつく場を目指します。<br>
-                        今回のコンサートタイトル「結」には、いくつもの不思議なご縁が重なり、<br>
-                        このソロ演奏会が実現に至ったことへの感謝が込められています。
-                    </p>
-                    <div class="concept-connections">
-                        <div class="connection fade-in stagger-1">
-                            <span class="connection-icon">👩‍🏫</span>
-                            <h3>師との再会とご提案</h3>
-                            <p>久しぶりに師事する北原千鳥先生のレッスンに伺った際、先生から午後のコンサートの開催についてご提案をいただきました。</p>
-                        </div>
+                    <div class="concept-body fade-in">
+                        <p>木の温もりあふれるマリンバの音色を通し、世代を超えて音楽が結びつく場を目指します。</p>
+                        <p>今回のコンサートタイトル「結」には、いくつもの不思議なご縁が重なり、このソロ演奏会が実現に至ったことへの感謝が込められています。</p>
+                        <p>これらの重なるご縁から生まれたコンサートとして、一音一音を大切に作り上げていきます。音楽を通じた心の旅路をお届けします。</p>
                     </div>
-                    <p class="concept-message fade-in">
-                        これらの重なるご縁から生まれたコンサートとして、<br>
-                        一音一音を大切に作り上げていきます。<br>
-                        音楽を通じた心の旅路をお届けします。
-                    </p>
                 </div>
             </div>
         </div>
@@ -135,24 +211,28 @@
                         <div class="program-info">
                             <h4 class="program-name">ジブリメドレー</h4>
                             <p class="program-composer">久石譲 / 編曲：安田愛</p>
+                            <p class="program-description">「となりのトトロ」「千と千尋の神隠し」など、世代を超えて愛される名曲をマリンバの温かな音色でお届けします。お子様も一緒に楽しめるメドレーです。</p>
                         </div>
                     </li>
                     <li class="program-item">
                         <div class="program-info">
                             <h4 class="program-name">戦場のメリークリスマス</h4>
                             <p class="program-composer">坂本龍一 / 編曲：安田愛</p>
+                            <p class="program-description">映画音楽の名曲を、マリンバの深い響きでお聴きいただきます。木の温もりが奏でる、心に染み入る一曲です。</p>
                         </div>
                     </li>
                     <li class="program-item">
                         <div class="program-info">
                             <h4 class="program-name">赤とんぼ</h4>
                             <p class="program-composer">山田耕筰 / 編曲：小西欣一</p>
+                            <p class="program-description">日本人の心の原風景を描いた名曲。秋の情景が目に浮かぶような、懐かしさあふれる演奏をお届けします。</p>
                         </div>
                     </li>
                     <li class="program-item">
                         <div class="program-info">
                             <h4 class="program-name">結（ゆい）</h4>
                             <p class="program-composer">尾崎勇太</p>
+                            <p class="program-description">今回のコンサートタイトルにもなっている、マリンバのためのオリジナル曲。人と人との絆を紡ぐような、繊細で美しい旋律をお楽しみください。</p>
                         </div>
                     </li>
                     <li class="program-item program-others">
@@ -240,6 +320,26 @@
                     </a>
                     <p class="ticket-notice">※チケット販売は2026年5月開始予定です</p>
                 </div>
+
+                <!-- カレンダー登録 -->
+                <div class="calendar-add fade-in">
+                    <h3>📅 カレンダーに登録</h3>
+                    <p>予定を忘れないようにカレンダーに追加しましょう</p>
+                    <div class="calendar-buttons">
+                        <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=%E7%AC%AC18%E5%9B%9E%E3%83%9E%E3%83%AA%E3%83%B3%E3%83%90%E5%8C%97%E6%98%9F%E4%BC%9A%20%E5%8D%88%E5%BE%8C%E3%81%AE%E3%82%B3%E3%83%B3%E3%82%B5%E3%83%BC%E3%83%88%E3%80%9C%E7%B5%90%E3%80%9C&dates=20261025T043000Z/20261025T061500Z&details=%E4%BA%BA%E3%81%A8%E4%BA%BA%E3%80%81%E9%9F%B3%E3%81%A8%E5%BF%83%E3%82%92%E7%B5%90%E3%81%B6%E3%83%9E%E3%83%AA%E3%83%B3%E3%83%90%E3%82%B3%E3%83%B3%E3%82%B5%E3%83%BC%E3%83%88%0A%0A%E3%83%81%E3%82%B1%E3%83%83%E3%83%88%3A%20https%3A%2F%2Ftoshiki-yasuda.github.io%2Fyui%2F&location=HITARU%20%E3%82%AF%E3%83%AA%E3%82%A8%E3%82%A4%E3%83%86%E3%82%A3%E3%83%96%E3%82%B9%E3%82%BF%E3%82%B8%E3%82%AA%EF%BC%88%E6%9C%AD%E5%B9%8C%E5%B8%82%E4%B8%AD%E5%A4%AE%E5%8C%BA%E5%8C%971%E6%9D%A1%E8%A5%BF1%E4%B8%81%E7%9B%AE%EF%BC%89" target="_blank" rel="noopener" class="calendar-btn calendar-google">
+                            <span class="calendar-icon">G</span>
+                            Google
+                        </a>
+                        <a href="data:text/calendar;charset=utf-8,BEGIN:VCALENDAR%0AVERSION:2.0%0APRODID:-//Marimba Yui Concert//JP%0ABEGIN:VEVENT%0ADTSTART:20261025T043000Z%0ADTEND:20261025T061500Z%0ASUMMARY:第18回マリンバ北星会 午後のコンサート〜結〜%0ADESCRIPTION:人と人、音と心を結ぶマリンバコンサート%0ALOCATION:HITARU クリエイティブスタジオ（札幌市中央区北1条西1丁目）%0AURL:https://toshiki-yasuda.github.io/yui/%0AEND:VEVENT%0AEND:VCALENDAR" download="yui-concert-2026.ics" class="calendar-btn calendar-apple">
+                            <span class="calendar-icon">🍎</span>
+                            Apple
+                        </a>
+                        <a href="https://outlook.live.com/calendar/0/deeplink/compose?subject=%E7%AC%AC18%E5%9B%9E%E3%83%9E%E3%83%AA%E3%83%B3%E3%83%90%E5%8C%97%E6%98%9F%E4%BC%9A%20%E5%8D%88%E5%BE%8C%E3%81%AE%E3%82%B3%E3%83%B3%E3%82%B5%E3%83%BC%E3%83%88%E3%80%9C%E7%B5%90%E3%80%9C&startdt=2026-10-25T13:30:00%2B09:00&enddt=2026-10-25T15:15:00%2B09:00&location=HITARU%20%E3%82%AF%E3%83%AA%E3%82%A8%E3%82%A4%E3%83%86%E3%82%A3%E3%83%96%E3%82%B9%E3%82%BF%E3%82%B8%E3%82%AA&body=%E4%BA%BA%E3%81%A8%E4%BA%BA%E3%80%81%E9%9F%B3%E3%81%A8%E5%BF%83%E3%82%92%E7%B5%90%E3%81%B6%E3%83%9E%E3%83%AA%E3%83%B3%E3%83%90%E3%82%B3%E3%83%B3%E3%82%B5%E3%83%BC%E3%83%88" target="_blank" rel="noopener" class="calendar-btn calendar-outlook">
+                            <span class="calendar-icon">O</span>
+                            Outlook
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -283,6 +383,72 @@
                         referrerpolicy="no-referrer-when-downgrade"
                         title="会場地図">
                     </iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQセクション -->
+    <section class="section faq" id="faq">
+        <div class="container">
+            <h2 class="section-title">
+                <span class="section-title-en">FAQ</span>
+                <span class="section-title-ja">よくあるご質問</span>
+            </h2>
+            <div class="faq-content">
+                <div class="faq-item fade-in">
+                    <button class="faq-question" aria-expanded="false">
+                        <span>子どもが泣いてしまったらどうすればいいですか？</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>小さなお子様連れ大歓迎のコンサートです。お子様が泣いてしまっても、そのまま会場にいていただいて大丈夫です。気になる場合は、会場後方にスペースがございますので、そちらでお過ごしいただくことも可能です。</p>
+                    </div>
+                </div>
+                <div class="faq-item fade-in">
+                    <button class="faq-question" aria-expanded="false">
+                        <span>駐車場はありますか？</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>さっぽろ創世スクエアには有料駐車場がございます。また、近隣にも複数のコインパーキングがございます。公共交通機関でのご来場もおすすめです（地下鉄大通駅31番出口直結）。</p>
+                    </div>
+                </div>
+                <div class="faq-item fade-in">
+                    <button class="faq-question" aria-expanded="false">
+                        <span>写真・動画撮影はできますか？</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>演奏中の撮影・録音はご遠慮ください。開演前・終演後の記念撮影は可能です。SNSへの投稿も歓迎しております。</p>
+                    </div>
+                </div>
+                <div class="faq-item fade-in">
+                    <button class="faq-question" aria-expanded="false">
+                        <span>当日券はありますか？</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>はい、当日券も会場受付にて販売予定です。ただし、座席数に限りがございますので、事前のご購入をおすすめいたします。</p>
+                    </div>
+                </div>
+                <div class="faq-item fade-in">
+                    <button class="faq-question" aria-expanded="false">
+                        <span>ベビーカーで入場できますか？</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>はい、ベビーカーでのご来場も歓迎しております。会場内にベビーカー置き場をご用意いたします。</p>
+                    </div>
+                </div>
+                <div class="faq-item fade-in">
+                    <button class="faq-question" aria-expanded="false">
+                        <span>途中入場・途中退場はできますか？</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>はい、可能です。お子様の様子に合わせて、ご自由にご入退場いただけます。曲間での入退場にご協力いただけますと幸いです。</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -371,7 +537,7 @@
                 if (target) {
                     const headerOffset = 70;
                     const elementPosition = target.getBoundingClientRect().top;
-                    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                    const offsetPosition = elementPosition + window.scrollY - headerOffset;
 
                     window.scrollTo({
                         top: offsetPosition,
@@ -399,6 +565,48 @@
         // アニメーション対象の要素を監視
         document.querySelectorAll('.fade-in, .fade-in-left, .fade-in-right, .scale-in').forEach(el => {
             observer.observe(el);
+        });
+
+        // カウントダウンタイマー
+        const concertDate = new Date('2026-10-25T13:30:00+09:00');
+
+        function updateCountdown() {
+            const now = new Date();
+            const diff = concertDate - now;
+
+            if (diff <= 0) {
+                document.getElementById('countdown').innerHTML = '<p class="countdown-label">本日開催！</p>';
+                return;
+            }
+
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+
+            document.getElementById('countdown-days').textContent = days;
+            document.getElementById('countdown-hours').textContent = hours;
+        }
+
+        updateCountdown();
+        setInterval(updateCountdown, 3600000);
+
+        // FAQアコーディオン
+        document.querySelectorAll('.faq-question').forEach(button => {
+            button.addEventListener('click', () => {
+                const faqItem = button.parentElement;
+                const isActive = faqItem.classList.contains('active');
+
+                // 他のFAQを閉じる
+                document.querySelectorAll('.faq-item').forEach(item => {
+                    item.classList.remove('active');
+                    item.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
+                });
+
+                // クリックしたFAQを開く/閉じる
+                if (!isActive) {
+                    faqItem.classList.add('active');
+                    button.setAttribute('aria-expanded', 'true');
+                }
+            });
         });
     </script>
 </body>

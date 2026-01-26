@@ -48,11 +48,12 @@
     --shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.12);
     --shadow-glow: 0 0 40px rgba(244, 194, 194, 0.4);
 
-    /* トランジション */
-    --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
-    --transition-fast: 0.2s var(--ease-out);
-    --transition-normal: 0.4s var(--ease-out);
-    --transition-slow: 0.6s var(--ease-out);
+    /* トランジション - ゆっくりリッチな動き */
+    --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+    --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+    --transition-fast: 0.4s var(--ease-out);
+    --transition-normal: 0.8s var(--ease-out);
+    --transition-slow: 1.2s var(--ease-out);
 }
 
 /* リセット・ベース */
@@ -165,20 +166,21 @@ ul {
     display: none;
     flex-direction: column;
     justify-content: center;
-    gap: 6px;
-    width: 32px;
-    height: 32px;
-    background: none;
+    gap: 7px;
+    width: 40px;
+    height: 40px;
+    background: var(--color-main-light);
     border: none;
+    border-radius: var(--radius-sm);
     cursor: pointer;
-    padding: 4px;
+    padding: 8px;
 }
 
 .nav-toggle span {
     display: block;
     width: 100%;
-    height: 2px;
-    background: var(--color-text);
+    height: 3px;
+    background: var(--color-main-dark);
     border-radius: 2px;
     transition: all var(--transition-fast);
     transform-origin: center;
@@ -256,7 +258,7 @@ ul {
     line-height: 1.8;
     margin-bottom: var(--space-md);
     opacity: 0;
-    animation: fadeUp 1s var(--ease-out) 0.2s forwards;
+    animation: fadeUp 1.8s var(--ease-out) 0.3s forwards;
 }
 
 .hero-title {
@@ -267,7 +269,7 @@ ul {
     line-height: 1;
     margin-bottom: var(--space-xs);
     opacity: 0;
-    animation: fadeUp 1s var(--ease-out) 0.4s forwards;
+    animation: fadeUp 2s var(--ease-out) 0.6s forwards;
 }
 
 .hero-reading {
@@ -278,13 +280,13 @@ ul {
     margin-bottom: var(--space-lg);
     letter-spacing: 0.3em;
     opacity: 0;
-    animation: fadeUp 1s var(--ease-out) 0.6s forwards;
+    animation: fadeUp 1.8s var(--ease-out) 1s forwards;
 }
 
 @keyframes fadeUp {
     from {
         opacity: 0;
-        transform: translateY(30px);
+        transform: translateY(40px);
     }
     to {
         opacity: 1;
@@ -302,7 +304,7 @@ ul {
     margin-bottom: var(--space-md);
     box-shadow: var(--shadow-md);
     opacity: 0;
-    animation: fadeUp 1s var(--ease-out) 0.8s forwards;
+    animation: fadeUp 1.8s var(--ease-out) 1.4s forwards;
 }
 
 .hero-date,
@@ -347,7 +349,7 @@ ul {
     box-shadow: var(--shadow-md), var(--shadow-glow);
     transition: all var(--transition-normal);
     opacity: 0;
-    animation: fadeUp 1s var(--ease-out) 1s forwards;
+    animation: fadeUp 1.8s var(--ease-out) 1.8s forwards;
 }
 
 .hero-cta:hover {
@@ -402,6 +404,54 @@ ul {
     50% {
         transform: translateY(-30px) rotate(5deg);
     }
+}
+
+/* カウントダウンタイマー */
+.countdown {
+    margin-top: var(--space-lg);
+    opacity: 0;
+    animation: fadeUp 1.8s var(--ease-out) 2.2s forwards;
+}
+
+.countdown-label {
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+    letter-spacing: 0.1em;
+    margin-bottom: var(--space-sm);
+}
+
+.countdown-timer {
+    display: flex;
+    justify-content: center;
+    gap: var(--space-md);
+}
+
+.countdown-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: var(--glass-bg);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    padding: var(--space-sm) var(--space-md);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--glass-border);
+    min-width: 80px;
+}
+
+.countdown-number {
+    font-family: var(--font-serif);
+    font-size: 2.5rem;
+    font-weight: 500;
+    color: var(--color-main-dark);
+    line-height: 1;
+}
+
+.countdown-unit {
+    font-size: 0.75rem;
+    color: var(--color-text-muted);
+    margin-top: 4px;
+    letter-spacing: 0.05em;
 }
 
 /* ============================================
@@ -510,12 +560,12 @@ ul {
 }
 
 /* ============================================
-   スクロールアニメーション
+   スクロールアニメーション - ゆっくりリッチ
    ============================================ */
 .fade-in {
     opacity: 0;
-    transform: translateY(40px);
-    transition: opacity 0.8s var(--ease-out), transform 0.8s var(--ease-out);
+    transform: translateY(50px);
+    transition: opacity 1.4s var(--ease-out), transform 1.4s var(--ease-out);
 }
 
 .fade-in.visible {
@@ -525,8 +575,8 @@ ul {
 
 .fade-in-left {
     opacity: 0;
-    transform: translateX(-40px);
-    transition: opacity 0.8s var(--ease-out), transform 0.8s var(--ease-out);
+    transform: translateX(-50px);
+    transition: opacity 1.4s var(--ease-out), transform 1.4s var(--ease-out);
 }
 
 .fade-in-left.visible {
@@ -536,8 +586,8 @@ ul {
 
 .fade-in-right {
     opacity: 0;
-    transform: translateX(40px);
-    transition: opacity 0.8s var(--ease-out), transform 0.8s var(--ease-out);
+    transform: translateX(50px);
+    transition: opacity 1.4s var(--ease-out), transform 1.4s var(--ease-out);
 }
 
 .fade-in-right.visible {
@@ -548,7 +598,7 @@ ul {
 .scale-in {
     opacity: 0;
     transform: scale(0.9);
-    transition: opacity 0.8s var(--ease-out), transform 0.8s var(--ease-out);
+    transition: opacity 1.4s var(--ease-out), transform 1.4s var(--ease-out);
 }
 
 .scale-in.visible {
@@ -557,11 +607,11 @@ ul {
 }
 
 /* スタッガードアニメーション用 */
-.stagger-1 { transition-delay: 0.1s; }
-.stagger-2 { transition-delay: 0.2s; }
-.stagger-3 { transition-delay: 0.3s; }
-.stagger-4 { transition-delay: 0.4s; }
-.stagger-5 { transition-delay: 0.5s; }
+.stagger-1 { transition-delay: 0.15s; }
+.stagger-2 { transition-delay: 0.3s; }
+.stagger-3 { transition-delay: 0.45s; }
+.stagger-4 { transition-delay: 0.6s; }
+.stagger-5 { transition-delay: 0.75s; }
 
 /* ============================================
    コンセプトセクション
@@ -571,76 +621,34 @@ ul {
     margin: 0 auto;
 }
 
-.concept-intro {
-    font-size: 0.95rem;
-    color: var(--color-text-light);
-    text-align: center;
-    margin-bottom: var(--space-lg);
-    line-height: 2;
-}
-
 .concept-lead {
     font-family: var(--font-serif);
     font-size: 1.5rem;
     font-weight: 400;
     text-align: center;
     line-height: 2;
-    margin-bottom: var(--space-md);
+    margin-bottom: var(--space-lg);
     color: var(--color-text);
     letter-spacing: 0.05em;
 }
 
-.concept-connections {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: var(--space-md);
-    margin-bottom: var(--space-lg);
-}
-
-.connection {
-    background: var(--glass-bg);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    padding: var(--space-md);
-    border-radius: var(--radius-md);
-    border: 1px solid var(--glass-border);
-    text-align: center;
-    transition: all var(--transition-normal);
-}
-
-.connection:hover {
-    transform: translateY(-8px);
-    box-shadow: var(--shadow-lg);
-}
-
-.connection-icon {
-    font-size: 2.5rem;
-    margin-bottom: var(--space-sm);
-    display: block;
-}
-
-.connection h3 {
-    font-family: var(--font-serif);
-    font-size: 1rem;
-    font-weight: 500;
-    color: var(--color-text);
-    margin-bottom: var(--space-xs);
-}
-
-.connection p {
-    font-size: 0.875rem;
-    color: var(--color-text-light);
-    line-height: 1.8;
-}
-
-.concept-message {
-    font-family: var(--font-serif);
-    font-size: 1.125rem;
-    text-align: center;
-    line-height: 2.2;
-    color: var(--color-text);
-    max-width: 600px;
+.concept-body {
+    max-width: 700px;
     margin: 0 auto;
+    text-align: center;
+}
+
+.concept-body p {
+    font-family: var(--font-serif);
+    font-size: 1.05rem;
+    color: var(--color-text);
+    line-height: 2.2;
+    margin-bottom: var(--space-md);
+    letter-spacing: 0.02em;
+}
+
+.concept-body p:last-child {
+    margin-bottom: 0;
 }
 
 /* ============================================
@@ -690,6 +698,15 @@ ul {
     font-size: 0.8rem;
     color: var(--color-text-muted);
     letter-spacing: 0.02em;
+}
+
+.program-description {
+    font-size: 0.85rem;
+    color: var(--color-text-light);
+    line-height: 1.8;
+    margin-top: var(--space-xs);
+    padding-top: var(--space-xs);
+    border-top: 1px dashed var(--color-main-light);
 }
 
 .program-others {
@@ -885,6 +902,75 @@ ul {
     color: var(--color-text-muted);
 }
 
+/* カレンダー登録 */
+.calendar-add {
+    margin-top: var(--space-lg);
+    text-align: center;
+}
+
+.calendar-add h3 {
+    font-family: var(--font-serif);
+    font-size: 1rem;
+    font-weight: 400;
+    color: var(--color-text);
+    margin-bottom: var(--space-xs);
+}
+
+.calendar-add p {
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+    margin-bottom: var(--space-md);
+}
+
+.calendar-buttons {
+    display: flex;
+    justify-content: center;
+    gap: var(--space-sm);
+    flex-wrap: wrap;
+}
+
+.calendar-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 0.75rem 1.25rem;
+    border-radius: var(--radius-full);
+    font-size: 0.85rem;
+    font-weight: 500;
+    transition: all var(--transition-normal);
+    border: 1px solid var(--color-accent-light);
+    color: var(--color-text);
+    background: var(--color-white);
+}
+
+.calendar-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.calendar-icon {
+    font-weight: 700;
+    font-size: 1rem;
+}
+
+.calendar-google:hover {
+    background: #4285f4;
+    color: var(--color-white);
+    border-color: #4285f4;
+}
+
+.calendar-apple:hover {
+    background: #333;
+    color: var(--color-white);
+    border-color: #333;
+}
+
+.calendar-outlook:hover {
+    background: #0078d4;
+    color: var(--color-white);
+    border-color: #0078d4;
+}
+
 /* ============================================
    アクセスセクション
    ============================================ */
@@ -1029,6 +1115,79 @@ ul {
 }
 
 /* ============================================
+   FAQセクション
+   ============================================ */
+.faq-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.faq-item {
+    background: var(--color-white);
+    border-radius: var(--radius-md);
+    margin-bottom: var(--space-sm);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+    transition: all var(--transition-normal);
+}
+
+.faq-item:hover {
+    border-color: var(--color-main-light);
+    box-shadow: var(--shadow-sm);
+}
+
+.faq-question {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--space-md);
+    background: none;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--color-text);
+    transition: all var(--transition-fast);
+}
+
+.faq-question:hover {
+    color: var(--color-main-dark);
+}
+
+.faq-icon {
+    font-size: 1.5rem;
+    font-weight: 300;
+    color: var(--color-main-dark);
+    transition: transform var(--transition-normal);
+    flex-shrink: 0;
+    margin-left: var(--space-sm);
+}
+
+.faq-item.active .faq-icon {
+    transform: rotate(45deg);
+}
+
+.faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height var(--transition-normal), padding var(--transition-normal);
+}
+
+.faq-item.active .faq-answer {
+    max-height: 300px;
+}
+
+.faq-answer p {
+    padding: 0 var(--space-md) var(--space-md);
+    font-size: 0.95rem;
+    color: var(--color-text-light);
+    line-height: 1.9;
+}
+
+/* ============================================
    フッター
    ============================================ */
 .footer {
@@ -1102,10 +1261,6 @@ ul {
     }
 
     .access-content {
-        grid-template-columns: 1fr;
-    }
-
-    .concept-connections {
         grid-template-columns: 1fr;
     }
 }
@@ -1198,6 +1353,55 @@ ul {
         right: 20px;
         width: 44px;
         height: 44px;
+    }
+}
+
+/* アクセシビリティ - フォーカススタイル */
+a:focus-visible,
+button:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 3px;
+}
+
+.nav-menu a:focus-visible {
+    outline-offset: 2px;
+    border-radius: var(--radius-sm);
+}
+
+.hero-cta:focus-visible,
+.ticket-btn:focus-visible,
+.calendar-btn:focus-visible {
+    outline-color: var(--color-white);
+    box-shadow: 0 0 0 4px var(--color-accent);
+}
+
+/* アクセシビリティ - モーション軽減 */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+
+    .hero-title,
+    .hero-subtitle,
+    .hero-reading,
+    .hero-info,
+    .hero-cta,
+    .countdown {
+        opacity: 1;
+        animation: none;
+    }
+
+    .fade-in,
+    .fade-in-left,
+    .fade-in-right,
+    .scale-in {
+        opacity: 1;
+        transform: none;
     }
 }
 
