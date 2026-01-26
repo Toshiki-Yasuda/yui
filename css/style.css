@@ -4,20 +4,20 @@
 
 /* CSS変数 */
 :root {
-    /* カラーパレット - モダンに調整 */
-    --color-main: #C9A8A8;
-    --color-main-dark: #A88888;
-    --color-main-light: #E8D8D8;
-    --color-accent: #5B7B88;
-    --color-accent-dark: #4A6A78;
-    --color-accent-light: #8BA8B8;
+    /* カラーパレット - ラベンダー＆ソフトブルー */
+    --color-main: #D8BFD8;           /* シスル（ラベンダー） */
+    --color-main-dark: #B4A7C7;      /* モーブパープル */
+    --color-main-light: #EDE4ED;     /* ライトラベンダー */
+    --color-accent: #7A9BB5;         /* ソフトブルー（濃いめ） */
+    --color-accent-dark: #5E8199;    /* ディープブルー */
+    --color-accent-light: #AFCBDF;   /* ソフトブルー */
     --color-bg: #FAFAFA;
-    --color-bg-alt: #F5F3F0;
+    --color-bg-alt: #F8F5FA;         /* ラベンダーティント */
     --color-text: #2D2D2D;
-    --color-text-light: #6B6B6B;
-    --color-text-muted: #9B9B9B;
+    --color-text-light: #5A5A6A;
+    --color-text-muted: #8A8A9A;
     --color-white: #FFFFFF;
-    --color-gold: #C8A868;
+    --color-gold: #B8A8C8;           /* ラベンダーゴールド */
 
     /* タイポグラフィ */
     --font-sans: 'Noto Sans JP', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -46,7 +46,7 @@
     --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.04);
     --shadow-md: 0 8px 32px rgba(0, 0, 0, 0.08);
     --shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.12);
-    --shadow-glow: 0 0 40px rgba(201, 168, 168, 0.3);
+    --shadow-glow: 0 0 40px rgba(216, 191, 216, 0.4);
 
     /* トランジション */
     --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
@@ -221,7 +221,7 @@ ul {
     right: -30%;
     width: 80%;
     height: 150%;
-    background: radial-gradient(circle, rgba(201, 168, 168, 0.15) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(180, 167, 199, 0.2) 0%, transparent 70%);
     animation: pulse 8s ease-in-out infinite;
 }
 
@@ -232,7 +232,7 @@ ul {
     left: -20%;
     width: 60%;
     height: 100%;
-    background: radial-gradient(circle, rgba(91, 123, 136, 0.1) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(175, 203, 223, 0.15) 0%, transparent 70%);
     animation: pulse 10s ease-in-out infinite reverse;
 }
 
@@ -352,7 +352,7 @@ ul {
     background: var(--color-main);
     color: var(--color-white);
     transform: translateY(-4px);
-    box-shadow: var(--shadow-lg), 0 0 60px rgba(201, 168, 168, 0.4);
+    box-shadow: var(--shadow-lg), 0 0 60px rgba(180, 167, 199, 0.5);
 }
 
 .hero-decoration {
