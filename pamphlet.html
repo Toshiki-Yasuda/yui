@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>マリンバコンサート「結」パンフレット</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;600&family=Noto+Serif+JP:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-main: #D4A5A5;
+            --color-main-dark: #B88B8B;
+            --color-main-light: #F5EAEA;
+            --color-accent: #6B8E9B;
+            --color-bg: #FAF8F5;
+            --color-text: #333333;
+            --color-text-light: #555555;
+            --color-text-muted: #888888;
+            --font-sans: 'Noto Sans JP', sans-serif;
+            --font-serif: 'Noto Serif JP', serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            color: var(--color-text);
+            background: #fff;
+            font-size: 10pt;
+            line-height: 1.6;
+        }
+
+        /* 印刷設定 */
+        @page {
+            size: A4 landscape;
+            margin: 5mm;
+        }
+
+        /* シート（1ページ = 3パネル） */
+        .sheet {
+            width: 287mm;
+            height: 200mm;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0;
+            page-break-after: always;
+            margin: 0 auto;
+        }
+
+        .sheet:last-child {
+            page-break-after: avoid;
+        }
+
+        /* パネル共通 */
+        .panel {
+            padding: 8mm;
+            overflow: hidden;
+            border: 1px dashed #ddd; /* 折り線ガイド（印刷時は薄く出る） */
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* === 外側（表紙面） === */
+
+        /* 表紙（中央） */
+        .cover {
+            background: linear-gradient(135deg, var(--color-bg) 0%, var(--color-main-light) 100%);
+            text-align: center;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .cover-title {
+            font-family: var(--font-serif);
+            font-size: 48pt;
+            font-weight: 400;
+            color: var(--color-main-dark);
+            margin-bottom: 5mm;
+            letter-spacing: 0.2em;
+        }
+
+        .cover-subtitle {
+            font-family: var(--font-serif);
+            font-size: 8.5pt;
+            color: var(--color-text-light);
+            margin-bottom: 8mm;
+            letter-spacing: 0.05em;
+            white-space: nowrap;
+        }
+
+        .cover-reading {
+            font-family: var(--font-serif);
+            font-size: 12pt;
+            color: var(--color-text-muted);
+            letter-spacing: 0;
+            text-align: center;
+            margin-top: -8mm;
+            margin-bottom: 6mm;
+            transform: translateX(-1mm);
+        }
+
+        .cover-info {
+            font-size: 10pt;
+            line-height: 2;
+        }
+
+        .cover-date {
+            font-size: 12pt;
+            font-weight: 500;
+            color: var(--color-text);
+            margin-bottom: 2mm;
+        }
+
+        .cover-venue {
+            color: var(--color-text-light);
+        }
+
+        /* 折込面（右） */
+        .flap {
+            background: var(--color-bg);
+            text-align: center;
+        }
+
+        .flap h2 {
+            font-family: var(--font-serif);
+            font-size: 12pt;
+            color: var(--color-main-dark);
+            margin-bottom: 5mm;
+            padding-bottom: 2mm;
+            border-bottom: 1px solid var(--color-main);
+        }
+
+        .ticket-info {
+            margin-bottom: 5mm;
+        }
+
+        .ticket-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 2mm 0;
+            border-bottom: 1px dotted #ddd;
+            font-size: 9pt;
+        }
+
+        .ticket-row:last-child {
+            border-bottom: none;
+        }
+
+        .qr-section {
+            margin-top: 5mm;
+            text-align: center;
+        }
+
+        .qr-section img {
+            width: 25mm;
+            height: 25mm;
+        }
+
+        .qr-section p {
+            font-size: 8pt;
+            color: var(--color-text-muted);
+            margin-top: 2mm;
+        }
+
+        .welcome-box {
+            background: var(--color-main-light);
+            padding: 3mm;
+            border-radius: 2mm;
+            margin-top: 5mm;
+            font-size: 9pt;
+        }
+
+        .welcome-box strong {
+            color: var(--color-main-dark);
+        }
+
+        /* 裏表紙（左） */
+        .back {
+            background: var(--color-bg);
+            font-size: 9pt;
+        }
+
+        .back h2 {
+            font-family: var(--font-serif);
+            font-size: 12pt;
+            color: var(--color-main-dark);
+            margin-bottom: 4mm;
+            padding-bottom: 2mm;
+            border-bottom: 1px solid var(--color-main);
+        }
+
+        .back h3 {
+            font-size: 10pt;
+            color: var(--color-text);
+            margin: 4mm 0 2mm;
+        }
+
+        .access-info {
+            margin-bottom: 5mm;
+        }
+
+        .access-info p {
+            margin-bottom: 2mm;
+        }
+
+        .contact-info {
+            margin-top: auto;
+            padding-top: 5mm;
+            border-top: 1px solid #ddd;
+            font-size: 8pt;
+        }
+
+        .sponsor {
+            margin-top: 3mm;
+            font-size: 8pt;
+            color: var(--color-text-muted);
+        }
+
+        /* === 内側 === */
+
+        /* コンセプト（左） */
+        .concept {
+            background: var(--color-main-light);
+        }
+
+        .concept h2 {
+            font-family: var(--font-serif);
+            font-size: 14pt;
+            color: var(--color-main-dark);
+            text-align: center;
+            margin-bottom: 5mm;
+        }
+
+        .concept-text {
+            font-size: 9pt;
+            line-height: 1.8;
+            text-align: justify;
+        }
+
+        .concept-text p {
+            text-indent: 1em;
+            margin-bottom: 3mm;
+        }
+
+        /* プログラム（中央） */
+        .program {
+            background: #fff;
+        }
+
+        .program h2 {
+            font-family: var(--font-serif);
+            font-size: 12pt;
+            color: var(--color-main-dark);
+            text-align: center;
+            margin-bottom: 4mm;
+        }
+
+        .program-part {
+            margin-bottom: 4mm;
+        }
+
+        .program-part h3 {
+            font-size: 10pt;
+            color: var(--color-accent);
+            margin-bottom: 2mm;
+            padding-bottom: 1mm;
+            border-bottom: 1px solid var(--color-accent);
+        }
+
+        .program-list {
+            list-style: none;
+            font-size: 8.5pt;
+        }
+
+        .program-list li {
+            padding: 2.5mm 0;
+            border-bottom: 1px dotted #eee;
+        }
+
+        .program-list li strong {
+            font-size: 9pt;
+            color: var(--color-text);
+        }
+
+        .program-list .composer {
+            font-size: 7.5pt;
+            color: var(--color-text-muted);
+            display: block;
+        }
+
+        .program-list .program-desc {
+            font-size: 7pt;
+            color: var(--color-text-light);
+            margin-top: 1mm;
+            line-height: 1.5;
+        }
+
+        /* 出演者（右） */
+        .artist {
+            background: var(--color-bg);
+        }
+
+        .artist h2 {
+            font-family: var(--font-serif);
+            font-size: 12pt;
+            color: var(--color-main-dark);
+            text-align: center;
+            margin-bottom: 5mm;
+        }
+
+        .artist-card {
+            margin-bottom: 5mm;
+        }
+
+        .artist-name {
+            font-family: var(--font-serif);
+            font-size: 14pt;
+            text-align: center;
+            margin-bottom: 1mm;
+        }
+
+        .artist-instrument {
+            text-align: center;
+            font-size: 9pt;
+            color: var(--color-main-dark);
+            margin-bottom: 3mm;
+        }
+
+        .artist-bio {
+            font-size: 8.5pt;
+            line-height: 1.6;
+            text-align: justify;
+        }
+
+        /* 画面プレビュー用 */
+        @media screen {
+            body {
+                background: #666;
+                padding: 10mm;
+            }
+            .sheet {
+                background: #fff;
+                box-shadow: 0 2mm 10mm rgba(0,0,0,0.3);
+                margin-bottom: 10mm;
+            }
+            .panel {
+                border: 1px dashed #ccc;
+            }
+            .print-guide {
+                text-align: center;
+                color: #fff;
+                padding: 5mm;
+                font-size: 12pt;
+            }
+        }
+
+        @media print {
+            body {
+                background: #fff;
+                margin: 0;
+                padding: 0;
+            }
+            .print-guide {
+                display: none !important;
+            }
+            .sheet {
+                page-break-inside: avoid;
+                height: 200mm;
+                overflow: hidden;
+            }
+            .sheet.outside {
+                page-break-after: always;
+            }
+            .sheet.inside {
+                page-break-after: avoid;
+            }
+            .panel {
+                border: 1px dashed #eee;
+                overflow: hidden;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="print-guide">
+        印刷時は「用紙サイズ: A4」「向き: 横」で印刷してください。両面印刷で三つ折りパンフレットになります。
+    </div>
+
+    <!-- 外側（表紙面）: 裏表紙 | 表紙 | 折込面 -->
+    <div class="sheet outside">
+        <!-- 裏表紙（左） -->
+        <div class="panel back">
+            <h2>アクセス</h2>
+            <div class="access-info">
+                <h3>会場</h3>
+                <p><strong>HITARU クリエイティブスタジオ</strong></p>
+                <p>〒060-0001<br>札幌市中央区北1条西1丁目6番地<br>さっぽろ創世スクエア 3F</p>
+
+                <h3>交通</h3>
+                <p>地下鉄東西線・南北線・東豊線<br>「大通駅」30番出口直結</p>
+            </div>
+
+            <div class="contact-info">
+                <h3>お問い合わせ</h3>
+                <p>Email: yui.concert.2026@gmail.com</p>
+                <div class="sponsor">
+                    <p>主催: マリンバ北星会</p>
+                    <p>後援: 調整中</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 表紙（中央） -->
+        <div class="panel cover">
+            <div class="cover-content">
+                <p class="cover-subtitle">第18回 マリンバ北星会 午後のコンサート</p>
+                <h1 class="cover-title">結</h1>
+                <p class="cover-reading">YUI</p>
+                <div class="cover-info">
+                    <p class="cover-date">2026年10月25日（日）</p>
+                    <p>13:00 開場 / 13:30 開演</p>
+                    <p class="cover-venue">HITARU クリエイティブスタジオ</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 折込面（右） -->
+        <div class="panel flap">
+            <h2>チケット</h2>
+            <div class="ticket-info">
+                <div class="ticket-row">
+                    <span>一般</span>
+                    <span>2,000円</span>
+                </div>
+                <div class="ticket-row">
+                    <span>学生</span>
+                    <span>1,000円</span>
+                </div>
+                <div class="ticket-row">
+                    <span>未就学児（座席使用）</span>
+                    <span>500円</span>
+                </div>
+                <div class="ticket-row">
+                    <span>未就学児（膝上）</span>
+                    <span>無料</span>
+                </div>
+            </div>
+
+            <div class="qr-section">
+                <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://teket.jp/16938/63047" alt="チケット購入QRコード">
+                <p>teket でチケット購入</p>
+            </div>
+
+            <div class="welcome-box">
+                <strong>お子様連れ大歓迎！</strong><br>
+                世代を超えて楽しめる名曲をお届けします。
+            </div>
+        </div>
+    </div>
+
+    <!-- 内側: コンセプト | プログラム | 出演者 -->
+    <div class="sheet inside">
+        <!-- コンセプト（左） -->
+        <div class="panel concept">
+            <h2>「結」に込めた想い</h2>
+            <div class="concept-text">
+                <p style="text-indent: 0; text-align: center; font-weight: 500; margin-bottom: 5mm;">人と人、音と心を結ぶ。<br><span style="font-size: 7.5pt;">〜未就学児からお年寄りまで、誰もが楽しめるコンサート〜</span></p>
+                <p>木の温もりあふれるマリンバの音色を通し、世代を超えて音楽が結びつく場を目指します。</p>
+                <p>今回のコンサートタイトル「結」には、いくつもの不思議なご縁が重なり、このソロ演奏会が実現に至ったことへの感謝が込められています。</p>
+                <p>これらの重なるご縁から生まれたコンサートとして、一音一音を大切に作り上げていきます。音楽を通じた心の旅路をお届けします。</p>
+            </div>
+        </div>
+
+        <!-- プログラム（中央） -->
+        <div class="panel program">
+            <h2>プログラム</h2>
+
+            <ul class="program-list">
+                <li>
+                    <strong>ジブリメドレー</strong>
+                    <span class="composer">久石譲 / 編曲：安田愛</span>
+                    <p class="program-desc">「となりのトトロ」「千と千尋の神隠し」など、世代を超えて愛される名曲をお届けします。</p>
+                </li>
+                <li>
+                    <strong>戦場のメリークリスマス</strong>
+                    <span class="composer">坂本龍一 / 編曲：安田愛</span>
+                    <p class="program-desc">映画音楽の名曲を、マリンバの深い響きでお聴きいただきます。</p>
+                </li>
+                <li>
+                    <strong>赤とんぼ</strong>
+                    <span class="composer">山田耕筰 / 編曲：小西欣一</span>
+                    <p class="program-desc">日本人の心の原風景を描いた名曲。秋の情景が目に浮かぶような演奏を。</p>
+                </li>
+                <li>
+                    <strong>結（ゆい）</strong>
+                    <span class="composer">尾崎勇太</span>
+                    <p class="program-desc">コンサートタイトルにもなっている曲。もともとはフルートの曲ですが、美しいメロディに惹かれ、選曲いたしました。「人と人の連なり」という想いが込められています。</p>
+                </li>
+                <li>
+                    <strong>他</strong>
+                </li>
+            </ul>
+            <p style="font-size: 7pt; color: #888; margin-top: 3mm;">※プログラムは変更になる場合がございます</p>
+        </div>
+
+        <!-- 出演者（右） -->
+        <div class="panel artist">
+            <h2>出演者</h2>
+
+            <div class="artist-card">
+                <h3 class="artist-name">安田 愛</h3>
+                <p class="artist-instrument">マリンバ</p>
+                <p class="artist-bio">
+                    6歳よりマリンバを始め、会社員として勤務するかたわら、精力的に演奏活動を行う。マリンバ北星会第59号師範免状取得。北原千鳥、木村和枝、浜田美保、小田光子の各氏に師事。
+                </p>
+                <p class="artist-bio">
+                    1999年・2007年・2009年の訪中コンサートに参加。2002年、ベトナムでの「ハノイマリンバコンサート」に出演。2007年・2013年 日本マリンバ協会全国選抜大会にアンサンブルで参加。2008年、第4回午後のコンサート ～no marimba, no life～を開催。2009年、TOA DUO CONCERT from MARIMBAを、小祝朋子氏と共に開催。
+                </p>
+                <p class="artist-bio">
+                    マリンバ北星会会員、日本マリンバ協会会員。リトミック研究センター付属教員養成校修了、ディプロマA取得。
+                </p>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

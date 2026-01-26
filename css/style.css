@@ -778,7 +778,7 @@ ul {
 
 .artist-name {
     font-family: var(--font-serif);
-    font-size: 1.75rem;
+    font-size: 2.2rem;
     font-weight: 400;
     color: var(--color-text);
     text-align: center;
@@ -932,6 +932,26 @@ ul {
 .ticket-notice {
     font-size: 0.8rem;
     color: var(--color-text-muted);
+}
+
+.ticket-qr {
+    margin-top: var(--space-md);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.ticket-qr img {
+    border-radius: var(--radius-sm);
+    box-shadow: var(--shadow-sm);
+    display: block;
+}
+
+.qr-caption {
+    font-size: 0.8rem;
+    color: var(--color-text-muted);
+    margin-top: var(--space-xs);
 }
 
 /* カレンダー登録 */
