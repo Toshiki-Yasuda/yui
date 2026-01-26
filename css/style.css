@@ -4,20 +4,20 @@
 
 /* CSS変数 */
 :root {
-    /* カラーパレット - ラベンダー＆ソフトブルー */
-    --color-main: #D8BFD8;           /* シスル（ラベンダー） */
-    --color-main-dark: #B4A7C7;      /* モーブパープル */
-    --color-main-light: #EDE4ED;     /* ライトラベンダー */
+    /* カラーパレット - ベビーピンク・ラベンダー・ソフトブルー */
+    --color-main: #F4C2C2;           /* ベビーピンク */
+    --color-main-dark: #D4A5A5;      /* ダスティローズ */
+    --color-main-light: #FAE5E5;     /* ライトピンク */
     --color-accent: #7A9BB5;         /* ソフトブルー（濃いめ） */
     --color-accent-dark: #5E8199;    /* ディープブルー */
     --color-accent-light: #AFCBDF;   /* ソフトブルー */
     --color-bg: #FAFAFA;
-    --color-bg-alt: #F8F5FA;         /* ラベンダーティント */
+    --color-bg-alt: #FDF8F8;         /* ピンクティント */
     --color-text: #2D2D2D;
     --color-text-light: #5A5A6A;
     --color-text-muted: #8A8A9A;
     --color-white: #FFFFFF;
-    --color-gold: #B8A8C8;           /* ラベンダーゴールド */
+    --color-lavender: #D8BFD8;       /* ラベンダー */
 
     /* タイポグラフィ */
     --font-sans: 'Noto Sans JP', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -46,7 +46,7 @@
     --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.04);
     --shadow-md: 0 8px 32px rgba(0, 0, 0, 0.08);
     --shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.12);
-    --shadow-glow: 0 0 40px rgba(216, 191, 216, 0.4);
+    --shadow-glow: 0 0 40px rgba(244, 194, 194, 0.4);
 
     /* トランジション */
     --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
@@ -221,7 +221,7 @@ ul {
     right: -30%;
     width: 80%;
     height: 150%;
-    background: radial-gradient(circle, rgba(180, 167, 199, 0.2) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(244, 194, 194, 0.2) 0%, transparent 70%);
     animation: pulse 8s ease-in-out infinite;
 }
 
@@ -232,7 +232,7 @@ ul {
     left: -20%;
     width: 60%;
     height: 100%;
-    background: radial-gradient(circle, rgba(175, 203, 223, 0.15) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(216, 191, 216, 0.15) 0%, transparent 70%);
     animation: pulse 10s ease-in-out infinite reverse;
 }
 
@@ -249,10 +249,11 @@ ul {
 
 .hero-subtitle {
     font-family: var(--font-sans);
-    font-size: 0.875rem;
+    font-size: 1.4rem;
     font-weight: 500;
     letter-spacing: 0.2em;
     color: var(--color-accent);
+    line-height: 1.8;
     margin-bottom: var(--space-md);
     opacity: 0;
     animation: fadeUp 1s var(--ease-out) 0.2s forwards;
@@ -261,8 +262,8 @@ ul {
 .hero-title {
     font-family: var(--font-serif);
     font-size: clamp(5rem, 20vw, 12rem);
-    font-weight: 400;
-    color: var(--color-main-dark);
+    font-weight: 500;
+    color: #E8B4B8;
     line-height: 1;
     margin-bottom: var(--space-xs);
     opacity: 0;
@@ -313,7 +314,7 @@ ul {
 .hero-date-label,
 .hero-venue-label {
     display: inline-block;
-    font-size: 0.75rem;
+    font-size: 1rem;
     font-weight: 600;
     letter-spacing: 0.1em;
     color: var(--color-accent);
@@ -323,12 +324,13 @@ ul {
 
 .hero-date-value,
 .hero-venue-value {
+    font-size: 1.2rem;
     font-weight: 500;
     color: var(--color-text);
 }
 
 .hero-time {
-    font-size: 0.875rem;
+    font-size: 1.1rem;
     color: var(--color-text-light);
 }
 
@@ -352,7 +354,7 @@ ul {
     background: var(--color-main);
     color: var(--color-white);
     transform: translateY(-4px);
-    box-shadow: var(--shadow-lg), 0 0 60px rgba(180, 167, 199, 0.5);
+    box-shadow: var(--shadow-lg), 0 0 60px rgba(244, 194, 194, 0.5);
 }
 
 .hero-decoration {
