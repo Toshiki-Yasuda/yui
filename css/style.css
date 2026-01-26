@@ -75,9 +75,30 @@ body {
     font-size: 1rem;
     line-height: 1.8;
     color: var(--color-text);
-    background-color: var(--color-bg);
+    background: linear-gradient(
+        135deg,
+        var(--color-bg) 0%,
+        #FDF8F8 25%,
+        var(--color-bg) 50%,
+        #F8F5FA 75%,
+        var(--color-bg) 100%
+    );
+    background-size: 400% 400%;
+    animation: subtleGradient 20s ease infinite;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+}
+
+@keyframes subtleGradient {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
 }
 
 img {
