@@ -68,9 +68,11 @@
 html {
     scroll-behavior: smooth;
     font-size: 16px;
+    overflow-x: hidden;
 }
 
 body {
+    overflow-x: hidden;
     font-family: var(--font-sans);
     font-size: 1rem;
     line-height: 1.8;
