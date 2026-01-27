@@ -690,7 +690,7 @@ ul {
     display: flex;
     align-items: center;
     gap: var(--space-md);
-    padding: var(--space-md);
+    padding: var(--space-lg);
     background: var(--color-white);
     border-radius: var(--radius-md);
     border: 1px solid rgba(0, 0, 0, 0.05);
@@ -821,7 +821,7 @@ ul {
 
 .ticket-price {
     background: var(--color-white);
-    padding: var(--space-md);
+    padding: var(--space-lg);
     border-radius: var(--radius-md);
     border: 1px solid rgba(0, 0, 0, 0.05);
     transition: all var(--transition-fast);
@@ -863,7 +863,7 @@ ul {
 
 .ticket-welcome {
     background: linear-gradient(135deg, var(--color-main-light) 0%, var(--color-bg-alt) 100%);
-    padding: var(--space-md) var(--space-lg);
+    padding: var(--space-lg) var(--space-xl);
     border-radius: var(--radius-md);
     font-size: 0.95rem;
     line-height: 1.9;
@@ -1193,7 +1193,7 @@ ul {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: var(--space-md);
+    padding: var(--space-md) var(--space-lg);
     background: none;
     border: none;
     cursor: pointer;

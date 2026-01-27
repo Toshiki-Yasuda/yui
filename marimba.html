@@ -40,6 +40,75 @@
             color: var(--color-text-light);
         }
 
+        .marimba-intro-section {
+            position: relative;
+            padding: var(--space-sm) var(--space-md);
+            min-height: 350px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 0;
+        }
+
+        .marimba-bg-image {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+            max-width: 700px;
+            height: auto;
+            opacity: 0.5;
+            z-index: 0;
+        }
+
+        .marimba-intro-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .marimba-title-outlined {
+            text-shadow:
+                -1px -1px 0 #fff,
+                1px -1px 0 #fff,
+                -1px 1px 0 #fff,
+                1px 1px 0 #fff,
+                -2px -2px 0 #fff,
+                2px -2px 0 #fff,
+                -2px 2px 0 #fff,
+                2px 2px 0 #fff,
+                0 0 10px #fff,
+                0 0 20px #fff;
+        }
+
+        .marimba-text-outlined {
+            text-shadow:
+                -1px -1px 0 #fff,
+                1px -1px 0 #fff,
+                -1px 1px 0 #fff,
+                1px 1px 0 #fff,
+                -2px -2px 0 #fff,
+                2px -2px 0 #fff,
+                -2px 2px 0 #fff,
+                2px 2px 0 #fff,
+                0 0 8px #fff,
+                0 0 15px #fff;
+        }
+
+        .marimba-text-outlined strong {
+            text-shadow:
+                -1px -1px 0 #fff,
+                1px -1px 0 #fff,
+                -1px 1px 0 #fff,
+                1px 1px 0 #fff,
+                -2px -2px 0 #fff,
+                2px -2px 0 #fff,
+                -2px 2px 0 #fff,
+                2px 2px 0 #fff,
+                0 0 8px #fff,
+                0 0 15px #fff;
+        }
+
         .marimba-section {
             max-width: 800px;
             margin: 0 auto var(--space-xl);
@@ -71,7 +140,7 @@
             background: linear-gradient(135deg, var(--color-main-light) 0%, var(--color-bg-alt) 100%);
             padding: var(--space-lg);
             border-radius: var(--radius-lg);
-            margin: var(--space-lg) 0;
+            margin: var(--space-sm) 0 var(--space-lg) 0;
         }
 
         .marimba-highlight-title {
@@ -105,8 +174,25 @@
         }
 
         .marimba-feature-icon {
-            font-size: 2.5rem;
-            margin-bottom: var(--space-sm);
+            width: 50px;
+            height: 50px;
+            margin: 0 auto var(--space-sm);
+            border: 2px solid var(--color-main);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--color-main-dark);
+            font-size: 1.2rem;
+            font-weight: 300;
+        }
+
+        .marimba-feature-icon svg {
+            width: 24px;
+            height: 24px;
+            stroke: var(--color-main-dark);
+            stroke-width: 1.5;
+            fill: none;
         }
 
         .marimba-feature-title {
@@ -261,21 +347,24 @@
                 <p class="marimba-hero-subtitle">木の温もりが奏でる、癒しの打楽器</p>
             </div>
 
-            <!-- 基本説明 -->
-            <section class="marimba-section fade-in">
-                <h2 class="marimba-section-title">マリンバとは</h2>
-                <p class="marimba-text">
-                    マリンバは<strong>木の板を並べた大きな打楽器</strong>です。
-                    「マレット」と呼ばれる先端に毛糸や綿を巻いたバチを使って、木の板（音板）を叩いて演奏します。
-                </p>
-                <p class="marimba-text">
-                    見た目は小学校などで見かける「木琴（もっきん）」に似ていますが、
-                    マリンバはより大きく、<strong>音域が広い</strong>のが特徴です。
-                    ピアノと同じくらいの音域を持ち、低い音から高い音まで演奏できます。
-                </p>
-                <p class="marimba-text">
-                    名前の「マリンバ（Marimba）」は、アフリカの言葉で「木の板が並んでいるもの」という意味があるとされています。
-                </p>
+            <!-- 基本説明（背景画像付き） -->
+            <section class="marimba-section marimba-intro-section fade-in">
+                <img src="images/marimba.png" alt="マリンバのイラスト" class="marimba-bg-image">
+                <div class="marimba-intro-content">
+                    <h2 class="marimba-section-title marimba-title-outlined">マリンバとは</h2>
+                    <p class="marimba-text marimba-text-outlined">
+                        マリンバは<strong>木の板を並べた大きな打楽器</strong>です。
+                        「マレット」と呼ばれる先端に毛糸や綿を巻いたバチを使って、木の板（音板）を叩いて演奏します。
+                    </p>
+                    <p class="marimba-text marimba-text-outlined">
+                        見た目は小学校などで見かける「木琴（もっきん）」に似ていますが、
+                        マリンバはより大きく、<strong>音域が広い</strong>のが特徴です。
+                        ピアノと同じくらいの音域を持ち、低い音から高い音まで演奏できます。
+                    </p>
+                    <p class="marimba-text marimba-text-outlined">
+                        名前の「マリンバ（Marimba）」は、アフリカの言葉で「木の板が並んでいるもの」という意味があるとされています。
+                    </p>
+                </div>
             </section>
 
             <!-- ハイライト -->
@@ -293,7 +382,9 @@
                 <h2 class="marimba-section-title">マリンバの魅力</h2>
                 <div class="marimba-features">
                     <div class="marimba-feature">
-                        <div class="marimba-feature-icon">🌳</div>
+                        <div class="marimba-feature-icon">
+                            <svg viewBox="0 0 24 24"><path d="M12 3c-1.5 2-4 4-4 7 0 2.5 1.5 4.5 4 5.5 2.5-1 4-3 4-5.5 0-3-2.5-5-4-7z"/><path d="M12 15.5V22"/><path d="M9 22h6"/></svg>
+                        </div>
                         <h3 class="marimba-feature-title">温かい木の音色</h3>
                         <p class="marimba-feature-text">
                             ローズウッドやパドックなどの木材から生まれる、
@@ -301,7 +392,9 @@
                         </p>
                     </div>
                     <div class="marimba-feature">
-                        <div class="marimba-feature-icon">🎵</div>
+                        <div class="marimba-feature-icon">
+                            <svg viewBox="0 0 24 24"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+                        </div>
                         <h3 class="marimba-feature-title">幅広い表現力</h3>
                         <p class="marimba-feature-text">
                             優しいささやきから力強い響きまで、
@@ -309,7 +402,9 @@
                         </p>
                     </div>
                     <div class="marimba-feature">
-                        <div class="marimba-feature-icon">👀</div>
+                        <div class="marimba-feature-icon">
+                            <svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                        </div>
                         <h3 class="marimba-feature-title">演奏を「見る」楽しさ</h3>
                         <p class="marimba-feature-text">
                             4本のマレットを操る演奏は視覚的にも楽しく、
