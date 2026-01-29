@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>マリンバコンサート「結」フライヤー</title>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;600&family=Noto+Serif+JP:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-main: #D4A5A5;
+            --color-main-dark: #B88B8B;
+            --color-main-light: #F5EAEA;
+            --color-accent: #6B8E9B;
+            --color-bg: #FAF8F5;
+            --color-text: #333333;
+            --color-text-light: #555555;
+            --color-text-muted: #888888;
+            --font-sans: 'Noto Sans JP', sans-serif;
+            --font-serif: 'Noto Serif JP', serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            color: var(--color-text);
+            background: #fff;
+            font-size: 10pt;
+            line-height: 1.6;
+        }
+
+        /* 印刷設定 */
+        @page {
+            size: A4 portrait;
+            margin: 0;
+        }
+
+        /* フライヤー本体 */
+        .flyer {
+            width: 210mm;
+            height: 297mm;
+            margin: 0 auto;
+            background: linear-gradient(180deg, var(--color-bg) 0%, var(--color-main-light) 50%, var(--color-bg) 100%);
+            display: flex;
+            flex-direction: column;
+            padding: 12mm 15mm;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* 装飾用の背景円 */
+        .flyer::before {
+            content: '';
+            position: absolute;
+            top: -50mm;
+            right: -50mm;
+            width: 200mm;
+            height: 200mm;
+            background: radial-gradient(circle, rgba(212, 165, 165, 0.15) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .flyer::after {
+            content: '';
+            position: absolute;
+            bottom: -30mm;
+            left: -30mm;
+            width: 150mm;
+            height: 150mm;
+            background: radial-gradient(circle, rgba(107, 142, 155, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        /* ヘッダー部分 */
+        .header {
+            text-align: center;
+            margin-bottom: 4mm;
+            position: relative;
+            z-index: 1;
+        }
+
+        .event-label {
+            font-size: 14pt;
+            color: var(--color-text-light);
+            letter-spacing: 0.1em;
+            margin-bottom: 2mm;
+        }
+
+        .title {
+            font-family: var(--font-serif);
+            font-size: 80pt;
+            font-weight: 400;
+            color: var(--color-main-dark);
+            letter-spacing: 0.2em;
+            margin-bottom: 0;
+            line-height: 1;
+        }
+
+        .title-reading {
+            font-family: var(--font-serif);
+            font-size: 14pt;
+            color: var(--color-text-muted);
+            letter-spacing: 0.2em;
+        }
+
+        /* サブタイトル */
+        .subtitle {
+            text-align: center;
+            font-size: 11pt;
+            color: var(--color-text-light);
+            margin-bottom: 4mm;
+            position: relative;
+            z-index: 1;
+        }
+
+        .subtitle-line {
+            display: block;
+            font-size: 9pt;
+            color: var(--color-text-muted);
+            margin-top: 1mm;
+        }
+
+        /* メイン情報エリア */
+        .main-info {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 5mm;
+            padding: 6mm;
+            margin-bottom: 5mm;
+            position: relative;
+            z-index: 1;
+            box-shadow: 0 2mm 8mm rgba(0, 0, 0, 0.05);
+        }
+
+        .date-venue {
+            text-align: center;
+            margin-bottom: 4mm;
+            padding-bottom: 4mm;
+            border-bottom: 1px solid var(--color-main-light);
+        }
+
+        .date {
+            font-family: var(--font-serif);
+            font-size: 20pt;
+            font-weight: 500;
+            color: var(--color-text);
+            margin-bottom: 1mm;
+        }
+
+        .time {
+            font-size: 11pt;
+            color: var(--color-text-light);
+            margin-bottom: 2mm;
+        }
+
+        .venue {
+            font-size: 14pt;
+            font-weight: 500;
+        }
+
+        .venue-address {
+            font-size: 9pt;
+            color: var(--color-text-muted);
+            margin-top: 1mm;
+        }
+
+        /* チケット情報 */
+        .ticket-section {
+            display: flex;
+            justify-content: center;
+            gap: 6mm;
+            flex-wrap: nowrap;
+        }
+
+        .ticket-item {
+            text-align: center;
+            padding: 3mm 0;
+            width: 38mm;
+            background: var(--color-main-light);
+            border-radius: 3mm;
+        }
+
+        .ticket-type {
+            font-size: 9pt;
+            color: var(--color-text-light);
+        }
+
+        .ticket-price {
+            font-size: 14pt;
+            font-weight: 500;
+            color: var(--color-main-dark);
+        }
+
+        /* コンセプト */
+        .concept {
+            text-align: center;
+            margin-bottom: 8mm;
+            position: relative;
+            z-index: 1;
+        }
+
+        .concept-text {
+            font-family: var(--font-serif);
+            font-size: 14pt;
+            color: var(--color-text);
+            font-weight: 500;
+            margin-bottom: 2mm;
+        }
+
+        .concept-sub {
+            font-size: 9pt;
+            color: var(--color-text-muted);
+        }
+
+        /* 出演者情報 */
+        .artist-section {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 5mm;
+            padding: 5mm 8mm;
+            margin-bottom: 5mm;
+            position: relative;
+            z-index: 1;
+            box-shadow: 0 2mm 8mm rgba(0, 0, 0, 0.05);
+        }
+
+        .artist-section h2 {
+            font-family: var(--font-serif);
+            font-size: 10pt;
+            color: var(--color-main-dark);
+            text-align: center;
+            margin-bottom: 3mm;
+            padding-bottom: 2mm;
+            border-bottom: 1px solid var(--color-main);
+        }
+
+        .artist-name {
+            font-family: var(--font-serif);
+            font-size: 16pt;
+            text-align: center;
+            margin-bottom: 1mm;
+        }
+
+        .artist-instrument {
+            text-align: center;
+            font-size: 9pt;
+            color: var(--color-main-dark);
+            margin-bottom: 2mm;
+        }
+
+        .artist-bio {
+            font-size: 8pt;
+            line-height: 1.6;
+            text-align: justify;
+        }
+
+        /* プログラム */
+        .program-section {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 5mm;
+            padding: 5mm 8mm;
+            margin-bottom: 5mm;
+            position: relative;
+            z-index: 1;
+            box-shadow: 0 2mm 8mm rgba(0, 0, 0, 0.05);
+        }
+
+        .program-section h2 {
+            font-family: var(--font-serif);
+            font-size: 10pt;
+            color: var(--color-main-dark);
+            text-align: center;
+            margin-bottom: 3mm;
+            padding-bottom: 2mm;
+            border-bottom: 1px solid var(--color-main);
+        }
+
+        .program-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1mm 8mm;
+            justify-content: center;
+            font-size: 9pt;
+        }
+
+        .program-item {
+            padding: 0;
+        }
+
+        /* フッター */
+        .footer {
+            margin-top: auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            position: relative;
+            z-index: 1;
+        }
+
+        .contact-info {
+            font-size: 8pt;
+            color: var(--color-text-light);
+        }
+
+        .contact-info p {
+            margin-bottom: 1mm;
+        }
+
+        .organizer {
+            font-size: 8pt;
+            color: var(--color-text-muted);
+            margin-top: 3mm;
+        }
+
+        .qr-wrapper {
+            display: flex;
+            gap: 5mm;
+        }
+
+        .qr-section {
+            text-align: center;
+        }
+
+        .qr-section img {
+            width: 20mm;
+            height: 20mm;
+        }
+
+        .qr-section p {
+            font-size: 7pt;
+            color: var(--color-text-muted);
+            margin-top: 1mm;
+        }
+
+        /* 画面プレビュー用 */
+        @media screen {
+            body {
+                background: #666;
+                padding: 10mm;
+            }
+            .flyer {
+                box-shadow: 0 2mm 10mm rgba(0,0,0,0.3);
+            }
+            .print-guide {
+                text-align: center;
+                color: #fff;
+                padding: 5mm;
+                font-size: 12pt;
+            }
+        }
+
+        @media print {
+            body {
+                background: #fff;
+                margin: 0;
+                padding: 0;
+            }
+            .print-guide {
+                display: none !important;
+            }
+            .flyer {
+                box-shadow: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="print-guide">
+        印刷時は「用紙サイズ: A4」「向き: 縦」「余白: なし」で印刷してください。
+    </div>
+
+    <div class="flyer">
+        <header class="header">
+            <p class="event-label">第18回 マリンバ北星会 午後のコンサート</p>
+            <h1 class="title">結</h1>
+            <p class="title-reading">〜YUI〜</p>
+        </header>
+
+        <div class="subtitle">
+            <span class="concept-text">人と人、音と心を結ぶ。</span>
+            <span class="subtitle-line">〜未就学児からお年寄りまで、誰もが楽しめるコンサート〜</span>
+        </div>
+
+        <div class="main-info">
+            <div class="date-venue">
+                <p class="date">2026年10月25日（日）</p>
+                <p class="time">13:00 開場 / 13:30 開演</p>
+                <p class="venue">HITARU クリエイティブスタジオ</p>
+                <p class="venue-address">札幌市中央区北1条西1丁目 さっぽろ創世スクエア 3F</p>
+            </div>
+            <div class="ticket-section">
+                <div class="ticket-item">
+                    <p class="ticket-type">一般</p>
+                    <p class="ticket-price">2,000円</p>
+                </div>
+                <div class="ticket-item">
+                    <p class="ticket-type">学生</p>
+                    <p class="ticket-price">1,000円</p>
+                </div>
+                <div class="ticket-item">
+                    <p class="ticket-type">未就学児（座席）</p>
+                    <p class="ticket-price">500円</p>
+                </div>
+                <div class="ticket-item">
+                    <p class="ticket-type">未就学児（膝上）</p>
+                    <p class="ticket-price">無料</p>
+                </div>
+            </div>
+        </div>
+
+        <section class="artist-section">
+            <h2>出演</h2>
+            <h3 class="artist-name">安田 愛</h3>
+            <p class="artist-instrument">マリンバ</p>
+            <p class="artist-bio">
+                6歳よりマリンバを始め、会社員として勤務するかたわら、精力的に演奏活動を行う。マリンバ北星会第59号師範免状取得。マリンバ北星会主催の国内外のコンサートをはじめ、日本マリンバ協会全国選抜大会出演、JRタワーそらのコンサート等、多数のステージに立つ。マリンバ北星会会員、日本マリンバ協会会員。
+            </p>
+        </section>
+
+        <section class="program-section">
+            <h2>プログラム</h2>
+            <div class="program-list">
+                <span class="program-item">ジブリメドレー</span>
+                <span class="program-item">戦場のメリークリスマス</span>
+                <span class="program-item">赤とんぼ</span>
+                <span class="program-item">結（ゆい）</span>
+                <span class="program-item">他</span>
+            </div>
+        </section>
+
+        <footer class="footer">
+            <div class="contact-info">
+                <p><strong>お問い合わせ</strong></p>
+                <p>Email: yui.concert.2026@gmail.com</p>
+                <div class="organizer">
+                    <p>主催: マリンバ北星会</p>
+                </div>
+            </div>
+            <div class="qr-wrapper">
+                <div class="qr-section">
+                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://marimba-yui.pages.dev/" alt="コンサートサイトQRコード">
+                    <p>コンサートサイト</p>
+                </div>
+                <div class="qr-section">
+                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://teket.jp/16938/63047" alt="チケット購入QRコード">
+                    <p>チケット購入</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>
