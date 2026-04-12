@@ -10,11 +10,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;600&family=Noto+Serif+JP:wght@400;500;600&display=swap" rel="stylesheet">
     <style>
         :root {
-            --color-main: #D4A5A5;
-            --color-main-dark: #B88B8B;
-            --color-main-light: #F5EAEA;
+            --color-main: #E08A8A;
+            --color-main-dark: #C46B6B;
+            --color-main-light: #FBDCDC;
             --color-accent: #6B8E9B;
-            --color-bg: #FAF8F5;
+            --color-bg: #FFF5F5;
             --color-text: #333333;
             --color-text-light: #555555;
             --color-text-muted: #888888;
@@ -36,18 +36,19 @@
             line-height: 1.6;
         }
 
-        /* 印刷設定 */
+        /* 印刷設定（ラクスル入稿用・塗り足し3mm込み） */
         @page {
-            size: A4 landscape;
-            margin: 5mm;
+            size: 303mm 216mm; /* A4横 + 塗り足し各3mm */
+            margin: 0;
         }
 
         /* シート（1ページ = 3パネル） */
         .sheet {
-            width: 287mm;
-            height: 200mm;
+            width: 303mm;
+            height: 216mm;
+            padding: 0;
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: 103mm 100mm 100mm; /* 左+塗り足し3mm / 中央 / 右+塗り足し3mm */
             gap: 0;
             page-break-after: always;
             margin: 0 auto;
@@ -59,11 +60,21 @@
 
         /* パネル共通 */
         .panel {
-            padding: 8mm;
+            padding: 11mm 8mm; /* 上下は塗り足し3mm + 余白8mm */
             overflow: hidden;
             border: 1px dashed #ddd; /* 折り線ガイド（印刷時は薄く出る） */
             display: flex;
             flex-direction: column;
+        }
+
+        /* 左端パネル（塗り足し分追加） */
+        .panel:first-child {
+            padding-left: 11mm;
+        }
+
+        /* 右端パネル（塗り足し分追加） */
+        .panel:last-child {
+            padding-right: 11mm;
         }
 
         /* === 外側（表紙面） === */
@@ -145,7 +156,7 @@
             justify-content: space-between;
             padding: 2mm 0;
             border-bottom: 1px dotted #ddd;
-            font-size: 9pt;
+            font-size: 10pt;
         }
 
         .ticket-row:last-child {
@@ -173,7 +184,7 @@
             padding: 3mm;
             border-radius: 2mm;
             margin-top: 5mm;
-            font-size: 9pt;
+            font-size: 10pt;
         }
 
         .welcome-box strong {
@@ -183,7 +194,7 @@
         /* 裏表紙（左） */
         .back {
             background: var(--color-bg);
-            font-size: 9pt;
+            font-size: 10pt;
         }
 
         .back h2 {
@@ -238,7 +249,7 @@
         }
 
         .concept-text {
-            font-size: 9pt;
+            font-size: 10pt;
             line-height: 1.8;
             text-align: justify;
         }
@@ -275,7 +286,7 @@
 
         .program-list {
             list-style: none;
-            font-size: 8.5pt;
+            font-size: 10pt;
         }
 
         .program-list li {
@@ -333,7 +344,7 @@
         }
 
         .artist-bio {
-            font-size: 8.5pt;
+            font-size: 10pt;
             line-height: 1.6;
             text-align: justify;
         }
@@ -361,6 +372,10 @@
         }
 
         @media print {
+            * {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
             body {
                 background: #fff;
                 margin: 0;
@@ -371,7 +386,8 @@
             }
             .sheet {
                 page-break-inside: avoid;
-                height: 200mm;
+                height: 216mm;
+                width: 303mm;
                 overflow: hidden;
             }
             .sheet.outside {
@@ -381,7 +397,7 @@
                 page-break-after: avoid;
             }
             .panel {
-                border: 1px dashed #eee;
+                border: none !important;
                 overflow: hidden;
             }
         }
@@ -452,15 +468,25 @@
                 </div>
             </div>
 
-            <div class="qr-section">
-                <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://teket.jp/16938/63047" alt="チケット購入QRコード">
-                <p>teket でチケット購入</p>
+            <div class="qr-section" style="display: flex; justify-content: center; gap: 5mm;">
+                <div>
+                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://teket.jp/16938/63047" alt="チケット購入QRコード">
+                    <p>チケット購入</p>
+                </div>
+                <div>
+                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://toshiki-yasuda.github.io/yui/" alt="コンサートページQRコード">
+                    <p>コンサートサイト</p>
+                </div>
             </div>
 
             <div class="welcome-box">
                 <strong>お子様連れ大歓迎！</strong><br>
                 世代を超えて楽しめる名曲をお届けします。
             </div>
+
+            <p style="font-size: 8pt; color: #666; margin-top: 4mm; text-align: center;">
+                チケットをご購入された方は<br>安田までご一報いただけますと幸いです
+            </p>
         </div>
     </div>
 
