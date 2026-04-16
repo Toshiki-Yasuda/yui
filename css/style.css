@@ -762,47 +762,160 @@ ul {
 .artists-content {
     max-width: 700px;
     margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-lg);
 }
 
 .artist {
     background: var(--color-white);
-    padding: var(--space-lg);
-    border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-sm);
-    border: 1px solid rgba(0, 0, 0, 0.04);
+    border-radius: 0;
+    box-shadow: var(--shadow-md);
+    overflow: hidden;
 }
 
-.artist-icon {
-    font-size: 3rem;
-    margin-bottom: var(--space-sm);
-    text-align: center;
+/* 写真コンテナ */
+.artist-photo {
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: 2.3 / 1;
 }
+
+.artist-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 30%;
+    filter: contrast(0.92) brightness(1.03) saturate(0.85) sepia(0.08);
+    transition: transform 0.8s var(--ease-out), filter 0.6s var(--ease-out);
+}
+
+/* 個別調整 - 安田愛 */
+.artists-content > .artist:nth-child(1) .artist-photo img {
+    filter: contrast(0.95) brightness(1.03) saturate(0.85) sepia(0.08);
+}
+
+/* 個別調整 - 土田祐生（コントラスト緩和） */
+.artists-content > .artist:nth-child(3) .artist-photo img {
+    filter: contrast(0.88) brightness(1.02) saturate(0.85) sepia(0.08);
+}
+
+/* 個別調整 - 田中K助（コントラストアップ） */
+.artists-content > .artist:nth-child(4) .artist-photo img {
+    filter: contrast(1.05) brightness(1.01) saturate(0.85) sepia(0.08);
+}
+
+.artist:hover .artist-photo img {
+    transform: scale(1.04);
+    filter: contrast(0.94) brightness(1.12) saturate(0.88) sepia(0.06);
+}
+
+/* 写真オーバーレイ（名前・楽器名） */
+.artist-photo-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 4rem 2rem 1.5rem;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.75) 0%, rgba(0, 0, 0, 0.2) 60%, transparent 100%);
+    pointer-events: none;
+}
+
+
 
 .artist-name {
     font-family: var(--font-serif);
-    font-size: 2.2rem;
-    font-weight: 400;
-    color: var(--color-text);
-    text-align: center;
-    margin-bottom: var(--space-xs);
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: var(--color-white);
+    letter-spacing: 0.15em;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.artist-name-ruby {
+    display: inline-block;
+    font-size: 0.65rem;
+    font-weight: 300;
     letter-spacing: 0.1em;
+    color: rgba(255, 255, 255, 0.7);
+    margin-left: 0.75rem;
+    vertical-align: middle;
 }
 
 .artist-instrument {
-    font-size: 0.875rem;
-    color: var(--color-main-dark);
-    font-weight: 500;
-    text-align: center;
-    margin-bottom: var(--space-md);
-    padding-bottom: var(--space-md);
-    border-bottom: 1px solid var(--color-main-light);
-    letter-spacing: 0.2em;
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.8);
+    font-weight: 400;
+    letter-spacing: 0.15em;
+    margin-top: 0.35rem;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* 共演メンバーの写真を控えめに */
+.artist--featured .artist-photo {
+    aspect-ratio: 2.5 / 1;
+}
+
+/* プロフィールテキスト */
+.artist-info {
+    padding: var(--space-md) var(--space-lg) var(--space-lg);
 }
 
 .artist-bio {
     font-size: 0.9rem;
     color: var(--color-text-light);
-    line-height: 2;
+    line-height: 1.85;
+}
+
+.artist-bio-subtitle {
+    font-weight: 600;
+    color: var(--color-text);
+    font-size: 0.85rem;
+    display: inline-block;
+    margin-top: 0.25rem;
+    padding-bottom: 2px;
+    border-bottom: 1px solid var(--color-main);
+}
+
+/* 共演メンバー区切り線 */
+.artists-divider {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    margin: var(--space-md) 0;
+}
+
+.artists-divider::before,
+.artists-divider::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: var(--color-main-light);
+}
+
+.artists-divider-text {
+    text-align: center;
+    flex-shrink: 0;
+}
+
+.artists-divider-en {
+    display: block;
+    font-family: var(--font-sans);
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.3em;
+    color: var(--color-accent);
+    text-transform: uppercase;
+}
+
+.artists-divider-ja {
+    display: block;
+    font-family: var(--font-serif);
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--color-text);
+    margin-top: 0.25rem;
+    letter-spacing: 0.15em;
 }
 
 /* ============================================
@@ -816,16 +929,17 @@ ul {
 
 .ticket-prices {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
     gap: var(--space-sm);
     margin-bottom: var(--space-lg);
 }
 
 .ticket-price {
     background: var(--color-white);
-    padding: var(--space-lg);
+    padding: var(--space-md);
     border-radius: var(--radius-md);
     border: 1px solid rgba(0, 0, 0, 0.05);
+    text-align: center;
     transition: all var(--transition-fast);
 }
 
@@ -836,7 +950,7 @@ ul {
 
 .ticket-type {
     display: block;
-    font-size: 1.1rem;
+    font-size: 1rem;
     font-weight: 600;
     color: var(--color-text);
     margin-bottom: var(--space-xs);
@@ -1310,10 +1424,6 @@ ul {
    ============================================ */
 
 @media screen and (max-width: 900px) {
-    .ticket-prices {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
     .access-content {
         grid-template-columns: 1fr;
     }
@@ -1369,8 +1479,20 @@ ul {
         font-size: 1.5rem;
     }
 
-    .artist {
-        padding: var(--space-md);
+    .artist-photo {
+        aspect-ratio: 4 / 3;
+    }
+
+    .artist--featured .artist-photo {
+        aspect-ratio: 2.5 / 1;
+    }
+
+    .artist-name {
+        font-size: 1.5rem;
+    }
+
+    .artist-info {
+        padding: var(--space-sm) var(--space-md) var(--space-md);
     }
 }
 
@@ -1389,14 +1511,6 @@ ul {
         padding: 0.875rem 2rem;
     }
 
-    .ticket-prices {
-        grid-template-columns: 1fr;
-    }
-
-    .ticket-amount {
-        font-size: 1.5rem;
-    }
-
     .program-item {
         padding: var(--space-sm);
     }
@@ -1406,6 +1520,26 @@ ul {
         right: 20px;
         width: 44px;
         height: 44px;
+    }
+
+    .artist-photo {
+        aspect-ratio: 4 / 3;
+    }
+
+    .artist--featured .artist-photo {
+        aspect-ratio: 2 / 1;
+    }
+
+    .artist-info {
+        padding: var(--space-sm) var(--space-sm) var(--space-md);
+    }
+
+    .artist-name {
+        font-size: 1.3rem;
+    }
+
+    .artist-photo-overlay {
+        padding: 3rem 1.25rem 1rem;
     }
 }
 
