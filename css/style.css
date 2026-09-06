@@ -1097,28 +1097,28 @@ header[id] {
 
 .ticket-prices {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: var(--space-ms);
-    margin-bottom: var(--space-lg);
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 0;
+    max-width: var(--w-text);
+    margin: 0 auto var(--space-lg);
 }
 
+/* 箱を並べず、金の縦罫で区切った価格表として組む */
 .ticket-price {
-    background: var(--color-white);
-    padding: var(--space-lg) var(--space-ms);
-    border-radius: var(--radius-md);
-    border: 1px solid rgba(139, 106, 47, 0.10);
+    background: transparent;
+    padding: var(--space-md) var(--space-sm);
+    border: 0;
+    border-left: 1px solid var(--color-gold-light);
     text-align: center;
     /* 券種 / 補足 / 金額 の3行を固定し、カード間で金額の高さを揃える */
     display: grid;
     grid-template-rows: auto 1.5em auto;
     align-items: center;
     gap: var(--space-xs);
-    transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
 }
 
-.ticket-price:hover {
-    border-color: var(--color-gold-light);
-    box-shadow: var(--shadow-sm);
+.ticket-price:first-child {
+    border-left: 0;
 }
 
 .ticket-type {
@@ -1154,18 +1154,30 @@ header[id] {
     margin-bottom: var(--space-lg);
 }
 
-.ticket-welcome {
-    background: var(--color-main-light);
-    border: 1px solid rgba(212, 165, 165, 0.45);
-    padding: var(--space-ml) var(--space-md);
-    border-radius: var(--radius-md);
-    font-size: var(--fs-base);
-    line-height: var(--lh-body);
+/* 箱で囲わず、金の罫で挟んだリード文として置く */
+.ticket-note {
+    max-width: var(--w-text);
+    margin: var(--space-ml) auto;
+    padding: var(--space-ms) 0;
+    border-top: 1px solid var(--color-gold-light);
+    border-bottom: 1px solid var(--color-gold-light);
+    text-align: center;
 }
 
 .welcome-title {
+    display: block;
+    font-family: var(--font-serif);
     font-size: var(--fs-lg);
-    color: var(--color-rose-deep);
+    font-weight: 500;
+    color: var(--color-ink);
+    letter-spacing: var(--ls-wide);
+    margin-bottom: var(--space-xs);
+}
+
+.ticket-welcome {
+    font-size: var(--fs-base);
+    line-height: var(--lh-body);
+    color: var(--color-text-light);
 }
 
 .ticket-sub {
@@ -1175,19 +1187,30 @@ header[id] {
 }
 
 .ticket-purchase {
-    background: var(--color-white);
-    padding: var(--space-lg);
-    border-radius: var(--radius-lg);
-    border: 1px solid rgba(0, 0, 0, 0.05);
+    max-width: var(--w-text);
+    margin-inline: auto;
     text-align: center;
 }
 
-.ticket-purchase h3 {
+/* 見出しは左右に金のヘアラインを渡す（セクション見出しと同じ語彙） */
+.ticket-purchase-title {
+    display: flex;
+    align-items: center;
+    gap: var(--space-ms);
     font-family: var(--font-serif);
-    font-size: var(--fs-md);
-    font-weight: 400;
-    color: var(--color-text);
+    font-size: var(--fs-lg);
+    font-weight: 500;
+    color: var(--color-ink);
+    letter-spacing: var(--ls-wide);
     margin-bottom: var(--space-sm);
+}
+
+.ticket-purchase-title::before,
+.ticket-purchase-title::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: var(--color-gold-light);
 }
 
 .ticket-purchase p {
@@ -1247,12 +1270,13 @@ header[id] {
     text-align: center;
 }
 
-.calendar-add h3 {
+.calendar-title {
     font-family: var(--font-serif);
-    font-size: 1rem;
-    font-weight: 400;
+    font-size: var(--fs-base);
+    font-weight: 500;
     color: var(--color-text);
-    margin-bottom: var(--space-xs);
+    letter-spacing: var(--ls-wide);
+    margin-bottom: var(--space-2xs);
 }
 
 .calendar-add p {
@@ -1264,50 +1288,24 @@ header[id] {
 .calendar-buttons {
     display: flex;
     justify-content: center;
-    gap: var(--space-sm);
+    gap: var(--space-md);
     flex-wrap: wrap;
 }
 
 .calendar-btn {
     display: inline-flex;
     align-items: center;
-    gap: 8px;
-    padding: 0.75rem 1.25rem;
-    border-radius: var(--radius-full);
+    padding: 0.4rem 0;
     font-size: var(--fs-sm);
     font-weight: 500;
-    transition: all var(--transition-normal);
-    border: 1px solid var(--color-accent-light);
-    color: var(--color-text);
-    background: var(--color-white);
+    color: var(--color-text-light);
+    border-bottom: 1px solid var(--color-gold-light);
+    transition: color var(--transition-fast), border-color var(--transition-fast);
 }
 
 .calendar-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-md);
-}
-
-.calendar-icon {
-    font-weight: 700;
-    font-size: 1rem;
-}
-
-.calendar-google:hover {
-    background: #4285f4;
-    color: var(--color-white);
-    border-color: #4285f4;
-}
-
-.calendar-apple:hover {
-    background: #333;
-    color: var(--color-white);
-    border-color: #333;
-}
-
-.calendar-outlook:hover {
-    background: #0078d4;
-    color: var(--color-white);
-    border-color: #0078d4;
+    color: var(--color-gold-deep);
+    border-bottom-color: var(--color-gold);
 }
 
 /* ============================================
@@ -1777,9 +1775,6 @@ header[id] {
         gap: var(--space-md);
     }
 
-    .ticket-prices {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
 }
 
 @media screen and (max-width: 900px) {
@@ -1815,6 +1810,15 @@ header[id] {
 }
 
 @media screen and (max-width: 768px) {
+    .ticket-prices {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        row-gap: var(--space-ms);
+    }
+
+    .ticket-price:nth-child(odd) {
+        border-left: 0;
+    }
+
     :root {
         --space-lg: 3rem;
         --space-xl: 5rem;
@@ -2077,19 +2081,10 @@ button:focus-visible {
 }
 
 /* teket ブラボーボタンの案内（点滅アニメーションは廃止し、静かな囲みに） */
+/* 購入ボタンの下に置く控えめな一言（箱で囲わない） */
 .bravo-message {
+    margin-top: var(--space-ms);
     font-size: var(--fs-sm);
     line-height: var(--lh-snug);
-    color: var(--color-text-light);
-    margin-top: var(--space-sm);
-    padding: var(--space-sm) var(--space-ms);
-    background: var(--color-cream);
-    border: 1px solid var(--color-gold-light);
-    border-radius: var(--radius-sm);
-}
-
-.bravo-message strong {
-    color: var(--color-gold-deep);
-    font-weight: 600;
-    text-decoration: none;
+    color: var(--color-text-muted);
 }
