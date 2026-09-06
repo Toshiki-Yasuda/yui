@@ -292,8 +292,8 @@ header[id] {
 }
 
 .hero-inner {
-    /* 他セクションと同じ基準線まで絞り、左右の余白を対称にして中身を中央に集める */
-    max-width: 1240px;
+    /* 左右の余白を対称に保ちながら、中身は中央に集める */
+    max-width: 1300px;
     margin-inline: auto;
     padding: var(--space-ml) var(--space-md) 0;
     display: grid;
@@ -574,17 +574,26 @@ header[id] {
     background: linear-gradient(135deg, var(--color-bg-alt) 0%, var(--color-white) 100%);
 }
 
+/* ヒーローと同じ幅・同じ寄せ方に揃える（テキストは内側、図版は外側へ） */
 .marimba-content {
-    max-width: var(--w-wide);
+    max-width: 1236px;
     margin: 0 auto;
     display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
     align-items: center;
-    gap: var(--space-xl);
+    gap: clamp(1.5rem, 3vw, 2.5rem);
     text-align: left;
 }
 
+.marimba-text {
+    max-width: 33rem;
+    margin-left: auto;
+}
+
 .marimba-media {
+    justify-self: start;
+    width: 100%;
+    max-width: 595px;
     border-radius: var(--radius-lg);
     overflow: hidden;
     background: var(--color-photo-cream);
