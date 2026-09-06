@@ -162,44 +162,59 @@
 
     <!-- ヒーローセクション -->
     <header class="hero" id="hero">
-        <div class="hero-content">
-            <p class="hero-subtitle">第18回 マリンバ北星会<br class="sp-only"> 午後のコンサート</p>
-            <h1 class="hero-title">結</h1>
-            <p class="hero-reading">— ゆい —</p>
-            <div class="hero-info">
-                <p class="hero-date">
-                    <span class="hero-date-label">日時</span>
-                    <span class="hero-date-value">2026年10月25日（日）</span>
-                </p>
-                <p class="hero-time">
-                    <span>13:30 開演（15:15 終演予定）</span>
-                </p>
-                <p class="hero-venue">
-                    <span class="hero-venue-label">会場</span>
-                    <span class="hero-venue-value">HITARU クリエイティブスタジオ</span>
-                </p>
+        <div class="hero-inner">
+            <div class="hero-head">
+                <p class="hero-eyebrow">第18回 マリンバ北星会<br class="sp-only"> 午後のコンサート</p>
+                <h1 class="hero-title">
+                    <span class="hero-title-ja">結</span>
+                    <span class="hero-title-en">Yui</span>
+                </h1>
             </div>
-            <a href="#ticket" class="hero-cta">チケットを購入する</a>
 
-            <!-- カウントダウンタイマー -->
-            <div class="countdown" id="countdown">
-                <p class="countdown-label">コンサートまで</p>
-                <div class="countdown-timer">
-                    <div class="countdown-item">
-                        <span class="countdown-number" id="countdown-days">0</span>
-                        <span class="countdown-unit">日</span>
+            <figure class="hero-figure">
+                <picture>
+                    <source type="image/webp"
+                            srcset="images/hero-yasuda.webp 560w, images/hero-yasuda@2x.webp 1120w"
+                            sizes="(max-width: 767px) 100vw, min(42vw, 560px)">
+                    <img src="images/hero-yasuda.jpg"
+                         srcset="images/hero-yasuda.jpg 560w, images/hero-yasuda@2x.jpg 1120w"
+                         sizes="(max-width: 767px) 100vw, min(42vw, 560px)"
+                         width="560" height="700"
+                         alt="マリンバ奏者 安田愛のポートレート"
+                         fetchpriority="high" decoding="async">
+                </picture>
+                <figcaption class="hero-figcaption">安田 愛（マリンバ）</figcaption>
+            </figure>
+
+            <div class="hero-body">
+                <p class="hero-lead">人と人、音と心を結ぶ。<br>温かな木の音色に包まれる午後のひととき</p>
+
+                <dl class="hero-facts">
+                    <div class="hero-fact">
+                        <dt>日時</dt>
+                        <dd>
+                            <time datetime="2026-10-25T13:30+09:00">2026年10月25日（日）</time>
+                            <span class="hero-fact-sub">開場 13:00 ／ 開演 13:30（15:15 終演予定）</span>
+                        </dd>
                     </div>
-                    <div class="countdown-item">
-                        <span class="countdown-number" id="countdown-hours">0</span>
-                        <span class="countdown-unit">時間</span>
+                    <div class="hero-fact">
+                        <dt>会場</dt>
+                        <dd>
+                            HITARU クリエイティブスタジオ
+                            <span class="hero-fact-sub">札幌市中央区北1条西1丁目 さっぽろ創世スクエア内</span>
+                        </dd>
                     </div>
+                </dl>
+
+                <div class="hero-actions">
+                    <a href="#ticket" class="btn btn--primary">チケットを購入する</a>
+                    <a href="#listen" class="btn btn--ghost">演奏を聴く</a>
                 </div>
+
+                <p class="hero-countdown" id="countdown" aria-live="polite">
+                    公演まで <span class="hero-countdown-num" id="countdown-days">—</span> 日
+                </p>
             </div>
-        </div>
-        <div class="hero-decoration">
-            <span class="hero-note">♪</span>
-            <span class="hero-note">♫</span>
-            <span class="hero-note">♪</span>
         </div>
     </header>
 
