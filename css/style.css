@@ -1622,3 +1622,51 @@ button:focus-visible {
         display: none;
     }
 }
+
+/* ==========================================================================
+   ユーティリティ / 個別パーツ（index.html のインライン記述から移設）
+   ========================================================================== */
+
+/* スマートフォンのみ表示 */
+.sp-only {
+    display: none;
+}
+
+@media screen and (max-width: 768px) {
+    .sp-only {
+        display: block;
+    }
+}
+
+/* teket ブラボーボタンの案内 */
+.bravo-message {
+    font-size: 0.95rem;
+    color: var(--color-main-dark);
+    margin-top: var(--space-sm);
+    padding: 0.75rem 1rem;
+    background: linear-gradient(135deg, var(--color-main-light), var(--color-bg-alt));
+    border-radius: 8px;
+    animation: attention 2s ease-in-out infinite;
+}
+
+.bravo-message strong {
+    text-decoration: underline;
+}
+
+@keyframes attention {
+    0%, 100% {
+        transform: scale(1);
+        box-shadow: 0 0 0 rgba(212, 165, 165, 0);
+    }
+    50% {
+        transform: scale(1.02);
+        box-shadow: 0 0 15px rgba(212, 165, 165, 0.5);
+    }
+}
+
+/* 視覚効果を抑える設定のユーザーには点滅させない */
+@media (prefers-reduced-motion: reduce) {
+    .bravo-message {
+        animation: none;
+    }
+}

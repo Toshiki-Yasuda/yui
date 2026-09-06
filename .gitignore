@@ -1,0 +1,16 @@
+# macOS
+.DS_Store
+._*
+
+# Playwright MCP の作業ファイル
+.playwright-mcp/
+
+# ローカル素材・制作用フォルダ（サイト公開には不要）
+写真/
+チラシ/
+
+# 依存パッケージ
+node_modules/
+
+# 新素材（派生物は images/ に出す）
+新素材/
