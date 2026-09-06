@@ -292,11 +292,12 @@ header[id] {
 }
 
 .hero-inner {
-    max-width: var(--w-full);
+    /* 他セクションと同じ基準線まで絞り、左右の余白を対称にして中身を中央に集める */
+    max-width: 1240px;
     margin-inline: auto;
     padding: var(--space-ml) var(--space-md) 0;
     display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1.02fr);
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
     grid-template-areas:
         "head   figure"
         "body   figure";
@@ -309,20 +310,24 @@ header[id] {
 
 .hero-head {
     grid-area: head;
-    max-width: 34rem;
+    max-width: 33rem;
+    /* 左カラムの中で右（中央）寄りに置き、写真との距離を詰める */
+    margin-left: auto;
 }
 
 .hero-body {
     grid-area: body;
     /* カラムが広がっても本文の行長は伸ばさない */
-    max-width: 34rem;
+    max-width: 33rem;
+    margin-left: auto;
     padding-bottom: clamp(3rem, 8vh, 6rem);
 }
 
 .hero-figure {
     grid-area: figure;
     align-self: center;
-    justify-self: end;
+    /* 右端に張り付かせず中央寄りに */
+    justify-self: start;
     margin: 0;
     width: 100%;
     /* 元画像が684pxのため、それ以上は引き伸ばさない */
@@ -922,7 +927,7 @@ header[id] {
    出演者セクション
    ============================================ */
 .artists-content {
-    max-width: var(--w-wide);
+    max-width: var(--w-full);
     margin-inline: auto;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
