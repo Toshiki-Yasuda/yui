@@ -501,6 +501,16 @@ header[id] {
     background: var(--color-bg-alt);
 }
 
+/* 直前のセクションと流れが連続する場合は上下を詰める */
+.section--tight {
+    padding: var(--space-ml) 0;
+}
+
+/* 多列セクションは見出しとカードの距離を詰めて塊感を出す */
+.section--grid .section-title {
+    margin-bottom: var(--space-ml);
+}
+
 .section-title {
     text-align: center;
     margin-bottom: var(--space-lg);
@@ -541,7 +551,6 @@ header[id] {
    ============================================ */
 .marimba-intro {
     background: linear-gradient(135deg, var(--color-bg-alt) 0%, var(--color-white) 100%);
-    padding: var(--space-xl) 0;
 }
 
 .marimba-content {
@@ -1503,10 +1512,6 @@ header[id] {
 /* ============================================
    チラシセクション
    ============================================ */
-.flyer-section {
-    padding: var(--space-ml) 0;
-}
-
 .flyer-list {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
