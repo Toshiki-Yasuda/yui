@@ -796,8 +796,18 @@ header[id] {
     /* グリッド全体を横断させる（他の項目は2カラムに収まらないため） */
     grid-column: 1 / -1;
     justify-content: center;
-    background: var(--color-bg-alt);
-    border: 1px dashed var(--color-main-light);
+    background: transparent;
+    border: 0;
+    border-top: 1px solid var(--color-gold-light);
+    border-radius: 0;
+    padding-top: var(--space-ms);
+    padding-bottom: 0;
+}
+
+.program-others-text {
+    font-size: var(--fs-base);
+    color: var(--color-text-light);
+    letter-spacing: var(--ls-wide);
 }
 
 .program-others .program-info {
