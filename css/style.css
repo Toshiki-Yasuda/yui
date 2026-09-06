@@ -883,8 +883,9 @@ header[id] {
 .artists-content {
     max-width: var(--w-wide);
     margin-inline: auto;
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+    align-items: start;
     gap: var(--space-ml);
 }
 
@@ -928,6 +929,16 @@ header[id] {
     margin-bottom: var(--space-ms);
 }
 
+.artist-lead-badge {
+    display: block;
+    font-size: var(--fs-2xs);
+    font-weight: 600;
+    letter-spacing: var(--ls-widest);
+    color: var(--color-rose-deep);
+    text-transform: uppercase;
+    margin-bottom: var(--space-2xs);
+}
+
 .artist-name {
     font-family: var(--font-serif);
     font-size: var(--fs-xl);
@@ -943,8 +954,53 @@ header[id] {
     margin-top: var(--space-2xs);
 }
 
+.artist-role {
+    font-size: var(--fs-sm);
+    color: var(--color-text-light);
+    margin-top: var(--space-2xs);
+}
+
 .artist-info {
     padding: 0 var(--space-md) var(--space-md);
+}
+
+/* プロフィール開閉トグル */
+.artist-bio-toggle summary {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2xs);
+    cursor: pointer;
+    list-style: none;
+    font-size: var(--fs-sm);
+    font-weight: 600;
+    letter-spacing: var(--ls-wide);
+    color: var(--color-gold-deep);
+    padding: var(--space-2xs) 0;
+}
+
+.artist-bio-toggle summary::-webkit-details-marker {
+    display: none;
+}
+
+.artist-bio-toggle summary::marker {
+    content: '';
+}
+
+.artist-bio-toggle summary::before {
+    content: '+';
+    display: inline-block;
+    font-size: var(--fs-base);
+    line-height: 1;
+    color: var(--color-gold-deep);
+    transition: transform var(--transition-fast);
+}
+
+.artist-bio-toggle[open] summary::before {
+    transform: rotate(45deg);
+}
+
+.artist-bio-toggle .artist-bio {
+    margin-top: var(--space-sm);
 }
 
 .artist-bio {
@@ -961,45 +1017,6 @@ header[id] {
     margin-top: var(--space-xs);
     padding-bottom: 2px;
     border-bottom: 1px solid var(--color-gold-light);
-}
-
-/* 共演メンバーの区切り */
-.artists-divider {
-    display: flex;
-    align-items: center;
-    gap: var(--space-md);
-    margin: var(--space-xs) 0;
-}
-
-.artists-divider::before,
-.artists-divider::after {
-    content: '';
-    flex: 1;
-    height: 1px;
-    background: var(--color-gold-light);
-}
-
-.artists-divider-text {
-    text-align: center;
-}
-
-.artists-divider-en {
-    display: block;
-    font-size: var(--fs-xs);
-    font-weight: 600;
-    letter-spacing: var(--ls-widest);
-    color: var(--color-gold-deep);
-    text-transform: uppercase;
-}
-
-.artists-divider-ja {
-    display: block;
-    font-family: var(--font-serif);
-    font-size: var(--fs-base);
-    font-weight: 500;
-    color: var(--color-text);
-    margin-top: var(--space-2xs);
-    letter-spacing: 0.15em;
 }
 
 /* ============================================
@@ -1751,6 +1768,10 @@ header[id] {
 
     .section-title-ja {
         font-size: var(--fs-xl);
+    }
+
+    .artists-content {
+        grid-template-columns: 1fr;
     }
 
     .artist-head {
