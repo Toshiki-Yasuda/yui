@@ -151,7 +151,6 @@
             <ul class="nav-menu" id="nav-menu">
                 <li><a href="#concept">コンセプト</a></li>
                 <li><a href="#program">プログラム</a></li>
-                <li><a href="#listen">動画</a></li>
                 <li><a href="#artists">出演者</a></li>
                 <li><a href="#ticket">チケット</a></li>
                 <li><a href="#access">アクセス</a></li>
@@ -205,7 +204,7 @@
 
                 <div class="hero-actions">
                     <a href="#ticket" class="btn btn--primary">チケットを購入する</a>
-                    <a href="#listen" class="btn btn--ghost">演奏を聴く</a>
+                    <a href="#program" class="btn btn--ghost">演奏を聴く</a>
                 </div>
 
                 <p class="hero-countdown" id="countdown" aria-live="polite">
@@ -216,6 +215,29 @@
     </header>
 
     <!-- マリンバ紹介セクション -->
+    <!-- コンセプトセクション -->
+    <section class="section concept section--tint" id="concept">
+        <div class="container">
+            <h2 class="section-title">
+                <span class="section-title-en">Concept</span>
+                <span class="section-title-ja">「結」に込めた想い</span>
+            </h2>
+            <div class="concept-content">
+                <div class="concept-story">
+                    <p class="concept-lead fade-in">
+                        人と人、音と心を結ぶ。<br>
+                        〜未就学児からお年寄りまで、誰もが楽しめるコンサート〜
+                    </p>
+                    <div class="concept-body fade-in">
+                        <p>木の温もりあふれるマリンバの音色を通し、世代を超えて音楽が結びつく場を目指します。</p>
+                        <p>今回のコンサートタイトル「結」には、いくつもの不思議なご縁が重なり、このソロ演奏会が実現に至ったことへの感謝が込められています。</p>
+                        <p>これらの重なるご縁から生まれたコンサートとして、一音一音を大切に作り上げていきます。音楽を通じた心の旅路をお届けします。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section class="section section--tight marimba-intro">
         <div class="container">
             <div class="marimba-content fade-in">
@@ -241,29 +263,6 @@
         </div>
     </section>
 
-    <!-- コンセプトセクション -->
-    <section class="section concept section--tint" id="concept">
-        <div class="container">
-            <h2 class="section-title">
-                <span class="section-title-en">Concept</span>
-                <span class="section-title-ja">「結」に込めた想い</span>
-            </h2>
-            <div class="concept-content">
-                <div class="concept-story">
-                    <p class="concept-lead fade-in">
-                        人と人、音と心を結ぶ。<br>
-                        〜未就学児からお年寄りまで、誰もが楽しめるコンサート〜
-                    </p>
-                    <div class="concept-body fade-in">
-                        <p>木の温もりあふれるマリンバの音色を通し、世代を超えて音楽が結びつく場を目指します。</p>
-                        <p>今回のコンサートタイトル「結」には、いくつもの不思議なご縁が重なり、このソロ演奏会が実現に至ったことへの感謝が込められています。</p>
-                        <p>これらの重なるご縁から生まれたコンサートとして、一音一音を大切に作り上げていきます。音楽を通じた心の旅路をお届けします。</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- プログラムセクション -->
     <section class="section section--grid program" id="program">
         <div class="container">
@@ -280,12 +279,36 @@
                             <p class="program-description">「となりのトトロ」「魔女の宅急便」など、世代を超えて愛される名曲をマリンバの温かな音色でお届けします。お子様も一緒に楽しめるメドレーです。</p>
                         </div>
                     </li>
-                    <li class="program-item">
+                    <li class="program-item program-item--video">
                         <div class="program-info">
                             <h3 class="program-name">戦場のメリークリスマス</h3>
                             <p class="program-composer">坂本龍一 / 編曲：安田愛</p>
                             <p class="program-description">映画音楽の名曲を、マリンバの深い響きでお聴きいただきます。木の温もりが奏でる、心に染み入る一曲です。</p>
-                            <a class="program-listen" href="#listen">演奏を聴く<span aria-hidden="true">→</span></a>
+
+                            <div class="program-video">
+                                <div class="video"
+                                     data-video-id="_79pNv1c9Io"
+                                     data-video-title="戦場のメリークリスマス / 演奏：安田 愛">
+                                    <button type="button" class="video-poster"
+                                            aria-label="動画を再生：戦場のメリークリスマス（演奏：安田 愛）。YouTubeで再生されます">
+                                        <picture>
+                                            <source type="image/webp" srcset="images/video-senmeri.webp">
+                                            <img src="images/video-senmeri.jpg" width="1280" height="720" alt=""
+                                                 loading="lazy" decoding="async">
+                                        </picture>
+                                        <span class="video-play" aria-hidden="true">
+                                            <svg viewBox="0 0 68 48" focusable="false">
+                                                <path class="video-play-bg" d="M66.5 7.7a8.6 8.6 0 0 0-6-6.1C55.2 0 34 0 34 0S12.8 0 7.5 1.6a8.6 8.6 0 0 0-6 6.1A90 90 0 0 0 0 24a90 90 0 0 0 1.5 16.3 8.6 8.6 0 0 0 6 6.1C12.8 48 34 48 34 48s21.2 0 26.5-1.6a8.6 8.6 0 0 0 6-6.1A90 90 0 0 0 68 24a90 90 0 0 0-1.5-16.3z"/>
+                                                <path class="video-play-arrow" d="M27 34l18-10-18-10z"/>
+                                            </svg>
+                                        </span>
+                                    </button>
+                                </div>
+                                <p class="program-video-note">
+                                    演奏動画を公開しています
+                                    <a href="https://www.youtube.com/watch?v=_79pNv1c9Io" target="_blank" rel="noopener">YouTubeで見る<span aria-hidden="true"> ↗</span></a>
+                                </p>
+                            </div>
                         </div>
                     </li>
                     <li class="program-item">
@@ -312,45 +335,6 @@
                 <p class="program-note">
                     ※プログラムは変更になる場合がございます
                 </p>
-            </div>
-        </div>
-    </section>
-
-    <!-- 演奏動画セクション -->
-    <section class="section listen section--tint" id="listen">
-        <div class="container container--full">
-            <h2 class="section-title">
-                <span class="section-title-en">Listen</span>
-                <span class="section-title-ja">演奏を聴く</span>
-            </h2>
-
-            <div class="listen-content fade-in">
-                <div class="video"
-                     data-video-id="_79pNv1c9Io"
-                     data-video-title="戦場のメリークリスマス / 演奏：安田 愛">
-                    <button type="button" class="video-poster"
-                            aria-label="動画を再生：戦場のメリークリスマス（演奏：安田 愛）。YouTubeで再生されます">
-                        <picture>
-                            <source type="image/webp" srcset="images/video-senmeri.webp">
-                            <img src="images/video-senmeri.jpg" width="1280" height="720" alt=""
-                                 loading="lazy" decoding="async">
-                        </picture>
-                        <span class="video-play" aria-hidden="true">
-                            <svg viewBox="0 0 68 48" focusable="false">
-                                <path class="video-play-bg" d="M66.5 7.7a8.6 8.6 0 0 0-6-6.1C55.2 0 34 0 34 0S12.8 0 7.5 1.6a8.6 8.6 0 0 0-6 6.1A90 90 0 0 0 0 24a90 90 0 0 0 1.5 16.3 8.6 8.6 0 0 0 6 6.1C12.8 48 34 48 34 48s21.2 0 26.5-1.6a8.6 8.6 0 0 0 6-6.1A90 90 0 0 0 68 24a90 90 0 0 0-1.5-16.3z"/>
-                                <path class="video-play-arrow" d="M27 34l18-10-18-10z"/>
-                            </svg>
-                        </span>
-                    </button>
-                </div>
-
-                <div class="video-caption">
-                    <p class="video-caption-title">戦場のメリークリスマス</p>
-                    <p class="video-caption-meta">坂本龍一 ／ 演奏：安田 愛</p>
-                    <p class="video-caption-note">当日はこの曲を含むプログラムをお届けします。</p>
-                    <a class="video-caption-link" href="https://www.youtube.com/watch?v=_79pNv1c9Io"
-                       target="_blank" rel="noopener">YouTubeで見る<span aria-hidden="true"> ↗</span></a>
-                </div>
             </div>
         </div>
     </section>
@@ -683,7 +667,7 @@
 
     <!-- チラシセクション -->
     <section class="section section--tight section--tint flyer-section" id="flyer">
-        <div class="container container--full">
+        <div class="container">
             <h2 class="section-title">
                 <span class="section-title-en">Flyer</span>
                 <span class="section-title-ja">チラシ</span>
