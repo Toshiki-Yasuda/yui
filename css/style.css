@@ -682,9 +682,10 @@ header[id] {
 }
 
 .program-list {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-sm);
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-md) var(--space-lg);
+    counter-reset: program-index;
 }
 
 .program-item {
@@ -703,13 +704,29 @@ header[id] {
     border-color: var(--color-gold-light);
 }
 
+/* 曲順番号（装飾）。CSSカウンターで生成し、内容の重複読み上げを避ける */
+.program-item:not(.program-others) {
+    counter-increment: program-index;
+}
+
+.program-item:not(.program-others)::before {
+    content: counter(program-index, upper-roman);
+    flex-shrink: 0;
+    min-width: 2rem;
+    font-family: var(--font-serif);
+    font-size: var(--fs-xl);
+    color: var(--color-accent);
+    line-height: 1;
+    text-align: center;
+}
+
 .program-info {
     flex: 1;
 }
 
 .program-name {
     font-family: var(--font-serif);
-    font-size: var(--fs-md);
+    font-size: var(--fs-lg);
     font-weight: 500;
     color: var(--color-text);
     margin-bottom: 4px;
@@ -731,6 +748,8 @@ header[id] {
 }
 
 .program-others {
+    /* グリッド全体を横断させる（他の項目は2カラムに収まらないため） */
+    grid-column: 1 / -1;
     justify-content: center;
     background: var(--color-bg-alt);
     border: 1px dashed var(--color-main-light);
@@ -1511,12 +1530,15 @@ header[id] {
 .faq-content {
     max-width: var(--w-wide);
     margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-sm) var(--space-lg);
+    align-items: start;
 }
 
 .faq-item {
     background: var(--color-white);
     border-radius: var(--radius-md);
-    margin-bottom: var(--space-sm);
     border: 1px solid rgba(139, 106, 47, 0.10);
     overflow: hidden;
     transition: border-color var(--transition-fast);
@@ -1672,6 +1694,15 @@ header[id] {
     .access-content {
         grid-template-columns: 1fr;
     }
+
+    /* タブレット幅：2カラムを維持しつつ余白を縮小 */
+    .program-list {
+        gap: var(--space-sm) var(--space-md);
+    }
+
+    .faq-content {
+        gap: var(--space-xs) var(--space-md);
+    }
 }
 
 @media screen and (max-width: 768px) {
@@ -1759,6 +1790,17 @@ header[id] {
 
     .artist-info {
         padding-inline: var(--space-sm);
+    }
+
+    /* スマホ幅：1カラムに戻す */
+    .program-list {
+        grid-template-columns: 1fr;
+        gap: var(--space-sm);
+    }
+
+    .faq-content {
+        grid-template-columns: 1fr;
+        gap: var(--space-sm);
     }
 }
 
