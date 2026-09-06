@@ -4,56 +4,103 @@
 
 /* CSS変数 */
 :root {
-    /* カラーパレット - ベビーピンク・ラベンダー・ソフトブルー */
+    /* --- ピンク系：装飾専用。文字色・ボタン背景には使わない --- */
     --color-main: #F4C2C2;           /* ベビーピンク */
     --color-main-dark: #D4A5A5;      /* ダスティローズ */
     --color-main-light: #FAE5E5;     /* ライトピンク */
-    --color-accent: #7A9BB5;         /* ソフトブルー（濃いめ） */
-    --color-accent-dark: #5E8199;    /* ディープブルー */
-    --color-accent-light: #AFCBDF;   /* ソフトブルー */
-    --color-bg: #FAFAFA;
-    --color-bg-alt: #FDF8F8;         /* ピンクティント */
-    --color-text: #2D2D2D;
-    --color-text-light: #5A5A6A;
-    --color-text-muted: #8A8A9A;
-    --color-white: #FFFFFF;
-    --color-lavender: #D8BFD8;       /* ラベンダー */
 
-    /* タイポグラフィ */
+    /* --- 文字とボタンに耐えるローズ（色相は同じ、濃度だけ上げる） --- */
+    --color-rose-deep: #A15A62;      /* 白文字で 5.05:1。CTA背景・強調 */
+    --color-rose-hover: #8C4B53;
+
+    /* --- クリーム：完成チラシとの橋渡し --- */
+    --color-cream: #F7EFE4;
+    --color-photo-cream: #F6E6D6;    /* アーティスト写真の地色（実測値） */
+
+    /* --- ゴールド：区切り罫・小見出し・縁のみ（7箇所限定） --- */
+    --color-gold: #B08A4E;           /* 罫・アイコン（非テキスト用途） */
+    --color-gold-deep: #8A6A2F;      /* 白地 5.02:1。文字に使える唯一の金 */
+    --color-gold-light: #E4D3AE;     /* ヘアライン */
+    --gradient-gold: linear-gradient(90deg,
+        transparent 0%, var(--color-gold) 22%, var(--color-gold-light) 50%,
+        var(--color-gold) 78%, transparent 100%);
+
+    /* --- ブルー --- */
+    --color-accent: #4A7189;         /* 5.23:1 */
+    --color-accent-dark: #37596E;
+    --color-accent-light: #AFCBDF;   /* 罫・境界線専用。文字色には使わない */
+
+    /* --- ニュートラル：寒色グレーをやめ、暖色に寄せる --- */
+    --color-ink: #2B2724;            /* 「結」など最上位の見出し */
+    --color-text: #33302C;
+    --color-text-light: #57514C;     /* 7.82:1 */
+    --color-text-muted: #6F6A66;     /* 5.34:1 */
+    --color-bg: #FCF9F6;
+    --color-bg-alt: #F9F1EA;
+    --color-white: #FFFFFF;
+
+    /* --- タイポグラフィ --- */
     --font-sans: 'Noto Sans JP', -apple-system, BlinkMacSystemFont, sans-serif;
     --font-serif: 'Noto Serif JP', Georgia, serif;
 
-    /* スペーシング */
+    /* フォントサイズ：9段のスケール */
+    --fs-2xs: 0.6875rem;   /* 11px 注記・単位 */
+    --fs-xs: 0.75rem;      /* 12px キャプション・英字ラベル */
+    --fs-sm: 0.8125rem;    /* 13px 補助テキスト */
+    --fs-base: 0.9375rem;  /* 15px 本文 */
+    --fs-md: 1.0625rem;    /* 17px リード・長文本文 */
+    --fs-lg: 1.25rem;      /* 20px 小見出し */
+    --fs-xl: 1.5rem;       /* 24px カード見出し・出演者名 */
+    --fs-2xl: 1.875rem;    /* 30px セクションタイトル */
+    --fs-3xl: 2.5rem;      /* 40px 特大数値 */
+    --fs-display: clamp(4.5rem, 13vw, 8rem);  /* 「結」 */
+
+    --lh-tight: 1.35;
+    --lh-snug: 1.7;
+    --lh-body: 1.9;
+    --lh-loose: 2.1;
+    --ls-wide: 0.08em;
+    --ls-widest: 0.24em;
+
+    /* --- スペーシング --- */
+    --space-2xs: 0.25rem;
     --space-xs: 0.5rem;
     --space-sm: 1rem;
+    --space-ms: 1.5rem;
     --space-md: 2rem;
+    --space-ml: 3rem;
     --space-lg: 4rem;
-    --space-xl: 8rem;
+    --space-xl: 6rem;
+    --space-2xl: 8rem;
 
-    /* モダンな効果 */
+    /* --- 角丸：5種に統一 --- */
     --nav-height: 72px;
-    --radius-sm: 8px;
-    --radius-md: 16px;
-    --radius-lg: 24px;
+    --radius-xs: 3px;
+    --radius-sm: 6px;
+    --radius-md: 12px;
+    --radius-lg: 16px;
     --radius-full: 9999px;
 
-    /* グラスモーフィズム */
-    --glass-bg: rgba(255, 255, 255, 0.7);
-    --glass-border: rgba(255, 255, 255, 0.3);
-    --glass-blur: blur(20px);
+    /* --- グラスモーフィズム --- */
+    --glass-bg: rgba(255, 255, 255, 0.82);
+    --glass-border: rgba(139, 106, 47, 0.12);
+    --glass-blur: blur(14px);
 
-    /* シャドウ */
-    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.04);
-    --shadow-md: 0 8px 32px rgba(0, 0, 0, 0.08);
-    --shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.12);
-    --shadow-glow: 0 0 40px rgba(244, 194, 194, 0.4);
+    /* --- シャドウ：単層の黒 → 2層の温色 --- */
+    --shadow-xs: 0 1px 2px rgba(74, 48, 44, 0.05);
+    --shadow-sm: 0 1px 2px rgba(74, 48, 44, 0.06), 0 2px 6px rgba(74, 48, 44, 0.05);
+    --shadow-md: 0 2px 4px rgba(74, 48, 44, 0.05), 0 6px 16px rgba(74, 48, 44, 0.07);
+    --shadow-lg: 0 4px 8px rgba(74, 48, 44, 0.05), 0 16px 32px rgba(74, 48, 44, 0.09);
+    --shadow-photo: 0 2px 6px rgba(74, 48, 44, 0.06), 0 18px 40px rgba(74, 48, 44, 0.12);
 
-    /* トランジション - ゆっくりリッチな動き */
+    /* --- モーション --- */
     --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
-    --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
-    --transition-fast: 0.4s var(--ease-out);
-    --transition-normal: 0.8s var(--ease-out);
-    --transition-slow: 1.2s var(--ease-out);
+    --ease-standard: cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-fast: 0.15s var(--ease-standard);
+    --transition-normal: 0.25s var(--ease-standard);
+    --transition-slow: 0.45s var(--ease-out);
+    --reveal-duration: 0.6s;
+    --reveal-stagger: 0.08s;
 }
 
 /* リセット・ベース */
@@ -77,30 +124,9 @@ body {
     font-size: 1rem;
     line-height: 1.8;
     color: var(--color-text);
-    background: linear-gradient(
-        135deg,
-        var(--color-bg) 0%,
-        #FDF8F8 25%,
-        var(--color-bg) 50%,
-        #F8F5FA 75%,
-        var(--color-bg) 100%
-    );
-    background-size: 400% 400%;
-    animation: subtleGradient 20s ease infinite;
+    background: var(--color-bg);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-}
-
-@keyframes subtleGradient {
-    0% {
-        background-position: 0% 50%;
-    }
-    50% {
-        background-position: 100% 50%;
-    }
-    100% {
-        background-position: 0% 50%;
-    }
 }
 
 img {
@@ -362,23 +388,25 @@ ul {
     display: inline-flex;
     align-items: center;
     gap: var(--space-xs);
-    background: var(--color-main-dark);
+    background: var(--color-rose-deep);
     color: var(--color-white);
     font-weight: 600;
-    font-size: 0.875rem;
+    font-size: var(--fs-base);
     padding: 1rem 2.5rem;
     border-radius: var(--radius-full);
-    box-shadow: var(--shadow-md), var(--shadow-glow);
-    transition: all var(--transition-normal);
+    box-shadow: var(--shadow-sm);
+    transition: background-color var(--transition-fast),
+                box-shadow var(--transition-fast),
+                transform var(--transition-fast);
     opacity: 0;
     animation: fadeUp 1.8s var(--ease-out) 1.8s forwards;
 }
 
 .hero-cta:hover {
-    background: var(--color-main);
+    background: var(--color-rose-hover);
     color: var(--color-white);
-    transform: translateY(-4px);
-    box-shadow: var(--shadow-lg), 0 0 60px rgba(244, 194, 194, 0.5);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
 }
 
 .hero-decoration {
@@ -1648,35 +1676,20 @@ button:focus-visible {
     }
 }
 
-/* teket ブラボーボタンの案内 */
+/* teket ブラボーボタンの案内（点滅アニメーションは廃止し、静かな囲みに） */
 .bravo-message {
-    font-size: 0.95rem;
-    color: var(--color-main-dark);
+    font-size: var(--fs-sm);
+    line-height: var(--lh-snug);
+    color: var(--color-text-light);
     margin-top: var(--space-sm);
-    padding: 0.75rem 1rem;
-    background: linear-gradient(135deg, var(--color-main-light), var(--color-bg-alt));
-    border-radius: 8px;
-    animation: attention 2s ease-in-out infinite;
+    padding: var(--space-sm) var(--space-ms);
+    background: var(--color-cream);
+    border: 1px solid var(--color-gold-light);
+    border-radius: var(--radius-sm);
 }
 
 .bravo-message strong {
-    text-decoration: underline;
-}
-
-@keyframes attention {
-    0%, 100% {
-        transform: scale(1);
-        box-shadow: 0 0 0 rgba(212, 165, 165, 0);
-    }
-    50% {
-        transform: scale(1.02);
-        box-shadow: 0 0 15px rgba(212, 165, 165, 0.5);
-    }
-}
-
-/* 視覚効果を抑える設定のユーザーには点滅させない */
-@media (prefers-reduced-motion: reduce) {
-    .bravo-message {
-        animation: none;
-    }
+    color: var(--color-gold-deep);
+    font-weight: 600;
+    text-decoration: none;
 }
