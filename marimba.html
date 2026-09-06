@@ -1,6 +1,7 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="ja" class="no-js">
 <head>
+    <script>document.documentElement.classList.replace('no-js', 'js');</script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>マリンバってどんな楽器？ | 第18回マリンバ北星会 午後のコンサート〜結〜</title>
@@ -39,7 +40,7 @@
         }
 
         .marimba-hero-subtitle {
-            font-size: 1.4rem;
+            font-size: var(--fs-xl);
             font-weight: 500;
             color: var(--color-text-light);
         }
@@ -87,7 +88,7 @@
         }
 
         .marimba-text-outlined {
-            font-size: 1.5rem;
+            font-size: var(--fs-xl);
             font-weight: 600;
             line-height: 2.4;
             text-shadow:
@@ -124,7 +125,7 @@
 
         .marimba-section-title {
             font-family: var(--font-serif);
-            font-size: 1.5rem;
+            font-size: var(--fs-xl);
             font-weight: 400;
             color: var(--color-text);
             margin-bottom: var(--space-md);
@@ -153,7 +154,7 @@
 
         .marimba-highlight-title {
             font-family: var(--font-serif);
-            font-size: 1.25rem;
+            font-size: var(--fs-lg);
             color: var(--color-main-dark);
             margin-bottom: var(--space-sm);
             text-align: center;
@@ -183,7 +184,7 @@
             background: var(--color-white);
             padding: var(--space-md);
             border-radius: var(--radius-md);
-            border: 1px solid rgba(0, 0, 0, 0.05);
+            border: 1px solid rgba(139, 106, 47, 0.10);
             text-align: center;
         }
 
@@ -192,12 +193,12 @@
             height: 50px;
             margin: 0 auto var(--space-sm);
             border: 2px solid var(--color-main);
-            border-radius: 50%;
+            border-radius: var(--radius-full);
             display: flex;
             align-items: center;
             justify-content: center;
             color: var(--color-main-dark);
-            font-size: 1.2rem;
+            font-size: var(--fs-lg);
             font-weight: 300;
         }
 
@@ -211,13 +212,13 @@
 
         .marimba-feature-title {
             font-family: var(--font-serif);
-            font-size: 1.1rem;
+            font-size: var(--fs-md);
             color: var(--color-text);
             margin-bottom: var(--space-xs);
         }
 
         .marimba-feature-text {
-            font-size: 0.9rem;
+            font-size: var(--fs-base);
             color: var(--color-text-light);
             line-height: 1.8;
         }
@@ -231,7 +232,7 @@
 
         .marimba-comparison-title {
             font-family: var(--font-serif);
-            font-size: 1.25rem;
+            font-size: var(--fs-lg);
             color: var(--color-text);
             margin-bottom: var(--space-md);
             text-align: center;
@@ -252,11 +253,11 @@
         .comparison-table th {
             font-weight: 600;
             color: var(--color-accent);
-            font-size: 0.9rem;
+            font-size: var(--fs-base);
         }
 
         .comparison-table td {
-            font-size: 0.95rem;
+            font-size: var(--fs-base);
             color: var(--color-text-light);
         }
 
@@ -301,7 +302,7 @@
 
         .cta-title {
             font-family: var(--font-serif);
-            font-size: 1.5rem;
+            font-size: var(--fs-xl);
             color: var(--color-text);
             margin-bottom: var(--space-sm);
         }
@@ -336,14 +337,15 @@
     <nav class="nav">
         <div class="nav-container">
             <a href="index.html" class="nav-logo">結</a>
-            <button class="nav-toggle" aria-label="メニューを開く">
+            <button class="nav-toggle" type="button" aria-label="メニューを開く" aria-expanded="false" aria-controls="nav-menu">
                 <span></span>
                 <span></span>
                 <span></span>
             </button>
-            <ul class="nav-menu">
+            <ul class="nav-menu" id="nav-menu">
                 <li><a href="index.html#concept">コンセプト</a></li>
                 <li><a href="index.html#program">プログラム</a></li>
+                <li><a href="index.html#listen">動画</a></li>
                 <li><a href="index.html#artists">出演者</a></li>
                 <li><a href="index.html#ticket">チケット</a></li>
                 <li><a href="index.html#access">アクセス</a></li>
@@ -361,7 +363,7 @@
                 <div class="marimba-intro-content">
                     <!-- ヒーロー -->
                     <h1 class="marimba-hero-title marimba-title-outlined">マリンバってどんな楽器？</h1>
-                    <p class="marimba-hero-subtitle marimba-text-outlined" style="font-size: 1.6rem; margin-bottom: var(--space-lg);">木の温もりが奏でる、癒しの打楽器</p>
+                    <p class="marimba-hero-subtitle marimba-text-outlined" style="font-size: var(--fs-xl); margin-bottom: var(--space-lg);">木の温もりが奏でる、癒しの打楽器</p>
                     <h2 class="marimba-section-title marimba-title-outlined">マリンバとは</h2>
                     <p class="marimba-text marimba-text-outlined">
                         マリンバは<strong>木の板を並べた大きな打楽器</strong>です。
@@ -522,8 +524,9 @@
     <!-- フッター -->
     <footer class="footer">
         <div class="container">
-            <p class="footer-title">第18回マリンバ北星会 午後のコンサート〜結〜</p>
-            <p class="footer-date">2026年10月25日（日）13:30開演</p>
+            <p class="footer-title footer-title--sub">第18回マリンバ北星会午後のコンサート</p>
+            <p class="footer-title footer-title--main">〜結〜</p>
+            <p class="footer-date">2026年10月25日（日）13:00開場 / 13:30開演</p>
             <p class="footer-copyright">
                 &copy; 2026 Marimba Hokuseikai. All rights reserved.
             </p>
@@ -535,21 +538,31 @@
         const navToggle = document.querySelector('.nav-toggle');
         const navMenu = document.querySelector('.nav-menu');
 
+        const setNavOpen = (open) => {
+            navMenu.classList.toggle('active', open);
+            navToggle.classList.toggle('active', open);
+            navToggle.setAttribute('aria-expanded', String(open));
+            navToggle.setAttribute('aria-label', open ? 'メニューを閉じる' : 'メニューを開く');
+        };
+
         navToggle.addEventListener('click', () => {
-            navMenu.classList.toggle('active');
-            navToggle.classList.toggle('active');
+            setNavOpen(!navMenu.classList.contains('active'));
+        });
+
+        document.querySelectorAll('.nav-menu a').forEach(link => {
+            link.addEventListener('click', () => setNavOpen(false));
         });
 
         // スクロールアニメーション
-        const observer = new IntersectionObserver((entries) => {
+        const observer = new IntersectionObserver((entries, obs) => {
             entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
+                if (!entry.isIntersecting) return;
+                entry.target.classList.add('visible');
+                obs.unobserve(entry.target);
             });
-        }, { threshold: 0.1 });
+        }, { rootMargin: '0px 0px -8% 0px', threshold: 0.15 });
 
-        document.querySelectorAll('.fade-in').forEach(el => {
+        document.querySelectorAll('.fade-in, .fade-in-left, .fade-in-right, .scale-in').forEach(el => {
             observer.observe(el);
         });
     </script>
