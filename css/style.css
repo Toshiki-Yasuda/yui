@@ -549,6 +549,8 @@ header[id] {
 /* ============================================
    マリンバ紹介セクション
    ============================================ */
+/* 上下の余白は .section--tight（HTML側で付与）に委ねる。
+   ヒーロー直後の橋渡しとして詰めるため */
 .marimba-intro {
     background: linear-gradient(135deg, var(--color-bg-alt) 0%, var(--color-white) 100%);
 }
@@ -715,6 +717,8 @@ header[id] {
 }
 
 .program-item {
+    /* グリッドアイテムの既定 min-width:auto による溢れを防ぐ */
+    min-width: 0;
     display: flex;
     align-items: center;
     gap: var(--space-md);
@@ -958,6 +962,7 @@ header[id] {
     margin-inline: auto;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+    /* 開いたカードだけが伸びるよう、行の高さは引き伸ばさない */
     align-items: start;
     gap: var(--space-ml);
 }
@@ -969,6 +974,10 @@ header[id] {
     box-shadow: var(--shadow-sm);
     overflow: hidden;
     transition: box-shadow var(--transition-fast);
+    /* 写真 / 見出し / 開閉トグル の3行。見出し行を伸縮させて
+       「プロフィールを読む」の位置を3枚で揃える */
+    display: grid;
+    grid-template-rows: auto 1fr auto;
 }
 
 .artist:hover {
@@ -976,6 +985,7 @@ header[id] {
 }
 
 .artist-photo {
+    position: relative;
     aspect-ratio: 3 / 2;
     overflow: hidden;
 }
@@ -1003,13 +1013,18 @@ header[id] {
 }
 
 .artist-lead-badge {
-    display: block;
+    position: absolute;
+    top: var(--space-sm);
+    left: var(--space-sm);
     font-size: var(--fs-2xs);
     font-weight: 600;
-    letter-spacing: var(--ls-widest);
+    letter-spacing: var(--ls-wide);
     color: var(--color-rose-deep);
     text-transform: uppercase;
-    margin-bottom: var(--space-2xs);
+    background: rgba(255, 255, 255, 0.92);
+    border: 1px solid var(--color-gold-light);
+    border-radius: var(--radius-full);
+    padding: 0.35em 1em;
 }
 
 .artist-name {
@@ -1801,7 +1816,7 @@ header[id] {
     /* 動画は横に並べるほど幅が確保できないため、縦積みに戻す */
     .listen-content {
         grid-template-columns: 1fr;
-        gap: 0;
+        gap: var(--space-ms);
     }
 
     .video-caption {
