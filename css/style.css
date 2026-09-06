@@ -43,13 +43,14 @@
     --font-sans: 'Noto Sans JP', -apple-system, BlinkMacSystemFont, sans-serif;
     --font-serif: 'Noto Serif JP', Georgia, serif;
 
-    /* フォントサイズ：9段のスケール */
-    --fs-2xs: 0.6875rem;   /* 11px 注記・単位 */
-    --fs-xs: 0.75rem;      /* 12px キャプション・英字ラベル */
-    --fs-sm: 0.8125rem;    /* 13px 補助テキスト */
-    --fs-base: 0.9375rem;  /* 15px 本文 */
-    --fs-md: 1.0625rem;    /* 17px リード・長文本文 */
-    --fs-lg: 1.25rem;      /* 20px 小見出し */
+    /* フォントサイズ：9段のスケール（本文16px基準）
+       未就学児からお年寄りまでが対象のため、下限を底上げしている */
+    --fs-2xs: 0.75rem;     /* 12px 注記・単位 */
+    --fs-xs: 0.8125rem;    /* 13px キャプション・英字ラベル */
+    --fs-sm: 0.875rem;     /* 14px 補助テキスト */
+    --fs-base: 1rem;       /* 16px 本文 */
+    --fs-md: 1.125rem;     /* 18px リード・長文本文 */
+    --fs-lg: 1.3125rem;    /* 21px 小見出し */
     --fs-xl: 1.5rem;       /* 24px カード見出し・出演者名 */
     --fs-2xl: 1.875rem;    /* 30px セクションタイトル */
     --fs-3xl: 2.5rem;      /* 40px 特大数値 */
@@ -271,32 +272,42 @@ header[id] {
 }
 
 .hero-inner {
-    max-width: 1200px;
+    /* ヒーローだけ他セクションより広く取り、メイン画像を大きく見せる */
+    max-width: 1340px;
     margin-inline: auto;
     padding: var(--space-ml) var(--space-md) 0;
     display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 0.82fr);
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.02fr);
     grid-template-areas:
         "head   figure"
         "body   figure";
     grid-template-rows: auto 1fr;
-    column-gap: clamp(2rem, 5vw, 4.5rem);
+    column-gap: clamp(1.5rem, 3vw, 2.5rem);
     align-items: start;
     min-height: calc(100vh - var(--nav-height));
     min-height: calc(100svh - var(--nav-height));
 }
 
-.hero-head { grid-area: head; }
+.hero-head {
+    grid-area: head;
+    max-width: 34rem;
+}
 
 .hero-body {
     grid-area: body;
+    /* カラムが広がっても本文の行長は伸ばさない */
+    max-width: 34rem;
     padding-bottom: clamp(3rem, 8vh, 6rem);
 }
 
 .hero-figure {
     grid-area: figure;
-    align-self: end;
+    align-self: center;
+    justify-self: end;
     margin: 0;
+    width: 100%;
+    /* 元画像が684pxのため、それ以上は引き伸ばさない */
+    max-width: 684px;
 }
 
 /* イラストの紙地とヒーロー背景を同色にしたうえで、
@@ -1277,19 +1288,27 @@ header[id] {
 }
 
 .access-map {
-    border-radius: var(--radius-lg);
-    overflow: hidden;
-    box-shadow: var(--shadow-md);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
     height: 100%;
     min-height: 350px;
 }
 
 .access-map iframe {
     filter: saturate(0.55) contrast(0.96);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
     display: block;
     width: 100%;
     height: 100%;
     min-height: 350px;
+}
+
+.access-map-link {
+    align-self: flex-end;
+    font-size: var(--fs-sm);
+    color: var(--color-accent);
 }
 
 /* ============================================
