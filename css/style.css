@@ -110,6 +110,15 @@
     --reveal-stagger: 0.08s;
 }
 
+/* 大画面では基準線ごと広げる（固定幅だと1920pxで左右が大きく死ぬため） */
+@media screen and (min-width: 1600px) {
+    :root {
+        --w-full: 1560px;
+        --w-wide: 1400px;
+        --w-text: 880px;
+    }
+}
+
 /* リセット・ベース */
 *,
 *::before,
@@ -165,9 +174,14 @@ header[id] {
 /* コンテナ */
 .container {
     width: 100%;
-    max-width: var(--w-full);
+    max-width: var(--w-wide);
     margin: 0 auto;
     padding: 0 var(--space-md);
+}
+
+/* 全幅で見せるビジュアル（動画・チラシ）だけ基準線の外へ */
+.container--full {
+    max-width: var(--w-full);
 }
 
 /* ============================================
@@ -720,7 +734,8 @@ header[id] {
     /* グリッドアイテムの既定 min-width:auto による溢れを防ぐ */
     min-width: 0;
     display: flex;
-    align-items: center;
+    /* 本文量が違っても曲名とローマ数字の高さを揃える */
+    align-items: flex-start;
     gap: var(--space-md);
     padding: var(--space-ms) var(--space-md);
     background: var(--color-white);
@@ -844,7 +859,7 @@ header[id] {
     margin-inline: auto;
     display: grid;
     grid-template-columns: minmax(0, 2fr) minmax(240px, 1fr);
-    align-items: center;
+    align-items: start;
     gap: var(--space-lg);
 }
 
@@ -1787,6 +1802,20 @@ header[id] {
 /* ============================================
    レスポンシブデザイン
    ============================================ */
+
+/* 中間幅：auto-fit が中途半端に折り返してカードが孤立するのを防ぐ
+   （出演者が2+1、料金が3+1になり「無料」だけ単独行になっていた） */
+@media screen and (max-width: 1180px) {
+    /* 出演者は3名。2列にすると必ず1枚が孤立するため3列を保つ */
+    .artists-content {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: var(--space-md);
+    }
+
+    .ticket-prices {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
 
 @media screen and (max-width: 900px) {
     .access-content {
