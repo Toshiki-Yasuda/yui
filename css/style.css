@@ -74,6 +74,12 @@
     --space-xl: 6rem;
     --space-2xl: 8rem;
 
+    /* --- レイアウト幅：ページを貫く4段階の基準線 --- */
+    --w-full: 1340px;     /* ヒーロー・全幅ビジュアル（動画・チラシ） */
+    --w-wide: 1200px;     /* 並列するカードのコンテナ（出演者・プログラム・FAQ 等） */
+    --w-text: 780px;      /* 単一の読み物ブロック */
+    --w-reading: 640px;   /* 本文の行長制御。日本語40〜45字が上限。ここは広げない */
+
     /* --- 角丸：5種に統一 --- */
     --nav-height: 72px;
     --radius-xs: 3px;
@@ -159,7 +165,7 @@ header[id] {
 /* コンテナ */
 .container {
     width: 100%;
-    max-width: 1200px;
+    max-width: var(--w-full);
     margin: 0 auto;
     padding: 0 var(--space-md);
 }
@@ -185,7 +191,7 @@ header[id] {
     justify-content: space-between;
     align-items: center;
     height: 100%;
-    max-width: 1200px;
+    max-width: var(--w-full);
     margin: 0 auto;
     padding: 0 var(--space-md);
 }
@@ -272,8 +278,7 @@ header[id] {
 }
 
 .hero-inner {
-    /* ヒーローだけ他セクションより広く取り、メイン画像を大きく見せる */
-    max-width: 1340px;
+    max-width: var(--w-full);
     margin-inline: auto;
     padding: var(--space-ml) var(--space-md) 0;
     display: grid;
@@ -540,7 +545,7 @@ header[id] {
 }
 
 .marimba-content {
-    max-width: 700px;
+    max-width: var(--w-wide);
     margin: 0 auto;
     text-align: center;
 }
@@ -633,7 +638,7 @@ header[id] {
    コンセプトセクション
    ============================================ */
 .concept-content {
-    max-width: 900px;
+    max-width: var(--w-text);
     margin: 0 auto;
 }
 
@@ -649,7 +654,7 @@ header[id] {
 }
 
 .concept-body {
-    max-width: 640px;
+    max-width: var(--w-reading);
     margin: 0 auto;
     text-align: left;
 }
@@ -672,7 +677,7 @@ header[id] {
    プログラムセクション
    ============================================ */
 .program-content {
-    max-width: 600px;
+    max-width: var(--w-wide);
     margin: 0 auto;
 }
 
@@ -772,7 +777,7 @@ header[id] {
    演奏動画セクション
    ============================================ */
 .listen-content {
-    max-width: 760px;
+    max-width: var(--w-full);
     margin-inline: auto;
 }
 
@@ -876,7 +881,7 @@ header[id] {
    出演者セクション
    ============================================ */
 .artists-content {
-    max-width: 720px;
+    max-width: var(--w-wide);
     margin-inline: auto;
     display: flex;
     flex-direction: column;
@@ -1001,7 +1006,7 @@ header[id] {
    チケットセクション
    ============================================ */
 .ticket-content {
-    max-width: 800px;
+    max-width: var(--w-wide);
     margin: 0 auto;
     text-align: center;
 }
@@ -1219,7 +1224,7 @@ header[id] {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: var(--space-lg);
-    max-width: 1000px;
+    max-width: var(--w-wide);
     margin: 0 auto;
     align-items: start;
 }
@@ -1315,7 +1320,7 @@ header[id] {
    お問い合わせセクション
    ============================================ */
 .contact-content {
-    max-width: 600px;
+    max-width: var(--w-text);
     margin: 0 auto;
     text-align: center;
 }
@@ -1409,7 +1414,7 @@ header[id] {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: var(--space-md);
-    max-width: 640px;
+    max-width: var(--w-full);
     margin-inline: auto;
 }
 
@@ -1504,7 +1509,7 @@ header[id] {
    FAQセクション
    ============================================ */
 .faq-content {
-    max-width: 800px;
+    max-width: var(--w-wide);
     margin: 0 auto;
 }
 
