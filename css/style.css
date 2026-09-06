@@ -714,6 +714,129 @@ ul {
     margin-top: var(--space-md);
 }
 
+/* 動画セクションへの導線 */
+.program-listen {
+    display: inline-block;
+    margin-top: var(--space-xs);
+    font-size: var(--fs-sm);
+    font-weight: 500;
+    color: var(--color-accent);
+}
+
+.program-listen span {
+    margin-left: 0.35em;
+    transition: transform var(--transition-fast);
+    display: inline-block;
+}
+
+.program-listen:hover span {
+    transform: translateX(3px);
+}
+
+/* ============================================
+   演奏動画セクション
+   ============================================ */
+.listen-content {
+    max-width: 760px;
+    margin-inline: auto;
+}
+
+.video {
+    position: relative;
+    aspect-ratio: 16 / 9;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    background: #17120F;
+    box-shadow: var(--shadow-photo);
+}
+
+.video iframe,
+.video-poster {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+.video-poster {
+    display: block;
+    padding: 0;
+    margin: 0;
+    background: none;
+    cursor: pointer;
+}
+
+.video-poster img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.video-play {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 68px;
+    height: 48px;
+    translate: -50% -50%;
+    pointer-events: none;
+}
+
+.video-play svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+.video-play-bg {
+    fill: rgba(24, 18, 14, 0.62);
+    transition: fill var(--transition-fast);
+}
+
+.video-play-arrow {
+    fill: #fff;
+}
+
+.video-poster:hover .video-play-bg,
+.video-poster:focus-visible .video-play-bg {
+    fill: var(--color-rose-deep);
+}
+
+.video-poster:focus-visible {
+    outline: 3px solid var(--color-accent);
+    outline-offset: -3px;
+}
+
+.video-caption {
+    margin-top: var(--space-ms);
+    text-align: center;
+}
+
+.video-caption-title {
+    font-family: var(--font-serif);
+    font-size: var(--fs-lg);
+    color: var(--color-ink);
+}
+
+.video-caption-meta {
+    font-size: var(--fs-sm);
+    color: var(--color-text-muted);
+    margin-top: var(--space-2xs);
+}
+
+.video-caption-note {
+    font-size: var(--fs-sm);
+    color: var(--color-text-light);
+    margin-top: var(--space-xs);
+}
+
+.video-caption-link {
+    display: inline-block;
+    margin-top: var(--space-sm);
+    font-size: var(--fs-sm);
+}
+
 /* ============================================
    出演者セクション
    ============================================ */

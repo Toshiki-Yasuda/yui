@@ -151,6 +151,7 @@
             <ul class="nav-menu" id="nav-menu">
                 <li><a href="#concept">コンセプト</a></li>
                 <li><a href="#program">プログラム</a></li>
+                <li><a href="#listen">動画</a></li>
                 <li><a href="#artists">出演者</a></li>
                 <li><a href="#ticket">チケット</a></li>
                 <li><a href="#access">アクセス</a></li>
@@ -279,6 +280,7 @@
                             <h3 class="program-name">戦場のメリークリスマス</h3>
                             <p class="program-composer">坂本龍一 / 編曲：安田愛</p>
                             <p class="program-description">映画音楽の名曲を、マリンバの深い響きでお聴きいただきます。木の温もりが奏でる、心に染み入る一曲です。</p>
+                            <a class="program-listen" href="#listen">演奏を聴く<span aria-hidden="true">→</span></a>
                         </div>
                     </li>
                     <li class="program-item">
@@ -309,8 +311,47 @@
         </div>
     </section>
 
+    <!-- 演奏動画セクション -->
+    <section class="section listen section--tint" id="listen">
+        <div class="container">
+            <h2 class="section-title">
+                <span class="section-title-en">Listen</span>
+                <span class="section-title-ja">演奏を聴く</span>
+            </h2>
+
+            <div class="listen-content fade-in">
+                <div class="video"
+                     data-video-id="_79pNv1c9Io"
+                     data-video-title="戦場のメリークリスマス / 演奏：安田 愛">
+                    <button type="button" class="video-poster"
+                            aria-label="動画を再生：戦場のメリークリスマス（演奏：安田 愛）。YouTubeで再生されます">
+                        <picture>
+                            <source type="image/webp" srcset="images/video-senmeri.webp">
+                            <img src="images/video-senmeri.jpg" width="1280" height="720" alt=""
+                                 loading="lazy" decoding="async">
+                        </picture>
+                        <span class="video-play" aria-hidden="true">
+                            <svg viewBox="0 0 68 48" focusable="false">
+                                <path class="video-play-bg" d="M66.5 7.7a8.6 8.6 0 0 0-6-6.1C55.2 0 34 0 34 0S12.8 0 7.5 1.6a8.6 8.6 0 0 0-6 6.1A90 90 0 0 0 0 24a90 90 0 0 0 1.5 16.3 8.6 8.6 0 0 0 6 6.1C12.8 48 34 48 34 48s21.2 0 26.5-1.6a8.6 8.6 0 0 0 6-6.1A90 90 0 0 0 68 24a90 90 0 0 0-1.5-16.3z"/>
+                                <path class="video-play-arrow" d="M27 34l18-10-18-10z"/>
+                            </svg>
+                        </span>
+                    </button>
+                </div>
+
+                <div class="video-caption">
+                    <p class="video-caption-title">戦場のメリークリスマス</p>
+                    <p class="video-caption-meta">坂本龍一 ／ 演奏：安田 愛</p>
+                    <p class="video-caption-note">当日はこの曲を含むプログラムをお届けします。</p>
+                    <a class="video-caption-link" href="https://www.youtube.com/watch?v=_79pNv1c9Io"
+                       target="_blank" rel="noopener">YouTubeで見る<span aria-hidden="true"> ↗</span></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- 出演者セクション -->
-    <section class="section artists section--tint" id="artists">
+    <section class="section artists" id="artists">
         <div class="container">
             <h2 class="section-title">
                 <span class="section-title-en">Artists</span>
@@ -391,7 +432,7 @@
     </section>
 
     <!-- チケットセクション -->
-    <section class="section ticket" id="ticket">
+    <section class="section ticket section--tint" id="ticket">
         <div class="container">
             <h2 class="section-title">
                 <span class="section-title-en">Ticket</span>
@@ -464,7 +505,7 @@
     </section>
 
     <!-- アクセスセクション -->
-    <section class="section access section--tint" id="access">
+    <section class="section access" id="access">
         <div class="container">
             <h2 class="section-title">
                 <span class="section-title-en">Access</span>
@@ -508,7 +549,7 @@
     </section>
 
     <!-- FAQセクション -->
-    <section class="section faq" id="faq">
+    <section class="section faq section--tint" id="faq">
         <div class="container">
             <h2 class="section-title">
                 <span class="section-title-en">FAQ</span>
@@ -574,7 +615,7 @@
     </section>
 
     <!-- お問い合わせセクション -->
-    <section class="section contact section--tint" id="contact">
+    <section class="section contact" id="contact">
         <div class="container">
             <h2 class="section-title">
                 <span class="section-title-en">Contact</span>
@@ -721,6 +762,50 @@
         document.addEventListener('visibilitychange', () => {
             if (!document.hidden) updateCountdown();
         });
+
+        // 演奏動画：クリックされるまでYouTubeへのリクエストを発生させない
+        (function () {
+            const YT_ORIGINS = ['https://www.youtube-nocookie.com', 'https://i.ytimg.com'];
+            let warmed = false;
+
+            function warmUp() {
+                if (warmed) return;
+                warmed = true;
+                YT_ORIGINS.forEach((href) => {
+                    const link = document.createElement('link');
+                    link.rel = 'preconnect';
+                    link.href = href;
+                    document.head.appendChild(link);
+                });
+            }
+
+            document.querySelectorAll('.video[data-video-id]').forEach((wrap) => {
+                const poster = wrap.querySelector('.video-poster');
+                if (!poster) return;
+
+                poster.addEventListener('pointerenter', warmUp, { once: true });
+                poster.addEventListener('focus', warmUp, { once: true });
+
+                poster.addEventListener('click', () => {
+                    const params = new URLSearchParams({
+                        autoplay: '1',
+                        rel: '0',
+                        playsinline: '1',
+                        modestbranding: '1',
+                        color: 'white'
+                    });
+                    const iframe = document.createElement('iframe');
+                    iframe.src = 'https://www.youtube-nocookie.com/embed/' +
+                                 encodeURIComponent(wrap.dataset.videoId) + '?' + params.toString();
+                    iframe.title = wrap.dataset.videoTitle || 'YouTube動画';
+                    iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+                    iframe.referrerPolicy = 'strict-origin-when-cross-origin';
+                    iframe.allowFullscreen = true;
+                    wrap.replaceChildren(iframe);
+                    iframe.focus();
+                }, { once: true });
+            });
+        })();
 
         // FAQアコーディオン
         document.querySelectorAll('.faq-question').forEach(button => {
