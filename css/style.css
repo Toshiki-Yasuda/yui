@@ -1264,6 +1264,30 @@ header[id] {
     margin-top: var(--space-xs);
 }
 
+/* 応援・ファンレター（OFUSE） */
+.support {
+    max-width: var(--w-text);
+    margin: var(--space-ml) auto 0;
+    padding-top: var(--space-ml);
+    border-top: 1px solid var(--color-gold-light);
+    text-align: center;
+}
+
+.support-title {
+    font-family: var(--font-serif);
+    font-size: var(--fs-lg);
+    font-weight: 500;
+    color: var(--color-ink);
+    letter-spacing: var(--ls-wide);
+    margin-bottom: var(--space-2xs);
+}
+
+.support-text {
+    font-size: var(--fs-base);
+    color: var(--color-text-light);
+    margin-bottom: var(--space-ms);
+}
+
 /* カレンダー登録 */
 .calendar-add {
     margin-top: var(--space-lg);
@@ -1612,22 +1636,16 @@ header[id] {
     align-items: start;
 }
 
+/* 箱で囲わず、金の罫で区切ったリストとして組む */
 .faq-item {
-    background: var(--color-white);
-    border-radius: var(--radius-md);
-    border: 1px solid rgba(139, 106, 47, 0.10);
-    overflow: hidden;
+    background: transparent;
+    border: 0;
+    border-top: 1px solid var(--color-gold-light);
     transition: border-color var(--transition-fast);
 }
 
-/* overflow:hidden でフォーカスリングが切れるため、内側に描く */
-.faq-question:focus-visible {
-    outline-offset: -3px;
-}
-
 .faq-item:hover {
-    border-color: var(--color-main-light);
-    box-shadow: var(--shadow-sm);
+    border-top-color: var(--color-gold);
 }
 
 .faq-question {
@@ -1635,16 +1653,17 @@ header[id] {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: var(--space-md) var(--space-lg);
+    gap: var(--space-sm);
+    padding: var(--space-ms) var(--space-xs);
     background: none;
     border: none;
     cursor: pointer;
     text-align: left;
     font-family: var(--font-sans);
-    font-size: 1rem;
+    font-size: var(--fs-base);
     font-weight: 500;
     color: var(--color-text);
-    transition: all var(--transition-fast);
+    transition: color var(--transition-fast);
 }
 
 .faq-question:hover {
@@ -1652,12 +1671,11 @@ header[id] {
 }
 
 .faq-icon {
-    font-size: var(--fs-xl);
+    font-size: var(--fs-lg);
     font-weight: 300;
-    color: var(--color-rose-deep);
+    color: var(--color-gold-deep);
     transition: transform var(--transition-normal);
     flex-shrink: 0;
-    margin-left: var(--space-sm);
 }
 
 .faq-item.active .faq-icon {
@@ -1678,14 +1696,14 @@ header[id] {
 .faq-answer p {
     overflow: hidden;
     min-height: 0;
-    padding: 0 var(--space-md);
+    padding: 0 var(--space-xs);
     font-size: var(--fs-base);
     color: var(--color-text-light);
     line-height: var(--lh-body);
 }
 
 .faq-item.active .faq-answer p {
-    padding-bottom: var(--space-md);
+    padding-bottom: var(--space-ms);
 }
 
 /* ============================================
