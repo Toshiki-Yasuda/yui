@@ -628,14 +628,78 @@
                         yui.concert.2026@gmail.com
                     </a>
                 </div>
-                <div class="contact-credits">
-                    <p><strong>主催</strong>：マリンバ北星会</p>
-                    <p><strong>後援</strong>：札幌市／札幌市教育委員会／日本マリンバ協会／北海道打楽器協会</p>
-                    <p><strong>運営担当</strong>：安田愛</p>
-                </div>
+                <dl class="credits">
+                    <div class="credits-row">
+                        <dt>主催</dt>
+                        <dd>マリンバ北星会</dd>
+                    </div>
+                    <div class="credits-row">
+                        <dt>後援</dt>
+                        <dd>
+                            <ul class="credits-orgs">
+                                <li>札幌市</li>
+                                <li>札幌市教育委員会</li>
+                                <li>日本マリンバ協会</li>
+                                <li>北海道打楽器協会</li>
+                            </ul>
+                        </dd>
+                    </div>
+                    <div class="credits-row">
+                        <dt>運営</dt>
+                        <dd>安田 愛</dd>
+                    </div>
+                </dl>
             </div>
         </div>
     </section>
+
+    <!-- チラシセクション -->
+    <section class="section section--tint flyer-section" id="flyer">
+        <div class="container">
+            <h2 class="section-title">
+                <span class="section-title-en">Flyer</span>
+                <span class="section-title-ja">チラシ</span>
+            </h2>
+
+            <ul class="flyer-list fade-in">
+                <li>
+                    <a class="flyer-item" href="images/flyer-front.jpg" target="_blank" rel="noopener"
+                       data-lightbox data-caption="チラシ 表面">
+                        <picture>
+                            <source type="image/webp" srcset="images/flyer-front-thumb.webp">
+                            <img src="images/flyer-front-thumb.jpg" width="480" height="678"
+                                 alt="チラシ表面。日時・会場・チケット料金・プログラムを掲載"
+                                 loading="lazy" decoding="async">
+                        </picture>
+                        <span class="flyer-label">表面<span class="flyer-zoom" aria-hidden="true">拡大</span></span>
+                    </a>
+                </li>
+                <li>
+                    <a class="flyer-item" href="images/flyer-back.jpg" target="_blank" rel="noopener"
+                       data-lightbox data-caption="チラシ 裏面">
+                        <picture>
+                            <source type="image/webp" srcset="images/flyer-back-thumb.webp">
+                            <img src="images/flyer-back-thumb.jpg" width="480" height="678"
+                                 alt="チラシ裏面。イベント紹介と出演者プロフィールを掲載"
+                                 loading="lazy" decoding="async">
+                        </picture>
+                        <span class="flyer-label">裏面<span class="flyer-zoom" aria-hidden="true">拡大</span></span>
+                    </a>
+                </li>
+            </ul>
+
+            <p class="flyer-note">
+                画像をクリックすると拡大表示できます。<br>
+                掲示・配布にご協力いただける方は<a href="#contact">お問い合わせ</a>ください。
+            </p>
+        </div>
+    </section>
+
+    <!-- チラシ拡大表示 -->
+    <dialog class="lightbox" id="lightbox" aria-label="チラシ拡大表示">
+        <button type="button" class="lightbox-close" aria-label="閉じる">×</button>
+        <img class="lightbox-img" src="" alt="">
+    </dialog>
 
     <!-- フッター -->
     <footer class="footer">
@@ -804,6 +868,33 @@
                     wrap.replaceChildren(iframe);
                     iframe.focus();
                 }, { once: true });
+            });
+        })();
+
+        // チラシの拡大表示（<dialog>非対応・JS無効時は別タブで画像を開く）
+        (function () {
+            const dialog = document.getElementById('lightbox');
+            if (!dialog || typeof dialog.showModal !== 'function') return;
+
+            const img = dialog.querySelector('.lightbox-img');
+            const closeBtn = dialog.querySelector('.lightbox-close');
+
+            document.querySelectorAll('a[data-lightbox]').forEach((link) => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    img.src = link.getAttribute('href');
+                    img.alt = link.dataset.caption || '';
+                    dialog.showModal();
+                });
+            });
+
+            closeBtn.addEventListener('click', () => dialog.close());
+            dialog.addEventListener('click', (e) => {
+                if (e.target === dialog) dialog.close();
+            });
+            dialog.addEventListener('close', () => {
+                img.src = '';
+                img.alt = '';
             });
         })();
 

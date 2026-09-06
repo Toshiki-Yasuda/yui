@@ -1312,18 +1312,156 @@ ul {
     box-shadow: var(--shadow-md);
 }
 
-.contact-credits {
+/* 主催・後援・運営のクレジット */
+.credits {
+    max-width: 480px;
+    margin: var(--space-ml) auto 0;
+    text-align: left;
+}
+
+.credits-row {
+    display: grid;
+    grid-template-columns: 4rem 1fr;
+    gap: var(--space-sm);
+    align-items: baseline;
+    padding: var(--space-sm) 0;
+    border-top: 1px solid var(--color-gold-light);
+}
+
+.credits-row:last-child {
+    border-bottom: 1px solid var(--color-gold-light);
+}
+
+.credits-row dt {
+    font-size: var(--fs-xs);
+    font-weight: 600;
+    letter-spacing: var(--ls-wide);
+    color: var(--color-gold-deep);
+}
+
+.credits-row dd {
+    margin: 0;
+    font-size: var(--fs-base);
+    color: var(--color-text);
+}
+
+.credits-orgs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0 var(--space-sm);
+}
+
+.credits-orgs li {
+    position: relative;
+}
+
+.credits-orgs li + li::before {
+    content: "／";
+    position: absolute;
+    left: -0.95em;
     color: var(--color-text-muted);
+}
+
+/* ============================================
+   チラシセクション
+   ============================================ */
+.flyer-section {
+    padding: var(--space-ml) 0;
+}
+
+.flyer-list {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-md);
+    max-width: 640px;
+    margin-inline: auto;
+}
+
+.flyer-item {
+    display: block;
+    position: relative;
+    border: 1px solid var(--color-gold-light);
+    border-radius: var(--radius-xs);
+    overflow: hidden;
+    background: var(--color-white);
+    box-shadow: var(--shadow-sm);
+    transition: box-shadow var(--transition-fast), transform var(--transition-fast);
+}
+
+.flyer-item:hover {
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
+}
+
+.flyer-item img {
+    width: 100%;
+    height: auto;
+}
+
+.flyer-label {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--space-xs) var(--space-sm);
+    background: var(--color-white);
     font-size: var(--fs-sm);
+    color: var(--color-text);
+    border-top: 1px solid var(--color-gold-light);
 }
 
-.contact-credits p {
-    margin-bottom: var(--space-xs);
+.flyer-zoom {
+    font-size: var(--fs-2xs);
+    color: var(--color-gold-deep);
+    letter-spacing: var(--ls-wide);
 }
 
-.contact-credits strong {
-    color: var(--color-text-light);
-    font-weight: 500;
+.flyer-note {
+    margin-top: var(--space-ms);
+    text-align: center;
+    font-size: var(--fs-sm);
+    line-height: var(--lh-snug);
+    color: var(--color-text-muted);
+}
+
+/* 拡大表示 */
+.lightbox {
+    border: 0;
+    padding: 0;
+    /* リセットの margin:0 を打ち消して dialog を画面中央に戻す */
+    margin: auto;
+    background: transparent;
+    max-width: min(92vw, 780px);
+    max-height: 86vh;
+    overflow: visible;
+}
+
+.lightbox::backdrop {
+    background: rgba(30, 22, 18, 0.82);
+}
+
+.lightbox-img {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-height: 86vh;
+    object-fit: contain;
+    border-radius: var(--radius-xs);
+    box-shadow: var(--shadow-lg);
+}
+
+.lightbox-close {
+    position: absolute;
+    top: -2.75rem;
+    right: 0;
+    width: 40px;
+    height: 40px;
+    border: 0;
+    border-radius: var(--radius-full);
+    background: rgba(255, 255, 255, 0.9);
+    color: var(--color-ink);
+    font-size: var(--fs-lg);
+    line-height: 1;
+    cursor: pointer;
 }
 
 /* ============================================
@@ -1607,6 +1745,32 @@ ul {
 
     .artist-name {
         font-size: var(--fs-lg);
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .credits-orgs {
+        flex-direction: column;
+        gap: var(--space-2xs);
+    }
+
+    .credits-orgs li + li::before {
+        content: none;
+    }
+
+    .flyer-list {
+        gap: var(--space-sm);
+    }
+
+    .lightbox {
+        max-width: 96vw;
+    }
+
+    .lightbox-close {
+        top: auto;
+        bottom: -3rem;
+        right: 50%;
+        translate: 50% 0;
     }
 }
 
