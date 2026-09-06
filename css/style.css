@@ -972,11 +972,12 @@ header[id] {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform var(--transition-slow);
+    /* ゆっくり寄っていく動き。減速のイージングで最後が静かに止まる */
+    transition: transform 1.6s var(--ease-out);
 }
 
 .artist:hover .artist-photo img {
-    transform: scale(1.02);
+    transform: scale(1.14);
 }
 
 /* トリミングの調整は明示クラスで指定する（要素の並び順に依存させない） */
