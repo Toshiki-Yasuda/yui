@@ -293,15 +293,30 @@ ul {
     margin: 0;
 }
 
-/* イラストの紙地とヒーロー背景を同色にしたうえで、縁だけを淡く溶かす */
+/* イラストの紙地とヒーロー背景を同色にしたうえで、
+   左端はテキスト側へ大きく溶かし、上下右は矩形の線が出ない程度に落とす */
 .hero-figure img {
     display: block;
     width: 100%;
     height: auto;
-    -webkit-mask-image: radial-gradient(86% 84% at 50% 48%,
-        #000 54%, rgba(0, 0, 0, 0.75) 78%, transparent 98%);
-    mask-image: radial-gradient(86% 84% at 50% 48%,
-        #000 54%, rgba(0, 0, 0, 0.75) 78%, transparent 98%);
+    -webkit-mask-image:
+        linear-gradient(to right,
+            transparent 0%,
+            rgba(0, 0, 0, 0.18) 10%,
+            rgba(0, 0, 0, 0.62) 24%,
+            #000 42%),
+        radial-gradient(94% 90% at 58% 50%,
+            #000 60%, rgba(0, 0, 0, 0.82) 82%, transparent 100%);
+    -webkit-mask-composite: source-in;
+    mask-image:
+        linear-gradient(to right,
+            transparent 0%,
+            rgba(0, 0, 0, 0.18) 10%,
+            rgba(0, 0, 0, 0.62) 24%,
+            #000 42%),
+        radial-gradient(94% 90% at 58% 50%,
+            #000 60%, rgba(0, 0, 0, 0.82) 82%, transparent 100%);
+    mask-composite: intersect;
 }
 
 .hero-figcaption {
