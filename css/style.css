@@ -795,9 +795,27 @@ header[id] {
 /* ============================================
    演奏動画セクション
    ============================================ */
+/* ページ中盤の明確なアンカーにするため、フッターと同系統の濃色帯にする */
+.section.listen {
+    background: var(--color-text);
+}
+
+.listen .section-title-en {
+    color: var(--color-white);
+    opacity: 0.75;
+}
+
+.listen .section-title-ja {
+    color: var(--color-white);
+}
+
 .listen-content {
     max-width: var(--w-full);
     margin-inline: auto;
+    display: grid;
+    grid-template-columns: minmax(0, 2fr) minmax(240px, 1fr);
+    align-items: center;
+    gap: var(--space-lg);
 }
 
 .video {
@@ -868,25 +886,26 @@ header[id] {
 }
 
 .video-caption {
-    margin-top: var(--space-ms);
-    text-align: center;
+    text-align: left;
 }
 
 .video-caption-title {
     font-family: var(--font-serif);
     font-size: var(--fs-lg);
-    color: var(--color-ink);
+    color: var(--color-white);
 }
 
 .video-caption-meta {
     font-size: var(--fs-sm);
-    color: var(--color-text-muted);
+    color: var(--color-white);
+    opacity: 0.75;
     margin-top: var(--space-2xs);
 }
 
 .video-caption-note {
     font-size: var(--fs-sm);
-    color: var(--color-text-light);
+    color: var(--color-white);
+    opacity: 0.6;
     margin-top: var(--space-xs);
 }
 
@@ -894,6 +913,15 @@ header[id] {
     display: inline-block;
     margin-top: var(--space-sm);
     font-size: var(--fs-sm);
+    color: var(--color-white);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    opacity: 0.9;
+}
+
+.video-caption-link:hover {
+    color: var(--color-white);
+    opacity: 1;
 }
 
 /* ============================================
@@ -1719,6 +1747,17 @@ header[id] {
 
     .faq-content {
         gap: var(--space-xs) var(--space-md);
+    }
+
+    /* 動画は横に並べるほど幅が確保できないため、縦積みに戻す */
+    .listen-content {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+
+    .video-caption {
+        margin-top: var(--space-ms);
+        text-align: center;
     }
 }
 
