@@ -1064,25 +1064,9 @@ ul {
     font-size: var(--fs-base);
 }
 
+/* 配色とサイズは .btn / .btn--primary に統一。ここは配置のみ */
 .ticket-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: var(--space-xs);
-    background: var(--color-main-dark);
-    color: var(--color-white);
-    font-weight: 600;
-    font-size: var(--fs-sm);
-    padding: 1rem 2.5rem;
-    border-radius: var(--radius-full);
     margin: var(--space-md) 0;
-    transition: all var(--transition-normal);
-}
-
-.ticket-btn:hover {
-    background: var(--color-main);
-    color: var(--color-white);
-    transform: translateY(-3px);
-    box-shadow: var(--shadow-lg);
 }
 
 .ticket-btn-icon {
@@ -1479,9 +1463,14 @@ ul {
     background: var(--color-white);
     border-radius: var(--radius-md);
     margin-bottom: var(--space-sm);
-    border: 1px solid rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(139, 106, 47, 0.10);
     overflow: hidden;
-    transition: all var(--transition-normal);
+    transition: border-color var(--transition-fast);
+}
+
+/* overflow:hidden でフォーカスリングが切れるため、内側に描く */
+.faq-question:focus-visible {
+    outline-offset: -3px;
 }
 
 .faq-item:hover {
