@@ -185,7 +185,7 @@ ul {
 
 .nav-logo {
     font-family: var(--font-serif);
-    font-size: 2rem;
+    font-size: var(--fs-2xl);
     font-weight: 600;
     color: var(--color-main-dark);
     letter-spacing: 0.05em;
@@ -197,7 +197,7 @@ ul {
 }
 
 .nav-menu a {
-    font-size: 0.875rem;
+    font-size: var(--fs-sm);
     font-weight: 500;
     color: var(--color-text);
     padding: 0.5rem 1rem;
@@ -229,7 +229,7 @@ ul {
     width: 100%;
     height: 2px;
     background: var(--color-main-dark);
-    border-radius: 2px;
+    border-radius: var(--radius-xs);
     transition: all var(--transition-fast);
     transform-origin: center;
 }
@@ -299,7 +299,7 @@ ul {
 
 .hero-subtitle {
     font-family: var(--font-sans);
-    font-size: 1.4rem;
+    font-size: var(--fs-xl);
     font-weight: 500;
     letter-spacing: 0.2em;
     color: var(--color-accent);
@@ -374,13 +374,13 @@ ul {
 
 .hero-date-value,
 .hero-venue-value {
-    font-size: 1.2rem;
+    font-size: var(--fs-lg);
     font-weight: 500;
     color: var(--color-text);
 }
 
 .hero-time {
-    font-size: 1.1rem;
+    font-size: var(--fs-md);
     color: var(--color-text-light);
 }
 
@@ -444,7 +444,7 @@ ul {
     bottom: 25%;
     left: 15%;
     animation-delay: 4s;
-    font-size: 2.5rem;
+    font-size: var(--fs-3xl);
 }
 
 @keyframes float {
@@ -464,7 +464,7 @@ ul {
 }
 
 .countdown-label {
-    font-size: 0.875rem;
+    font-size: var(--fs-sm);
     color: var(--color-text-muted);
     letter-spacing: 0.1em;
     margin-bottom: var(--space-sm);
@@ -491,14 +491,14 @@ ul {
 
 .countdown-number {
     font-family: var(--font-serif);
-    font-size: 2.5rem;
+    font-size: var(--fs-3xl);
     font-weight: 500;
     color: var(--color-main-dark);
     line-height: 1;
 }
 
 .countdown-unit {
-    font-size: 0.75rem;
+    font-size: var(--fs-xs);
     color: var(--color-text-muted);
     margin-top: 4px;
     letter-spacing: 0.05em;
@@ -510,14 +510,12 @@ ul {
 .section {
     padding: var(--space-xl) 0;
     position: relative;
-}
-
-.section:nth-child(odd) {
-    background: var(--color-bg);
-}
-
-.section:nth-child(even) {
     background: var(--color-white);
+}
+
+/* 背景の出し分けは要素の並び順ではなく明示クラスで指定する */
+.section--tint {
+    background: var(--color-bg-alt);
 }
 
 .section-title {
@@ -528,21 +526,31 @@ ul {
 .section-title-en {
     display: block;
     font-family: var(--font-sans);
-    font-size: 0.75rem;
+    font-size: var(--fs-xs);
     font-weight: 600;
-    letter-spacing: 0.3em;
-    color: var(--color-accent);
+    letter-spacing: var(--ls-widest);
+    color: var(--color-gold-deep);
     text-transform: uppercase;
-    margin-bottom: var(--space-xs);
+    margin-bottom: var(--space-2xs);
 }
 
 .section-title-ja {
     display: block;
     font-family: var(--font-serif);
-    font-size: 2rem;
-    font-weight: 400;
-    color: var(--color-text);
-    letter-spacing: 0.05em;
+    font-size: var(--fs-2xl);
+    font-weight: 500;
+    color: var(--color-ink);
+    letter-spacing: var(--ls-wide);
+}
+
+/* ゴールドの飾り罫（セクション見出しの下） */
+.section-title::after {
+    content: "";
+    display: block;
+    width: 48px;
+    height: 1px;
+    margin: var(--space-ms) auto 0;
+    background: var(--gradient-gold);
 }
 
 /* ============================================
@@ -561,7 +569,7 @@ ul {
 
 .marimba-title {
     font-family: var(--font-serif);
-    font-size: 1.5rem;
+    font-size: var(--fs-xl);
     font-weight: 400;
     color: var(--color-main-dark);
     margin-bottom: var(--space-md);
@@ -585,7 +593,7 @@ ul {
     gap: var(--space-xs);
     color: var(--color-accent);
     font-weight: 500;
-    font-size: 0.95rem;
+    font-size: var(--fs-base);
     margin-top: var(--space-md);
     padding: 0.75rem 1.5rem;
     border: 1px solid var(--color-accent-light);
@@ -673,7 +681,7 @@ ul {
 
 .concept-lead {
     font-family: var(--font-serif);
-    font-size: 1.5rem;
+    font-size: var(--fs-xl);
     font-weight: 400;
     text-align: center;
     line-height: 2;
@@ -690,7 +698,7 @@ ul {
 
 .concept-body p {
     font-family: var(--font-serif);
-    font-size: 1.05rem;
+    font-size: var(--fs-md);
     color: var(--color-text);
     line-height: 2.2;
     margin-bottom: var(--space-md);
@@ -720,17 +728,16 @@ ul {
     display: flex;
     align-items: center;
     gap: var(--space-md);
-    padding: var(--space-lg);
+    padding: var(--space-ms) var(--space-md);
     background: var(--color-white);
     border-radius: var(--radius-md);
-    border: 1px solid rgba(0, 0, 0, 0.05);
-    transition: all var(--transition-normal);
+    border: 1px solid rgba(139, 106, 47, 0.10);
+    transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
 }
 
 .program-item:hover {
-    transform: translateX(8px);
-    box-shadow: var(--shadow-md);
-    border-color: var(--color-main-light);
+    box-shadow: var(--shadow-sm);
+    border-color: var(--color-gold-light);
 }
 
 .program-info {
@@ -739,20 +746,20 @@ ul {
 
 .program-name {
     font-family: var(--font-serif);
-    font-size: 1.125rem;
+    font-size: var(--fs-md);
     font-weight: 500;
     color: var(--color-text);
     margin-bottom: 4px;
 }
 
 .program-composer {
-    font-size: 0.8rem;
+    font-size: var(--fs-xs);
     color: var(--color-text-muted);
     letter-spacing: 0.02em;
 }
 
 .program-description {
-    font-size: 0.85rem;
+    font-size: var(--fs-sm);
     color: var(--color-text-light);
     line-height: 1.8;
     margin-top: var(--space-xs);
@@ -779,7 +786,7 @@ ul {
 
 .program-note {
     text-align: center;
-    font-size: 0.8rem;
+    font-size: var(--fs-xs);
     color: var(--color-text-muted);
     margin-top: var(--space-md);
 }
@@ -853,7 +860,7 @@ ul {
 
 .artist-name {
     font-family: var(--font-serif);
-    font-size: 1.8rem;
+    font-size: var(--fs-xl);
     font-weight: 600;
     color: var(--color-white);
     letter-spacing: 0.15em;
@@ -862,7 +869,7 @@ ul {
 
 .artist-name-ruby {
     display: inline-block;
-    font-size: 0.65rem;
+    font-size: var(--fs-2xs);
     font-weight: 300;
     letter-spacing: 0.1em;
     color: rgba(255, 255, 255, 0.7);
@@ -871,7 +878,7 @@ ul {
 }
 
 .artist-instrument {
-    font-size: 0.8rem;
+    font-size: var(--fs-xs);
     color: rgba(255, 255, 255, 0.8);
     font-weight: 400;
     letter-spacing: 0.15em;
@@ -890,7 +897,7 @@ ul {
 }
 
 .artist-bio {
-    font-size: 0.9rem;
+    font-size: var(--fs-base);
     color: var(--color-text-light);
     line-height: 1.85;
 }
@@ -898,7 +905,7 @@ ul {
 .artist-bio-subtitle {
     font-weight: 600;
     color: var(--color-text);
-    font-size: 0.85rem;
+    font-size: var(--fs-sm);
     display: inline-block;
     margin-top: 0.25rem;
     padding-bottom: 2px;
@@ -929,7 +936,7 @@ ul {
 .artists-divider-en {
     display: block;
     font-family: var(--font-sans);
-    font-size: 0.65rem;
+    font-size: var(--fs-2xs);
     font-weight: 600;
     letter-spacing: 0.3em;
     color: var(--color-accent);
@@ -987,13 +994,13 @@ ul {
 
 .ticket-amount {
     font-family: var(--font-serif);
-    font-size: 1.75rem;
+    font-size: var(--fs-2xl);
     font-weight: 400;
     color: var(--color-text);
 }
 
 .ticket-amount small {
-    font-size: 0.875rem;
+    font-size: var(--fs-sm);
     font-family: var(--font-sans);
 }
 
@@ -1007,19 +1014,19 @@ ul {
 
 .ticket-welcome {
     background: linear-gradient(135deg, var(--color-main-light) 0%, var(--color-bg-alt) 100%);
-    padding: var(--space-lg) var(--space-xl);
+    padding: var(--space-ml) var(--space-md);
     border-radius: var(--radius-md);
-    font-size: 0.95rem;
-    line-height: 1.9;
+    font-size: var(--fs-base);
+    line-height: var(--lh-body);
 }
 
 .welcome-title {
-    font-size: 1.3rem;
+    font-size: var(--fs-lg);
     color: var(--color-main-dark);
 }
 
 .ticket-sub {
-    font-size: 0.85rem;
+    font-size: var(--fs-sm);
     font-weight: 400;
     color: var(--color-text-muted);
 }
@@ -1034,7 +1041,7 @@ ul {
 
 .ticket-purchase h3 {
     font-family: var(--font-serif);
-    font-size: 1.125rem;
+    font-size: var(--fs-md);
     font-weight: 400;
     color: var(--color-text);
     margin-bottom: var(--space-sm);
@@ -1042,7 +1049,7 @@ ul {
 
 .ticket-purchase p {
     color: var(--color-text-light);
-    font-size: 0.9rem;
+    font-size: var(--fs-base);
 }
 
 .ticket-btn {
@@ -1052,7 +1059,7 @@ ul {
     background: var(--color-main-dark);
     color: var(--color-white);
     font-weight: 600;
-    font-size: 0.875rem;
+    font-size: var(--fs-sm);
     padding: 1rem 2.5rem;
     border-radius: var(--radius-full);
     margin: var(--space-md) 0;
@@ -1075,7 +1082,7 @@ ul {
 }
 
 .ticket-notice {
-    font-size: 0.8rem;
+    font-size: var(--fs-xs);
     color: var(--color-text-muted);
 }
 
@@ -1093,7 +1100,7 @@ ul {
 }
 
 .qr-caption {
-    font-size: 0.8rem;
+    font-size: var(--fs-xs);
     color: var(--color-text-muted);
     margin-top: var(--space-xs);
 }
@@ -1113,7 +1120,7 @@ ul {
 }
 
 .calendar-add p {
-    font-size: 0.85rem;
+    font-size: var(--fs-sm);
     color: var(--color-text-muted);
     margin-bottom: var(--space-md);
 }
@@ -1131,7 +1138,7 @@ ul {
     gap: 8px;
     padding: 0.75rem 1.25rem;
     border-radius: var(--radius-full);
-    font-size: 0.85rem;
+    font-size: var(--fs-sm);
     font-weight: 500;
     transition: all var(--transition-normal);
     border: 1px solid var(--color-accent-light);
@@ -1188,7 +1195,7 @@ ul {
 
 .access-venue {
     font-family: var(--font-serif);
-    font-size: 1.25rem;
+    font-size: var(--fs-lg);
     font-weight: 400;
     color: var(--color-text);
     margin-bottom: var(--space-sm);
@@ -1196,7 +1203,7 @@ ul {
 
 .access-address {
     font-style: normal;
-    font-size: 0.9rem;
+    font-size: var(--fs-base);
     color: var(--color-text-light);
     margin-bottom: var(--space-md);
     padding-bottom: var(--space-md);
@@ -1205,13 +1212,13 @@ ul {
 }
 
 .access-capacity {
-    font-size: 0.8rem;
+    font-size: var(--fs-xs);
     color: var(--color-text-muted);
     margin-bottom: var(--space-md);
 }
 
 .access-details p {
-    font-size: 0.8rem;
+    font-size: var(--fs-xs);
     font-weight: 600;
     color: var(--color-accent);
     margin-bottom: var(--space-xs);
@@ -1224,7 +1231,7 @@ ul {
 }
 
 .access-details li {
-    font-size: 0.875rem;
+    font-size: var(--fs-sm);
     color: var(--color-text-light);
     padding-left: var(--space-sm);
     margin-bottom: var(--space-xs);
@@ -1239,7 +1246,7 @@ ul {
     width: 4px;
     height: 4px;
     background: var(--color-main);
-    border-radius: 50%;
+    border-radius: var(--radius-full);
 }
 
 .access-map {
@@ -1271,7 +1278,7 @@ ul {
 }
 
 .contact-info p {
-    font-size: 0.95rem;
+    font-size: var(--fs-base);
     color: var(--color-text-light);
     margin-bottom: var(--space-md);
 }
@@ -1298,7 +1305,7 @@ ul {
 
 .contact-credits {
     color: var(--color-text-muted);
-    font-size: 0.875rem;
+    font-size: var(--fs-sm);
 }
 
 .contact-credits p {
@@ -1354,7 +1361,7 @@ ul {
 }
 
 .faq-icon {
-    font-size: 1.5rem;
+    font-size: var(--fs-xl);
     font-weight: 300;
     color: var(--color-main-dark);
     transition: transform var(--transition-normal);
@@ -1366,21 +1373,28 @@ ul {
     transform: rotate(45deg);
 }
 
+/* 回答の高さは内容に合わせる（max-heightのマジックナンバーを廃止） */
 .faq-answer {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height var(--transition-normal), padding var(--transition-normal);
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows var(--transition-normal);
 }
 
 .faq-item.active .faq-answer {
-    max-height: 300px;
+    grid-template-rows: 1fr;
 }
 
 .faq-answer p {
-    padding: 0 var(--space-md) var(--space-md);
-    font-size: 0.95rem;
+    overflow: hidden;
+    min-height: 0;
+    padding: 0 var(--space-md);
+    font-size: var(--fs-base);
     color: var(--color-text-light);
-    line-height: 1.9;
+    line-height: var(--lh-body);
+}
+
+.faq-item.active .faq-answer p {
+    padding-bottom: var(--space-md);
 }
 
 /* ============================================
@@ -1395,30 +1409,30 @@ ul {
 
 .footer-title {
     font-family: var(--font-serif);
-    font-size: 1.125rem;
+    font-size: var(--fs-md);
     font-weight: 400;
     margin-bottom: var(--space-xs);
     letter-spacing: 0.05em;
 }
 
 .footer-title--sub {
-    font-size: 0.95rem;
+    font-size: var(--fs-base);
     margin-bottom: 0;
 }
 
 .footer-title--main {
-    font-size: 1.5rem;
+    font-size: var(--fs-xl);
     margin-top: 0.25rem;
 }
 
 .footer-date {
-    font-size: 0.875rem;
+    font-size: var(--fs-sm);
     opacity: 0.7;
     margin-bottom: var(--space-md);
 }
 
 .footer-copyright {
-    font-size: 0.75rem;
+    font-size: var(--fs-xs);
     opacity: 0.5;
 }
 
@@ -1434,7 +1448,7 @@ ul {
     background: var(--color-white);
     color: var(--color-text);
     border: 1px solid rgba(0, 0, 0, 0.1);
-    border-radius: 50%;
+    border-radius: var(--radius-full);
     font-size: 1rem;
     cursor: pointer;
     opacity: 0;
@@ -1510,11 +1524,11 @@ ul {
     }
 
     .concept-lead {
-        font-size: 1.25rem;
+        font-size: var(--fs-lg);
     }
 
     .section-title-ja {
-        font-size: 1.5rem;
+        font-size: var(--fs-xl);
     }
 
     .artist-photo {
@@ -1526,7 +1540,7 @@ ul {
     }
 
     .artist-name {
-        font-size: 1.5rem;
+        font-size: var(--fs-xl);
     }
 
     .artist-info {
@@ -1573,7 +1587,7 @@ ul {
     }
 
     .artist-name {
-        font-size: 1.3rem;
+        font-size: var(--fs-lg);
     }
 
     .artist-photo-overlay {
