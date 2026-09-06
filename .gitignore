@@ -17,3 +17,6 @@ node_modules/
 
 # ルート直下に出力される確認用スクリーンショット
 /*.png
+
+# エージェント用の作業コピー
+.claude/worktrees/
