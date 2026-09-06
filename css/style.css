@@ -541,13 +541,30 @@ header[id] {
    ============================================ */
 .marimba-intro {
     background: linear-gradient(135deg, var(--color-bg-alt) 0%, var(--color-white) 100%);
-    padding: var(--space-lg) 0;
+    padding: var(--space-xl) 0;
 }
 
 .marimba-content {
     max-width: var(--w-wide);
     margin: 0 auto;
-    text-align: center;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    align-items: center;
+    gap: var(--space-xl);
+    text-align: left;
+}
+
+.marimba-media {
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    background: var(--color-photo-cream);
+    box-shadow: var(--shadow-sm);
+}
+
+.marimba-media img {
+    display: block;
+    width: 100%;
+    height: auto;
 }
 
 .marimba-title {
@@ -1077,14 +1094,14 @@ header[id] {
 
 .ticket-prices {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    gap: var(--space-sm);
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: var(--space-ms);
     margin-bottom: var(--space-lg);
 }
 
 .ticket-price {
     background: var(--color-white);
-    padding: var(--space-ms) var(--space-sm);
+    padding: var(--space-lg) var(--space-ms);
     border-radius: var(--radius-md);
     border: 1px solid rgba(139, 106, 47, 0.10);
     text-align: center;
@@ -1092,7 +1109,7 @@ header[id] {
     display: grid;
     grid-template-rows: auto 1.5em auto;
     align-items: center;
-    gap: var(--space-2xs);
+    gap: var(--space-xs);
     transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
 }
 
@@ -1103,7 +1120,7 @@ header[id] {
 
 .ticket-type {
     display: block;
-    font-size: var(--fs-base);
+    font-size: var(--fs-md);
     font-weight: 600;
     color: var(--color-text);
     letter-spacing: 0.05em;
@@ -1116,7 +1133,7 @@ header[id] {
 
 .ticket-amount {
     font-family: var(--font-serif);
-    font-size: var(--fs-2xl);
+    font-size: var(--fs-3xl);
     font-weight: 400;
     color: var(--color-text);
 }
@@ -1175,9 +1192,19 @@ header[id] {
     font-size: var(--fs-base);
 }
 
+/* 購入ボタンとQRコードを左右2カラムで並べる */
+.ticket-cta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-lg);
+    flex-wrap: wrap;
+    margin-top: var(--space-md);
+}
+
 /* 配色とサイズは .btn / .btn--primary に統一。ここは配置のみ */
 .ticket-btn {
-    margin: var(--space-md) 0;
+    margin: 0;
 }
 
 .ticket-btn-icon {
@@ -1194,10 +1221,9 @@ header[id] {
 }
 
 .ticket-qr {
-    margin-top: var(--space-md);
+    margin-top: 0;
     text-align: center;
     display: block;
-    width: 100%;
 }
 
 .ticket-qr img {
@@ -1294,7 +1320,7 @@ header[id] {
 }
 
 .access-info {
-    background: var(--color-white);
+    background: var(--color-bg-alt);
     padding: var(--space-lg);
     border-radius: var(--radius-lg);
     border: 1px solid rgba(0, 0, 0, 0.05);
@@ -1311,11 +1337,13 @@ header[id] {
 .access-address {
     font-style: normal;
     font-size: var(--fs-base);
-    color: var(--color-text-light);
+    color: var(--color-text);
     margin-bottom: var(--space-md);
     padding-bottom: var(--space-md);
     border-bottom: 1px solid var(--color-main-light);
     line-height: 1.8;
+    word-break: keep-all;
+    overflow-wrap: break-word;
 }
 
 .access-capacity {
@@ -1362,22 +1390,27 @@ header[id] {
     gap: var(--space-xs);
     height: 100%;
     min-height: 350px;
+    background: var(--color-white);
+    padding: var(--space-xs);
+    border-radius: var(--radius-lg);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    box-shadow: var(--shadow-sm);
 }
 
 .access-map iframe {
     filter: saturate(0.55) contrast(0.96);
-    border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-md);
+    border-radius: var(--radius-md);
     display: block;
     width: 100%;
-    height: 100%;
-    min-height: 350px;
+    flex: 1;
+    min-height: 330px;
 }
 
 .access-map-link {
     align-self: flex-end;
     font-size: var(--fs-sm);
     color: var(--color-accent);
+    padding-inline: var(--space-2xs);
 }
 
 /* ============================================
@@ -1419,7 +1452,7 @@ header[id] {
 
 /* 主催・後援・運営のクレジット */
 .credits {
-    max-width: 480px;
+    max-width: var(--w-reading);
     margin: var(--space-ml) auto 0;
     text-align: left;
 }
@@ -1740,6 +1773,17 @@ header[id] {
         grid-template-columns: 1fr;
     }
 
+    .marimba-content {
+        grid-template-columns: 1fr;
+        gap: var(--space-md);
+        text-align: center;
+    }
+
+    .marimba-media {
+        max-width: var(--w-reading);
+        margin: 0 auto;
+    }
+
     /* タブレット幅：2カラムを維持しつつ余白を縮小 */
     .program-list {
         gap: var(--space-sm) var(--space-md);
@@ -1892,6 +1936,24 @@ header[id] {
 
     .artist-name {
         font-size: var(--fs-lg);
+    }
+
+    /* 料金カード：スマホ幅では2列を維持しつつコンパクトに */
+    .ticket-prices {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: var(--space-xs);
+    }
+
+    .ticket-price {
+        padding: var(--space-md) var(--space-xs);
+    }
+
+    .ticket-type {
+        font-size: var(--fs-base);
+    }
+
+    .ticket-amount {
+        font-size: var(--fs-2xl);
     }
 }
 
