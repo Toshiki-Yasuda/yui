@@ -149,6 +149,12 @@ ul {
     list-style: none;
 }
 
+/* 固定ヘッダーの下に見出しが潜らないようにする */
+section[id],
+header[id] {
+    scroll-margin-top: calc(var(--nav-height) + var(--space-sm));
+}
+
 /* コンテナ */
 .container {
     width: 100%;
@@ -187,7 +193,7 @@ ul {
     font-family: var(--font-serif);
     font-size: var(--fs-2xl);
     font-weight: 600;
-    color: var(--color-main-dark);
+    color: var(--color-rose-deep);
     letter-spacing: 0.05em;
 }
 
@@ -207,7 +213,7 @@ ul {
 
 .nav-menu a:hover {
     background: var(--color-main-light);
-    color: var(--color-main-dark);
+    color: var(--color-rose-hover);
 }
 
 /* ハンバーガーメニュー */
@@ -531,8 +537,8 @@ ul {
 .marimba-title {
     font-family: var(--font-serif);
     font-size: var(--fs-xl);
-    font-weight: 400;
-    color: var(--color-main-dark);
+    font-weight: 500;
+    color: var(--color-ink);
     margin-bottom: var(--space-md);
     letter-spacing: 0.05em;
 }
@@ -998,25 +1004,34 @@ ul {
 
 .ticket-price {
     background: var(--color-white);
-    padding: var(--space-md);
+    padding: var(--space-ms) var(--space-sm);
     border-radius: var(--radius-md);
-    border: 1px solid rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(139, 106, 47, 0.10);
     text-align: center;
-    transition: all var(--transition-fast);
+    /* 券種 / 補足 / 金額 の3行を固定し、カード間で金額の高さを揃える */
+    display: grid;
+    grid-template-rows: auto 1.5em auto;
+    align-items: center;
+    gap: var(--space-2xs);
+    transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
 }
 
 .ticket-price:hover {
-    border-color: var(--color-main);
-    box-shadow: var(--shadow-md);
+    border-color: var(--color-gold-light);
+    box-shadow: var(--shadow-sm);
 }
 
 .ticket-type {
     display: block;
-    font-size: 1rem;
+    font-size: var(--fs-base);
     font-weight: 600;
     color: var(--color-text);
-    margin-bottom: var(--space-xs);
     letter-spacing: 0.05em;
+}
+
+/* 補足のない券種でも行を確保して金額の位置を揃える */
+.ticket-sub-slot {
+    display: block;
 }
 
 .ticket-amount {
@@ -1032,7 +1047,7 @@ ul {
 }
 
 .ticket-price.free .ticket-amount {
-    color: var(--color-accent);
+    color: var(--color-rose-deep);
 }
 
 .ticket-note {
@@ -1040,7 +1055,8 @@ ul {
 }
 
 .ticket-welcome {
-    background: linear-gradient(135deg, var(--color-main-light) 0%, var(--color-bg-alt) 100%);
+    background: var(--color-main-light);
+    border: 1px solid rgba(212, 165, 165, 0.45);
     padding: var(--space-ml) var(--space-md);
     border-radius: var(--radius-md);
     font-size: var(--fs-base);
@@ -1049,7 +1065,7 @@ ul {
 
 .welcome-title {
     font-size: var(--fs-lg);
-    color: var(--color-main-dark);
+    color: var(--color-rose-deep);
 }
 
 .ticket-sub {
@@ -1231,7 +1247,7 @@ ul {
 .access-details p {
     font-size: var(--fs-xs);
     font-weight: 600;
-    color: var(--color-accent);
+    color: var(--color-gold-deep);
     margin-bottom: var(--space-xs);
     margin-top: var(--space-sm);
     letter-spacing: 0.05em;
@@ -1253,10 +1269,10 @@ ul {
     content: '';
     position: absolute;
     left: 0;
-    top: 0.6em;
+    top: 0.75em;
     width: 4px;
     height: 4px;
-    background: var(--color-main);
+    background: var(--color-gold);
     border-radius: var(--radius-full);
 }
 
@@ -1269,6 +1285,7 @@ ul {
 }
 
 .access-map iframe {
+    filter: saturate(0.55) contrast(0.96);
     display: block;
     width: 100%;
     height: 100%;
@@ -1296,22 +1313,20 @@ ul {
 
 .contact-email {
     display: inline-block;
-    font-size: 1rem;
+    font-size: var(--fs-md);
     font-weight: 500;
-    color: var(--color-accent);
-    padding: 1rem 2rem;
-    background: var(--color-white);
-    border-radius: var(--radius-full);
-    border: 1px solid var(--color-accent-light);
-    transition: all var(--transition-normal);
+    color: var(--color-rose-deep);
+    padding: var(--space-xs) 0;
+    background: transparent;
+    border-radius: 0;
+    border: 0;
+    border-bottom: 1px solid var(--color-gold-light);
+    transition: color var(--transition-fast), border-color var(--transition-fast);
 }
 
 .contact-email:hover {
-    background: var(--color-accent);
-    color: var(--color-white);
-    border-color: var(--color-accent);
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-md);
+    color: var(--color-rose-hover);
+    border-bottom-color: var(--color-gold);
 }
 
 /* 主催・後援・運営のクレジット */
@@ -1511,13 +1526,13 @@ ul {
 }
 
 .faq-question:hover {
-    color: var(--color-main-dark);
+    color: var(--color-rose-deep);
 }
 
 .faq-icon {
     font-size: var(--fs-xl);
     font-weight: 300;
-    color: var(--color-main-dark);
+    color: var(--color-rose-deep);
     transition: transform var(--transition-normal);
     flex-shrink: 0;
     margin-left: var(--space-sm);
@@ -1618,9 +1633,9 @@ ul {
 }
 
 .scroll-top:hover {
-    background: var(--color-main-dark);
+    background: var(--color-rose-deep);
     color: var(--color-white);
-    border-color: var(--color-main-dark);
+    border-color: var(--color-rose-deep);
     transform: translateY(-4px);
     box-shadow: var(--shadow-lg);
 }
