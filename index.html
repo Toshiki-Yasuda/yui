@@ -698,7 +698,7 @@
     <!-- チラシ拡大表示 -->
     <dialog class="lightbox" id="lightbox" aria-label="チラシ拡大表示">
         <button type="button" class="lightbox-close" aria-label="閉じる">×</button>
-        <img class="lightbox-img" src="" alt="">
+        <img class="lightbox-img" alt="" hidden>
     </dialog>
 
     <!-- フッター -->
@@ -884,6 +884,7 @@
                     e.preventDefault();
                     img.src = link.getAttribute('href');
                     img.alt = link.dataset.caption || '';
+                    img.hidden = false;
                     dialog.showModal();
                 });
             });
@@ -893,7 +894,8 @@
                 if (e.target === dialog) dialog.close();
             });
             dialog.addEventListener('close', () => {
-                img.src = '';
+                img.hidden = true;
+                img.removeAttribute('src');
                 img.alt = '';
             });
         })();
