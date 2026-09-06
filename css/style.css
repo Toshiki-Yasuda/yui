@@ -15,7 +15,7 @@
 
     /* --- クリーム：完成チラシとの橋渡し --- */
     --color-cream: #F7EFE4;
-    --color-photo-cream: #F6E6D6;    /* アーティスト写真の地色（実測値） */
+    --color-photo-cream: #FAF7F2;    /* メイン画像（水彩イラスト）の地色（実測値） */
 
     /* --- ゴールド：区切り罫・小見出し・縁のみ（7箇所限定） --- */
     --color-gold: #B08A4E;           /* 罫・アイコン（非テキスト用途） */
@@ -254,10 +254,13 @@ ul {
     padding-top: var(--nav-height);
     overflow: hidden;
     background:
-        radial-gradient(130% 90% at 76% 18%, var(--color-photo-cream) 0%, transparent 62%),
+        radial-gradient(110% 96% at 74% 46%,
+            var(--color-photo-cream) 0%,
+            rgba(250, 247, 242, 0.55) 46%,
+            rgba(250, 247, 242, 0) 72%),
         linear-gradient(168deg,
-            var(--color-cream) 0%,
-            var(--color-main-light) 58%,
+            var(--color-photo-cream) 0%,
+            var(--color-main-light) 66%,
             var(--color-bg) 100%);
 }
 
@@ -290,15 +293,15 @@ ul {
     margin: 0;
 }
 
-/* 写真の地色とヒーロー背景が同色なので、縁をマスクで溶かすだけで馴染む */
+/* イラストの紙地とヒーロー背景を同色にしたうえで、縁だけを淡く溶かす */
 .hero-figure img {
     display: block;
     width: 100%;
     height: auto;
-    -webkit-mask-image: radial-gradient(78% 62% at 50% 46%,
-        #000 46%, rgba(0, 0, 0, 0.72) 72%, transparent 96%);
-    mask-image: radial-gradient(78% 62% at 50% 46%,
-        #000 46%, rgba(0, 0, 0, 0.72) 72%, transparent 96%);
+    -webkit-mask-image: radial-gradient(86% 84% at 50% 48%,
+        #000 54%, rgba(0, 0, 0, 0.75) 78%, transparent 98%);
+    mask-image: radial-gradient(86% 84% at 50% 48%,
+        #000 54%, rgba(0, 0, 0, 0.75) 78%, transparent 98%);
 }
 
 .hero-figcaption {
@@ -1680,10 +1683,9 @@ ul {
     }
 
     .hero-figure img {
-        aspect-ratio: 4 / 5;
-        object-fit: cover;
-        object-position: 50% 12%;
-        max-height: 42svh;
+        max-height: 46svh;
+        width: auto;
+        margin-inline: auto;
     }
 
     .hero-figcaption {
