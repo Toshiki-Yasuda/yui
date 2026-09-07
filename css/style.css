@@ -845,10 +845,22 @@ header[id] {
 /* ============================================
    演奏動画セクション
    ============================================ */
-/* プログラムのカード内に置く小さな演奏動画 */
+/* プログラムの項目に添える演奏動画。
+   写真は周囲の紙の質感から浮きやすいので、
+   小さく・横組みにして、影ではなく金のヘアラインで受ける */
 .program-video {
-    margin-top: var(--space-sm);
-    max-width: 320px;
+    margin-top: var(--space-ms);
+}
+
+/* サムネと導線は横並び。補足文はその下に全幅で置く */
+.program-video-main {
+    display: flex;
+    align-items: center;
+    gap: var(--space-ms);
+}
+
+.program-video .video {
+    flex: 0 0 11rem;
 }
 
 .video {
@@ -857,17 +869,38 @@ header[id] {
     border-radius: var(--radius-sm);
     overflow: hidden;
     background: #17120F;
-    box-shadow: var(--shadow-sm);
+    /* 白のマットと金のヘアラインで縁取り、紙に貼った写真として見せる */
+    box-shadow:
+        0 0 0 4px var(--color-white),
+        0 0 0 5px var(--color-gold-light),
+        var(--shadow-xs);
+    /* 彩度を少し落として地のクリームに寄せ、操作時に本来の色へ戻す */
+    filter: saturate(0.9);
+    transition: filter var(--transition-normal);
+}
+
+.video:hover,
+.video:focus-within {
+    filter: none;
 }
 
 .program-video-note {
-    margin-top: var(--space-xs);
     font-size: var(--fs-sm);
+    line-height: var(--lh-snug);
     color: var(--color-text-muted);
 }
 
 .program-video-note a {
-    margin-left: 0.5em;
+    display: inline-block;
+    white-space: nowrap;
+}
+
+/* 当日の演奏がこの動画とどう違うかの補足。注記より一段強い本文の色で */
+.program-video-extra {
+    margin-top: var(--space-sm);
+    font-size: var(--fs-sm);
+    line-height: var(--lh-snug);
+    color: var(--color-text-light);
 }
 
 .video iframe,
@@ -897,8 +930,8 @@ header[id] {
     position: absolute;
     left: 50%;
     top: 50%;
-    width: 46px;
-    height: 32px;
+    width: 34px;
+    height: 24px;
     translate: -50% -50%;
     pointer-events: none;
 }
@@ -926,11 +959,6 @@ header[id] {
 .video-poster:focus-visible {
     outline: 3px solid var(--color-accent);
     outline-offset: -3px;
-}
-
-.video-caption-link:hover {
-    color: var(--color-white);
-    opacity: 1;
 }
 
 /* ============================================
@@ -1798,11 +1826,6 @@ header[id] {
         gap: var(--space-xs) var(--space-md);
     }
 
-    /* 動画は横に並べるほど幅が確保できないため、縦積みに戻す */
-        .video-caption {
-        margin-top: var(--space-ms);
-        text-align: center;
-    }
 }
 
 @media screen and (max-width: 768px) {
@@ -1919,6 +1942,19 @@ header[id] {
         --space-md: 1.25rem;
         --space-lg: 2rem;
         --space-xl: 3rem;
+    }
+
+    /* サムネと案内文を横に並べる幅がないため、縦に積む */
+    .program-video-main {
+        display: block;
+    }
+
+    .program-video .video {
+        max-width: 13rem;
+    }
+
+    .program-video-note {
+        margin-top: var(--space-xs);
     }
 
     html {
