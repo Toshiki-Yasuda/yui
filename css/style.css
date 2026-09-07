@@ -585,7 +585,8 @@ header[id] {
     text-align: left;
 }
 
-.marimba-text {
+/* トップページのマリンバ紹介：テキスト側のカラム */
+.marimba-intro-text {
     max-width: 33rem;
     margin-left: auto;
 }

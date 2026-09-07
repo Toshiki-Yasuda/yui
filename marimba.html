@@ -18,300 +18,242 @@
     <!-- Styles -->
     <link rel="stylesheet" href="css/style.css">
     <style>
-        /* マリンバページ専用スタイル */
+        /* マリンバページ専用スタイル
+           配色・タイポ・余白は共通のトークンに従い、
+           トップページと同じ語彙（金のヘアライン・明朝の見出し・罫線の区切り）で組む */
         .marimba-page {
-            padding-top: calc(var(--nav-height) + var(--space-lg));
+            padding-top: calc(var(--nav-height) + var(--space-xl));
             padding-bottom: var(--space-xl);
-            min-height: 100vh;
+            background: linear-gradient(180deg,
+                var(--color-photo-cream) 0%,
+                var(--color-bg-alt) 40%,
+                var(--color-bg) 100%);
         }
 
+        /* --- ヒーロー：文章とイラストを重ねずに左右へ --- */
         .marimba-hero {
-            text-align: center;
-            margin-bottom: var(--space-xl);
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+            align-items: center;
+            gap: clamp(1.5rem, 3vw, 2.5rem);
+            max-width: 1236px;
+            margin: 0 auto var(--space-xl);
+        }
+
+        .marimba-hero-text {
+            max-width: 33rem;
+            margin-left: auto;
         }
 
         .marimba-hero-title {
             font-family: var(--font-serif);
-            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-size: clamp(2rem, 4.5vw, 3rem);
             font-weight: 500;
-            color: var(--color-main-dark);
+            line-height: var(--lh-tight);
+            color: var(--color-ink);
+            letter-spacing: var(--ls-wide);
             margin-bottom: var(--space-sm);
-            letter-spacing: 0.05em;
+            /* 「楽器？」だけが行に残らないようにする */
+            text-wrap: balance;
         }
 
         .marimba-hero-subtitle {
-            font-size: var(--fs-xl);
-            font-weight: 500;
+            font-size: var(--fs-md);
+            line-height: var(--lh-body);
             color: var(--color-text-light);
         }
 
-        .marimba-section.marimba-intro-section {
-            position: relative;
-            padding: var(--space-lg) var(--space-md);
-            min-height: 350px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: var(--space-xl) !important;
-            max-width: none !important;
-        }
-
-        .marimba-bg-image {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
+        .marimba-hero-figure {
+            justify-self: start;
             width: 100%;
-            max-width: none;
+            max-width: 595px;
+            margin: 0;
+        }
+
+        .marimba-hero-figure img {
+            display: block;
+            width: 100%;
             height: auto;
-            opacity: 0.5;
-            z-index: 0;
+            border-radius: var(--radius-lg);
         }
 
-        .marimba-intro-content {
-            position: relative;
-            z-index: 1;
-        }
-
-        .marimba-title-outlined {
-            text-shadow:
-                -1px -1px 0 #fff,
-                1px -1px 0 #fff,
-                -1px 1px 0 #fff,
-                1px 1px 0 #fff,
-                -2px -2px 0 #fff,
-                2px -2px 0 #fff,
-                -2px 2px 0 #fff,
-                2px 2px 0 #fff,
-                0 0 10px #fff,
-                0 0 20px #fff;
-        }
-
-        .marimba-text-outlined {
-            font-size: var(--fs-xl);
-            font-weight: 600;
-            line-height: 2.4;
-            text-shadow:
-                -1px -1px 0 #fff,
-                1px -1px 0 #fff,
-                -1px 1px 0 #fff,
-                1px 1px 0 #fff,
-                -2px -2px 0 #fff,
-                2px -2px 0 #fff,
-                -2px 2px 0 #fff,
-                2px 2px 0 #fff,
-                0 0 8px #fff,
-                0 0 15px #fff;
-        }
-
-        .marimba-text-outlined strong {
-            text-shadow:
-                -1px -1px 0 #fff,
-                1px -1px 0 #fff,
-                -1px 1px 0 #fff,
-                1px 1px 0 #fff,
-                -2px -2px 0 #fff,
-                2px -2px 0 #fff,
-                -2px 2px 0 #fff,
-                2px 2px 0 #fff,
-                0 0 8px #fff,
-                0 0 15px #fff;
-        }
-
+        /* --- セクション --- */
         .marimba-section {
-            max-width: 800px;
+            max-width: var(--w-wide);
             margin: 0 auto var(--space-xl);
         }
 
         .marimba-section-title {
             font-family: var(--font-serif);
-            font-size: var(--fs-xl);
-            font-weight: 400;
-            color: var(--color-text);
-            margin-bottom: var(--space-md);
-            padding-bottom: var(--space-xs);
-            border-bottom: 2px solid var(--color-main-light);
+            font-size: var(--fs-2xl);
+            font-weight: 500;
+            color: var(--color-ink);
+            letter-spacing: var(--ls-wide);
+            padding-bottom: var(--space-sm);
+            margin-bottom: var(--space-ml);
+            border-bottom: 1px solid var(--color-gold-light);
+        }
+
+        .marimba-body {
+            max-width: var(--w-text);
         }
 
         .marimba-text {
-            font-size: 1rem;
-            line-height: 2;
+            font-size: var(--fs-base);
+            line-height: var(--lh-body);
             color: var(--color-text-light);
-            margin-bottom: var(--space-md);
+            margin-bottom: var(--space-ms);
+        }
+
+        .marimba-text:last-child {
+            margin-bottom: 0;
         }
 
         .marimba-text strong {
-            color: var(--color-text);
+            color: var(--color-ink);
             font-weight: 600;
         }
 
-        .marimba-highlight {
-            background: none;
-            padding: var(--space-lg);
-            border-radius: var(--radius-lg);
-            margin: var(--space-sm) 0 var(--space-lg) 0;
-        }
-
-        .marimba-highlight-title {
-            font-family: var(--font-serif);
-            font-size: var(--fs-lg);
-            color: var(--color-main-dark);
-            margin-bottom: var(--space-sm);
-            text-align: center;
-        }
-
-        .marimba-highlight-text {
-            font-size: 1rem;
-            line-height: 2;
-            color: var(--color-text);
-            text-align: center;
-        }
-
+        /* --- 魅力：箱で囲わず、金の縦罫で区切る --- */
         .marimba-features {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: var(--space-md);
-            margin: var(--space-lg) 0;
-        }
-
-        @media screen and (max-width: 768px) {
-            .marimba-features {
-                grid-template-columns: 1fr;
-            }
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: var(--space-ml);
         }
 
         .marimba-feature {
-            background: var(--color-white);
-            padding: var(--space-md);
-            border-radius: var(--radius-md);
-            border: 1px solid rgba(139, 106, 47, 0.10);
-            text-align: center;
-        }
-
-        .marimba-feature-icon {
-            width: 50px;
-            height: 50px;
-            margin: 0 auto var(--space-sm);
-            border: 2px solid var(--color-main);
-            border-radius: var(--radius-full);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--color-main-dark);
-            font-size: var(--fs-lg);
-            font-weight: 300;
-        }
-
-        .marimba-feature-icon svg {
-            width: 24px;
-            height: 24px;
-            stroke: var(--color-main-dark);
-            stroke-width: 1.5;
-            fill: none;
+            padding-left: var(--space-md);
+            border-left: 1px solid var(--color-gold-light);
         }
 
         .marimba-feature-title {
             font-family: var(--font-serif);
-            font-size: var(--fs-md);
-            color: var(--color-text);
+            font-size: var(--fs-lg);
+            font-weight: 500;
+            color: var(--color-ink);
+            letter-spacing: var(--ls-wide);
             margin-bottom: var(--space-xs);
         }
 
         .marimba-feature-text {
             font-size: var(--fs-base);
+            line-height: var(--lh-body);
             color: var(--color-text-light);
-            line-height: 1.8;
         }
 
+        /* --- 比較表 --- */
         .marimba-comparison {
-            background: var(--color-white);
-            padding: var(--space-lg);
-            border-radius: var(--radius-lg);
-            margin: var(--space-lg) 0;
-        }
-
-        .marimba-comparison-title {
-            font-family: var(--font-serif);
-            font-size: var(--fs-lg);
-            color: var(--color-text);
-            margin-bottom: var(--space-md);
-            text-align: center;
+            max-width: var(--w-wide);
+            margin: 0 auto var(--space-xl);
         }
 
         .comparison-table {
             width: 100%;
             border-collapse: collapse;
+            font-size: var(--fs-base);
         }
 
         .comparison-table th,
         .comparison-table td {
-            padding: var(--space-sm);
+            padding: var(--space-sm) var(--space-ms);
             text-align: left;
-            border-bottom: 1px solid var(--color-main-light);
+            border-bottom: 1px solid var(--color-gold-light);
         }
 
-        .comparison-table th {
+        .comparison-table thead th {
+            font-size: var(--fs-xs);
             font-weight: 600;
-            color: var(--color-accent);
-            font-size: var(--fs-base);
+            letter-spacing: var(--ls-wide);
+            color: var(--color-gold-deep);
+            border-bottom-color: var(--color-gold);
+        }
+
+        .comparison-table tbody th {
+            font-weight: 600;
+            color: var(--color-text);
+            white-space: nowrap;
         }
 
         .comparison-table td {
-            font-size: var(--fs-base);
             color: var(--color-text-light);
         }
 
-        .comparison-table tr:last-child td {
-            border-bottom: none;
+        .comparison-table tbody tr:last-child th,
+        .comparison-table tbody tr:last-child td {
+            border-bottom: 0;
         }
 
-        .back-link {
-            display: inline-flex;
-            align-items: center;
-            gap: var(--space-xs);
-            color: var(--color-accent);
-            font-weight: 500;
-            padding: 0.75rem 1.5rem;
-            border: 1px solid var(--color-accent-light);
-            border-radius: var(--radius-full);
-            transition: all var(--transition-normal);
-            margin-top: var(--space-lg);
-        }
-
-        .back-link:hover {
-            background: var(--color-accent);
-            color: var(--color-white);
-            border-color: var(--color-accent);
-        }
-
-        .back-link-icon {
-            transition: transform var(--transition-fast);
-        }
-
-        .back-link:hover .back-link-icon {
-            transform: translateX(-4px);
-        }
-
+        /* --- 結びのCTA --- */
         .cta-section {
+            max-width: var(--w-text);
+            margin: 0 auto;
+            padding: var(--space-ml) 0;
+            border-top: 1px solid var(--color-gold-light);
             text-align: center;
-            padding: var(--space-xl) 0;
-            background: linear-gradient(135deg, var(--color-bg) 0%, var(--color-main-light) 100%);
-            border-radius: var(--radius-lg);
-            margin-top: var(--space-xl);
         }
 
         .cta-title {
             font-family: var(--font-serif);
             font-size: var(--fs-xl);
-            color: var(--color-text);
-            margin-bottom: var(--space-sm);
+            font-weight: 500;
+            color: var(--color-ink);
+            letter-spacing: var(--ls-wide);
+            margin-bottom: var(--space-xs);
         }
 
         .cta-text {
+            font-size: var(--fs-base);
             color: var(--color-text-light);
-            margin-bottom: var(--space-md);
+            margin-bottom: var(--space-ms);
         }
 
+        .back-link {
+            display: block;
+            text-align: center;
+            margin-top: var(--space-xl);
+            font-size: var(--fs-base);
+            color: var(--color-text-light);
+        }
+
+        .back-link:hover {
+            color: var(--color-rose-deep);
+        }
+
+        @media screen and (max-width: 900px) {
+            .marimba-hero {
+                grid-template-columns: 1fr;
+                gap: var(--space-md);
+            }
+
+            .marimba-hero-text {
+                margin-left: 0;
+            }
+
+            .marimba-hero-figure {
+                justify-self: stretch;
+                max-width: none;
+            }
+
+            .marimba-features {
+                grid-template-columns: 1fr;
+                gap: var(--space-md);
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            .marimba-page {
+                padding-top: calc(var(--nav-height) + var(--space-ml));
+            }
+
+            .comparison-table {
+                font-size: var(--fs-sm);
+            }
+
+            .comparison-table th,
+            .comparison-table td {
+                padding: var(--space-xs) var(--space-sm);
+            }
+        }
     </style>
 </head>
 <body>
@@ -339,30 +281,37 @@
 
     <main class="marimba-page">
         <div class="container">
-            <!-- 基本説明（背景画像付き・ヒーロー統合） -->
-            <section class="marimba-section marimba-intro-section fade-in">
-                <picture>
-                    <source type="image/webp" srcset="images/marimba.webp">
-                    <img src="images/marimba.jpg" alt="マリンバのイラスト" class="marimba-bg-image" width="1600" height="1080" fetchpriority="high" decoding="async">
-                </picture>
-                <div class="marimba-intro-content">
-                    <!-- ヒーロー -->
-                    <h1 class="marimba-hero-title marimba-title-outlined">マリンバってどんな楽器？</h1>
-                    <p class="marimba-hero-subtitle marimba-text-outlined" style="font-size: var(--fs-xl); margin-bottom: var(--space-lg);">木の温もりが奏でる、癒しの打楽器</p>
-                    <h2 class="marimba-section-title marimba-title-outlined">マリンバとは</h2>
-                    <p class="marimba-text marimba-text-outlined">
+            <!-- ヒーロー：イラストと文章を分けて置く -->
+            <section class="marimba-hero fade-in">
+                <div class="marimba-hero-text">
+                    <h1 class="marimba-hero-title">マリンバってどんな楽器？</h1>
+                    <p class="marimba-hero-subtitle">木の温もりが奏でる、癒しの打楽器</p>
+                </div>
+                <figure class="marimba-hero-figure">
+                    <picture>
+                        <source type="image/webp" srcset="images/marimba.webp">
+                        <img src="images/marimba.jpg" alt="マリンバのイラスト" width="1600" height="1080" fetchpriority="high" decoding="async">
+                    </picture>
+                </figure>
+            </section>
+
+            <!-- 基本説明 -->
+            <section class="marimba-section fade-in">
+                <h2 class="marimba-section-title">マリンバとは</h2>
+                <div class="marimba-body">
+                    <p class="marimba-text">
                         マリンバは<strong>木の板を並べた大きな打楽器</strong>です。
                         「マレット」と呼ばれる先端に毛糸や綿を巻いたバチを使って、木の板（音板）を叩いて演奏します。
                     </p>
-                    <p class="marimba-text marimba-text-outlined">
+                    <p class="marimba-text">
                         見た目は小学校などで見かける「木琴（もっきん）」に似ていますが、
                         マリンバはより大きく、<strong>音域が広い</strong>のが特徴です。
                         ピアノと同じくらいの音域を持ち、低い音から高い音まで演奏できます。
                     </p>
-                    <p class="marimba-text marimba-text-outlined">
+                    <p class="marimba-text">
                         名前の「マリンバ（Marimba）」は、アフリカの言葉で「木の板が並んでいるもの」という意味があるとされています。
                     </p>
-                    <p class="marimba-text marimba-text-outlined">
+                    <p class="marimba-text">
                         「マリンバ」という名前から「マンドリン」のような弦楽器を想像される方もいらっしゃいますが、
                         マリンバは木を叩いて音を出す<strong>「打楽器」</strong>です。
                         オーケストラでは、ティンパニや小太鼓と同じ打楽器セクションに所属します。
@@ -373,38 +322,29 @@
             <!-- 特徴 -->
             <section class="marimba-section fade-in">
                 <h2 class="marimba-section-title">マリンバの魅力</h2>
-                <div class="marimba-features">
-                    <div class="marimba-feature">
-                        <div class="marimba-feature-icon">
-                            <svg viewBox="0 0 24 24"><path d="M12 3c-1.5 2-4 4-4 7 0 2.5 1.5 4.5 4 5.5 2.5-1 4-3 4-5.5 0-3-2.5-5-4-7z"/><path d="M12 15.5V22"/><path d="M9 22h6"/></svg>
-                        </div>
+                <ul class="marimba-features">
+                    <li class="marimba-feature">
                         <h3 class="marimba-feature-title">温かい木の音色</h3>
                         <p class="marimba-feature-text">
                             ローズウッドやパドックなどの木材から生まれる、
                             柔らかく温かみのある音色が最大の魅力です。
                         </p>
-                    </div>
-                    <div class="marimba-feature">
-                        <div class="marimba-feature-icon">
-                            <svg viewBox="0 0 24 24"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
-                        </div>
+                    </li>
+                    <li class="marimba-feature">
                         <h3 class="marimba-feature-title">幅広い表現力</h3>
                         <p class="marimba-feature-text">
                             優しいささやきから力強い響きまで、
                             マレットの使い分けで多彩な表現が可能です。
                         </p>
-                    </div>
-                    <div class="marimba-feature">
-                        <div class="marimba-feature-icon">
-                            <svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
-                        </div>
+                    </li>
+                    <li class="marimba-feature">
                         <h3 class="marimba-feature-title">演奏を「見る」楽しさ</h3>
                         <p class="marimba-feature-text">
                             4本のマレットを操る演奏は視覚的にも楽しく、
                             お子様からご年配の方まで飽きずに楽しめます。
                         </p>
-                    </div>
-                </div>
+                    </li>
+                </ul>
             </section>
 
             <!-- 仕組み -->
@@ -433,41 +373,45 @@
             </section>
 
             <!-- 比較表 -->
-            <div class="marimba-comparison fade-in">
-                <h3 class="marimba-comparison-title">木琴・シロフォンとの違い</h3>
+            <section class="marimba-comparison fade-in">
+                <h2 class="marimba-section-title">木琴・シロフォンとの違い</h2>
                 <table class="comparison-table">
-                    <tr>
-                        <th></th>
-                        <th>マリンバ</th>
-                        <th>シロフォン</th>
-                        <th>木琴（学校用）</th>
-                    </tr>
-                    <tr>
-                        <td><strong>音色</strong></td>
-                        <td>柔らかく温かい</td>
-                        <td>明るく硬い</td>
-                        <td>軽やかで明るい</td>
-                    </tr>
-                    <tr>
-                        <td><strong>音域</strong></td>
-                        <td>広い（約4〜5オクターブ）</td>
-                        <td>やや狭い（約3.5オクターブ）</td>
-                        <td>狭い（約2オクターブ）</td>
-                    </tr>
-                    <tr>
-                        <td><strong>共鳴管</strong></td>
-                        <td>あり（長い）</td>
-                        <td>あり（短い）</td>
-                        <td>なし</td>
-                    </tr>
-                    <tr>
-                        <td><strong>用途</strong></td>
-                        <td>ソロ・アンサンブル・オーケストラ</td>
-                        <td>オーケストラ・吹奏楽</td>
-                        <td>教育・入門</td>
-                    </tr>
+                    <thead>
+                        <tr>
+                            <th scope="col"></th>
+                            <th scope="col">マリンバ</th>
+                            <th scope="col">シロフォン</th>
+                            <th scope="col">木琴（学校用）</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">音色</th>
+                            <td>柔らかく温かい</td>
+                            <td>明るく硬い</td>
+                            <td>軽やかで明るい</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">音域</th>
+                            <td>広い（約4〜5オクターブ）</td>
+                            <td>やや狭い（約3.5オクターブ）</td>
+                            <td>狭い（約2オクターブ）</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">共鳴管</th>
+                            <td>あり（長い）</td>
+                            <td>あり（短い）</td>
+                            <td>なし</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">用途</th>
+                            <td>ソロ・アンサンブル・オーケストラ</td>
+                            <td>オーケストラ・吹奏楽</td>
+                            <td>教育・入門</td>
+                        </tr>
+                    </tbody>
                 </table>
-            </div>
+            </section>
 
             <!-- 演奏曲目 -->
             <section class="marimba-section fade-in">
