@@ -1106,7 +1106,8 @@ header[id] {
 
 /* --- 料金表：金の横罫で行を区切る --- */
 .price-list {
-    border-top: 1px solid var(--color-gold-light);
+    /* 外枠は引かず、行間の区切りだけで表として読ませる */
+    margin-top: var(--space-xs);
 }
 
 .price-row {
@@ -1115,7 +1116,11 @@ header[id] {
     align-items: baseline;
     gap: var(--space-sm);
     padding: var(--space-ms) var(--space-2xs);
-    border-bottom: 1px solid var(--color-gold-light);
+    border-top: 1px solid var(--color-gold-light);
+}
+
+.price-row:first-child {
+    border-top: 0;
 }
 
 .price-row dt {
@@ -1240,13 +1245,10 @@ header[id] {
     color: var(--color-text-muted);
 }
 
-/* 金の罫で挟んだリード文（説明は残す） */
+/* 罫で囲わず、前後の余白で区切る */
 .ticket-note {
     max-width: var(--w-text);
-    margin: var(--space-ml) auto 0;
-    padding: var(--space-ms) 0;
-    border-top: 1px solid var(--color-gold-light);
-    border-bottom: 1px solid var(--color-gold-light);
+    margin: var(--space-xl) auto 0;
     text-align: center;
 }
 
@@ -1452,10 +1454,13 @@ header[id] {
     border-bottom-color: var(--color-gold);
 }
 
-/* 主催・後援・運営のクレジット */
+/* 主催・後援・運営のクレジット。行ごとではなく全体を罫で挟む */
 .credits {
     max-width: var(--w-reading);
     margin: var(--space-ml) auto 0;
+    padding: var(--space-ms) 0;
+    border-top: 1px solid var(--color-gold-light);
+    border-bottom: 1px solid var(--color-gold-light);
     text-align: left;
 }
 
@@ -1464,12 +1469,7 @@ header[id] {
     grid-template-columns: 4rem 1fr;
     gap: var(--space-sm);
     align-items: baseline;
-    padding: var(--space-sm) 0;
-    border-top: 1px solid var(--color-gold-light);
-}
-
-.credits-row:last-child {
-    border-bottom: 1px solid var(--color-gold-light);
+    padding: var(--space-xs) 0;
 }
 
 .credits-row dt {
@@ -2055,11 +2055,3 @@ button:focus-visible {
     }
 }
 
-/* teket ブラボーボタンの案内（点滅アニメーションは廃止し、静かな囲みに） */
-/* 購入ボタンの下に置く控えめな一言（箱で囲わない） */
-.bravo-message {
-    margin-top: var(--space-ms);
-    font-size: var(--fs-sm);
-    line-height: var(--lh-snug);
-    color: var(--color-text-muted);
-}
