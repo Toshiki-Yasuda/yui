@@ -1952,6 +1952,32 @@ header[id] {
     }
 }
 
+/* タブレット縦（iPad mini 744px など）：
+   1カラムのままだと「結」の右が大きく空き、イラストが縦を食って
+   CTAがファーストビューから外れる。見出しと絵を横に並べ、
+   リード以下は下段に全幅で置く */
+@media screen and (min-width: 600px) and (max-width: 768px) {
+    .hero-inner {
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+        grid-template-areas:
+            "head   figure"
+            "body   body";
+        column-gap: var(--space-md);
+        align-items: center;
+    }
+
+    .hero-figure {
+        max-width: none;
+        margin-inline: 0;
+    }
+
+    /* width:auto のままだと max-height 基準の実寸が列幅を超えて右が切れる */
+    .hero-figure img {
+        max-height: 38svh;
+        max-width: 100%;
+    }
+}
+
 @media screen and (max-width: 480px) {
     :root {
         --space-md: 1.25rem;
