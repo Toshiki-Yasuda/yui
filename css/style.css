@@ -1812,6 +1812,13 @@ header[id] {
         text-align: center;
     }
 
+    /* 1カラムでは margin-left:auto が効いてブロックごと右へ寄るため中央に戻す
+       （グリッドアイテムに margin auto を置くと stretch が外れて内容幅に縮む） */
+    .marimba-intro-text {
+        margin-inline: auto;
+        max-width: var(--w-reading);
+    }
+
     .marimba-media {
         max-width: var(--w-reading);
         margin: 0 auto;
