@@ -33,21 +33,20 @@
         /* --- ヒーロー：文章とイラストを重ねずに左右へ --- */
         .marimba-hero {
             display: grid;
-            grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+            grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
             align-items: center;
-            gap: clamp(1.5rem, 3vw, 2.5rem);
-            max-width: 1236px;
+            gap: clamp(var(--space-md), 4vw, var(--space-lg));
+            max-width: var(--w-wide);
             margin: 0 auto var(--space-xl);
         }
 
         .marimba-hero-text {
-            max-width: 33rem;
-            margin-left: auto;
+            max-width: var(--w-reading);
         }
 
         .marimba-hero-title {
             font-family: var(--font-serif);
-            font-size: clamp(2rem, 4.5vw, 3rem);
+            font-size: clamp(var(--fs-2xl), 4.5vw, var(--fs-3xl));
             font-weight: 500;
             line-height: var(--lh-tight);
             color: var(--color-ink);
@@ -66,7 +65,6 @@
         .marimba-hero-figure {
             justify-self: start;
             width: 100%;
-            max-width: 595px;
             margin: 0;
         }
 
@@ -77,7 +75,9 @@
             border-radius: var(--radius-lg);
         }
 
-        /* --- セクション --- */
+        /* --- セクション：コンテナ幅は全セクション共通。
+               タイトルの罫線と左端の基準線を1本に揃え、
+               行長は本文側（--w-reading）だけで制御する --- */
         .marimba-section {
             max-width: var(--w-wide);
             margin: 0 auto var(--space-xl);
@@ -92,13 +92,13 @@
             padding-bottom: var(--space-sm);
             margin-bottom: var(--space-ml);
             border-bottom: 1px solid var(--color-gold-light);
+            /* 狭い画面で最後の1文字だけが行に残らないようにする */
+            text-wrap: balance;
         }
 
-        .marimba-body {
-            max-width: var(--w-text);
-        }
-
+        /* 本文の行長は全セクション共通。日本語40〜45字を超えさせない */
         .marimba-text {
+            max-width: var(--w-reading);
             font-size: var(--fs-base);
             line-height: var(--lh-body);
             color: var(--color-text-light);
@@ -141,13 +141,66 @@
             color: var(--color-text-light);
         }
 
-        /* --- 比較表 --- */
-        .marimba-comparison {
-            max-width: var(--w-wide);
-            margin: 0 auto var(--space-xl);
+        /* --- 用語の解説：太字ベタ組みをやめ、小見出しとして立たせる --- */
+        .marimba-parts {
+            max-width: var(--w-reading);
+        }
+
+        .marimba-parts dt {
+            font-family: var(--font-serif);
+            font-size: var(--fs-lg);
+            font-weight: 500;
+            color: var(--color-ink);
+            letter-spacing: var(--ls-wide);
+            margin-bottom: var(--space-2xs);
+        }
+
+        .marimba-parts dd {
+            font-size: var(--fs-base);
+            line-height: var(--lh-body);
+            color: var(--color-text-light);
+            margin-bottom: var(--space-ms);
+        }
+
+        .marimba-parts dd:last-child {
+            margin-bottom: 0;
+        }
+
+        /* --- ジャンル：トップページのFAQと同じ罫線リストの語彙で --- */
+        .marimba-genres {
+            max-width: var(--w-reading);
+            margin-bottom: var(--space-ms);
+            border-top: 1px solid var(--color-gold-light);
+        }
+
+        .marimba-genre {
+            display: grid;
+            grid-template-columns: 13rem minmax(0, 1fr);
+            gap: var(--space-sm);
+            padding: var(--space-sm) 0;
+            border-bottom: 1px solid var(--color-gold-light);
+        }
+
+        .marimba-genre dt {
+            font-weight: 600;
+            font-size: var(--fs-base);
+            line-height: var(--lh-snug);
+            color: var(--color-text);
+        }
+
+        .marimba-genre dd {
+            font-size: var(--fs-base);
+            line-height: var(--lh-snug);
+            color: var(--color-text-light);
+        }
+
+        /* --- 比較表：狭い画面では潰さず横に送る --- */
+        .table-scroll {
+            overflow-x: auto;
         }
 
         .comparison-table {
+            min-width: 34rem;
             width: 100%;
             border-collapse: collapse;
             font-size: var(--fs-base);
@@ -207,26 +260,32 @@
             margin-bottom: var(--space-ms);
         }
 
-        .back-link {
-            display: block;
-            text-align: center;
+        .back-link-wrap {
             margin-top: var(--space-xl);
+            text-align: center;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: baseline;
+            gap: var(--space-xs);
             font-size: var(--fs-base);
             color: var(--color-text-light);
+            transition: color var(--transition-fast);
         }
 
         .back-link:hover {
             color: var(--color-rose-deep);
         }
 
+        .back-link-icon {
+            color: var(--color-gold);
+        }
+
         @media screen and (max-width: 900px) {
             .marimba-hero {
                 grid-template-columns: 1fr;
                 gap: var(--space-md);
-            }
-
-            .marimba-hero-text {
-                margin-left: 0;
             }
 
             .marimba-hero-figure {
@@ -237,6 +296,13 @@
             .marimba-features {
                 grid-template-columns: 1fr;
                 gap: var(--space-md);
+            }
+        }
+
+        @media screen and (max-width: 600px) {
+            .marimba-genre {
+                grid-template-columns: 1fr;
+                gap: var(--space-2xs);
             }
         }
 
@@ -298,25 +364,23 @@
             <!-- 基本説明 -->
             <section class="marimba-section fade-in">
                 <h2 class="marimba-section-title">マリンバとは</h2>
-                <div class="marimba-body">
-                    <p class="marimba-text">
-                        マリンバは<strong>木の板を並べた大きな打楽器</strong>です。
-                        「マレット」と呼ばれる先端に毛糸や綿を巻いたバチを使って、木の板（音板）を叩いて演奏します。
-                    </p>
-                    <p class="marimba-text">
-                        見た目は小学校などで見かける「木琴（もっきん）」に似ていますが、
-                        マリンバはより大きく、<strong>音域が広い</strong>のが特徴です。
-                        ピアノと同じくらいの音域を持ち、低い音から高い音まで演奏できます。
-                    </p>
-                    <p class="marimba-text">
-                        名前の「マリンバ（Marimba）」は、アフリカの言葉で「木の板が並んでいるもの」という意味があるとされています。
-                    </p>
-                    <p class="marimba-text">
-                        「マリンバ」という名前から「マンドリン」のような弦楽器を想像される方もいらっしゃいますが、
-                        マリンバは木を叩いて音を出す<strong>「打楽器」</strong>です。
-                        オーケストラでは、ティンパニや小太鼓と同じ打楽器セクションに所属します。
-                    </p>
-                </div>
+                <p class="marimba-text">
+                    マリンバは<strong>木の板を並べた大きな打楽器</strong>です。
+                    「マレット」と呼ばれる先端に毛糸や綿を巻いたバチを使って、木の板（音板）を叩いて演奏します。
+                </p>
+                <p class="marimba-text">
+                    見た目は小学校などで見かける「木琴（もっきん）」に似ていますが、
+                    マリンバはより大きく、<strong>音域が広い</strong>のが特徴です。
+                    ピアノと同じくらいの音域を持ち、低い音から高い音まで演奏できます。
+                </p>
+                <p class="marimba-text">
+                    名前の「マリンバ（Marimba）」は、アフリカの言葉で「木の板が並んでいるもの」という意味があるとされています。
+                </p>
+                <p class="marimba-text">
+                    「マリンバ」という名前から「マンドリン」のような弦楽器を想像される方もいらっしゃいますが、
+                    マリンバは木を叩いて音を出す<strong>「打楽器」</strong>です。
+                    オーケストラでは、ティンパニや小太鼓と同じ打楽器セクションに所属します。
+                </p>
             </section>
 
             <!-- 特徴 -->
@@ -351,31 +415,34 @@
             <section class="marimba-section fade-in">
                 <h2 class="marimba-section-title">マリンバの仕組み</h2>
                 <p class="marimba-text">
-                    マリンバは主に以下の部分で構成されています：
+                    マリンバは主に以下の部分で構成されています。
                 </p>
-                <p class="marimba-text">
-                    <strong>音板（おんばん）</strong><br>
-                    木製の板で、これを叩くと音が出ます。
-                    長さや厚みが異なり、それぞれ違う高さの音が出ます。
-                    ピアノの鍵盤と同じように、低い音は左側、高い音は右側に並んでいます。
-                </p>
-                <p class="marimba-text">
-                    <strong>共鳴管（きょうめいかん）</strong><br>
-                    音板の下にぶら下がっている金属のパイプです。
-                    音板の振動を増幅させ、より豊かで大きな音を響かせる役割があります。
-                </p>
-                <p class="marimba-text">
-                    <strong>マレット</strong><br>
-                    演奏に使うバチのことです。
-                    先端に毛糸やゴムが巻かれており、硬さによって音色が変わります。
-                    演奏者は曲に合わせて使い分け、時には4本同時に使って和音を奏でます。
-                </p>
+                <dl class="marimba-parts">
+                    <dt>音板（おんばん）</dt>
+                    <dd>
+                        木製の板で、これを叩くと音が出ます。
+                        長さや厚みが異なり、それぞれ違う高さの音が出ます。
+                        ピアノの鍵盤と同じように、低い音は左側、高い音は右側に並んでいます。
+                    </dd>
+                    <dt>共鳴管（きょうめいかん）</dt>
+                    <dd>
+                        音板の下にぶら下がっている金属のパイプです。
+                        音板の振動を増幅させ、より豊かで大きな音を響かせる役割があります。
+                    </dd>
+                    <dt>マレット</dt>
+                    <dd>
+                        演奏に使うバチのことです。
+                        先端に毛糸やゴムが巻かれており、硬さによって音色が変わります。
+                        演奏者は曲に合わせて使い分け、時には4本同時に使って和音を奏でます。
+                    </dd>
+                </dl>
             </section>
 
             <!-- 比較表 -->
-            <section class="marimba-comparison fade-in">
+            <section class="marimba-section fade-in">
                 <h2 class="marimba-section-title">木琴・シロフォンとの違い</h2>
-                <table class="comparison-table">
+                <div class="table-scroll">
+                    <table class="comparison-table">
                     <thead>
                         <tr>
                             <th scope="col"></th>
@@ -410,21 +477,34 @@
                             <td>教育・入門</td>
                         </tr>
                     </tbody>
-                </table>
+                    </table>
+                </div>
             </section>
 
             <!-- 演奏曲目 -->
             <section class="marimba-section fade-in">
                 <h2 class="marimba-section-title">どんな曲が演奏できるの？</h2>
                 <p class="marimba-text">
-                    マリンバはとても幅広いジャンルの曲を演奏できます：
+                    マリンバはとても幅広いジャンルの曲を演奏できます。
                 </p>
-                <p class="marimba-text">
-                    <strong>クラシック</strong> - バッハの名曲から現代音楽まで<br>
-                    <strong>ポップス</strong> - ジブリ音楽、J-POP、映画音楽<br>
-                    <strong>童謡・唱歌</strong> - 「赤とんぼ」「ふるさと」など懐かしい曲<br>
-                    <strong>マリンバオリジナル曲</strong> - マリンバのために作曲された専門曲
-                </p>
+                <dl class="marimba-genres">
+                    <div class="marimba-genre">
+                        <dt>クラシック</dt>
+                        <dd>バッハの名曲から現代音楽まで</dd>
+                    </div>
+                    <div class="marimba-genre">
+                        <dt>ポップス</dt>
+                        <dd>ジブリ音楽、J-POP、映画音楽</dd>
+                    </div>
+                    <div class="marimba-genre">
+                        <dt>童謡・唱歌</dt>
+                        <dd>「赤とんぼ」「ふるさと」など懐かしい曲</dd>
+                    </div>
+                    <div class="marimba-genre">
+                        <dt>マリンバオリジナル曲</dt>
+                        <dd>マリンバのために作曲された専門曲</dd>
+                    </div>
+                </dl>
                 <p class="marimba-text">
                     今回のコンサートでも、ジブリメドレーや「戦場のメリークリスマス」、
                     日本の名曲「赤とんぼ」など、幅広いジャンルの曲をお届けします。
@@ -433,7 +513,7 @@
 
             <!-- CTA -->
             <div class="cta-section fade-in">
-                <h3 class="cta-title">マリンバの音色を体験しませんか？</h3>
+                <h2 class="cta-title">マリンバの音色を体験しませんか？</h2>
                 <p class="cta-text">2026年10月25日（日）、HITARUクリエイティブスタジオにて</p>
                 <a href="index.html#ticket" class="btn btn--primary">
                     コンサート詳細を見る
@@ -441,7 +521,7 @@
             </div>
 
             <!-- 戻るリンク -->
-            <div style="text-align: center;">
+            <div class="back-link-wrap">
                 <a href="index.html" class="back-link">
                     <span class="back-link-icon">←</span>
                     トップページに戻る
