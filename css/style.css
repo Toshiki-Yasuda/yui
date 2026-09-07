@@ -1881,18 +1881,26 @@ header[id] {
         row-gap: var(--space-ms);
     }
 
+    /* 1カラムでは margin-left:auto が効いてブロックごと右へ寄るため、
+       左の基準線に戻す（デスクトップの中央寄せ指定を打ち消す） */
+    .hero-head,
+    .hero-body {
+        margin-left: 0;
+        max-width: none;
+    }
+
+    /* イラストは画面いっぱいに広げず、タイトルに主役を譲る大きさに。
+       左揃えの見出しに対して絵を右へ置き、余白を対角に流す
+       （画像は左端がマスクでフェードするため、右寄せだと切り口が内側を向く） */
     .hero-figure {
-        margin-inline: calc(var(--space-md) * -1);
+        margin-inline: auto 0;
+        max-width: clamp(18rem, 58%, 26rem);
     }
 
     .hero-figure img {
-        max-height: 46svh;
+        max-height: 34svh;
         width: auto;
         margin-inline: auto;
-    }
-
-    .hero-figcaption {
-        padding-inline: var(--space-md);
     }
 
     .hero-title {
