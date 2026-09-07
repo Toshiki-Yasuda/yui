@@ -1092,72 +1092,142 @@ header[id] {
 .ticket-content {
     max-width: var(--w-wide);
     margin: 0 auto;
-    text-align: center;
 }
 
-.ticket-prices {
+/* 料金と購入導線を左右に。買う判断に必要な情報を1画面に収める */
+.ticket-main {
     display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 0;
-    max-width: var(--w-text);
-    margin: 0 auto var(--space-lg);
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: clamp(2rem, 5vw, 4.5rem);
+    align-items: start;
+    max-width: var(--w-wide);
+    margin-inline: auto;
 }
 
-/* 箱を並べず、金の縦罫で区切った価格表として組む */
-.ticket-price {
-    background: transparent;
-    padding: var(--space-md) var(--space-sm);
-    border: 0;
-    border-left: 1px solid var(--color-gold-light);
-    text-align: center;
-    /* 券種 / 補足 / 金額 の3行を固定し、カード間で金額の高さを揃える */
-    display: grid;
-    grid-template-rows: auto 1.5em auto;
-    align-items: center;
-    gap: var(--space-xs);
+/* --- 料金表：金の横罫で行を区切る --- */
+.price-list {
+    border-top: 1px solid var(--color-gold-light);
 }
 
-.ticket-price:first-child {
-    border-left: 0;
+.price-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: var(--space-sm);
+    padding: var(--space-ms) var(--space-2xs);
+    border-bottom: 1px solid var(--color-gold-light);
 }
 
-.ticket-type {
-    display: block;
-    font-size: var(--fs-md);
+.price-row dt {
+    font-size: var(--fs-base);
     font-weight: 600;
     color: var(--color-text);
-    letter-spacing: 0.05em;
+    letter-spacing: var(--ls-wide);
 }
 
-/* 補足のない券種でも行を確保して金額の位置を揃える */
-.ticket-sub-slot {
+.price-sub {
     display: block;
+    font-size: var(--fs-xs);
+    font-weight: 400;
+    color: var(--color-text-muted);
+    letter-spacing: 0;
+    margin-top: 2px;
 }
 
-.ticket-amount {
+.price-row dd {
+    margin: 0;
     font-family: var(--font-serif);
     font-size: var(--fs-3xl);
-    font-weight: 400;
-    color: var(--color-text);
+    line-height: 1;
+    color: var(--color-ink);
+    white-space: nowrap;
 }
 
-.ticket-amount small {
+.price-row dd small {
     font-size: var(--fs-sm);
-    font-family: var(--font-sans);
+    margin-left: 0.15em;
 }
 
-.ticket-price.free .ticket-amount {
+.price-row--free dd {
     color: var(--color-rose-deep);
 }
 
-.ticket-note {
-    margin-bottom: var(--space-lg);
+.price-note {
+    margin-top: var(--space-sm);
+    font-size: var(--fs-sm);
+    color: var(--color-text-muted);
+    text-align: right;
 }
 
-/* 箱で囲わず、金の罫で挟んだリード文として置く */
+/* --- 購入導線 --- */
+.ticket-purchase {
+    text-align: center;
+}
+
+.ticket-purchase-lead {
+    font-size: var(--fs-base);
+    line-height: var(--lh-body);
+    color: var(--color-text-light);
+    margin-bottom: var(--space-ms);
+}
+
+.ticket-qr {
+    display: block;
+    margin-top: var(--space-md);
+    text-align: center;
+}
+
+.ticket-qr img {
+    display: inline-block;
+    border-radius: var(--radius-sm);
+    box-shadow: var(--shadow-sm);
+}
+
+/* --- 補助的な導線は1行にまとめる --- */
+.ticket-links {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: var(--space-md) var(--space-ml);
+    max-width: var(--w-text);
+    margin: var(--space-ml) auto 0;
+    padding-top: var(--space-ml);
+    border-top: 1px solid var(--color-gold-light);
+    text-align: center;
+}
+
+.ticket-link-label {
+    font-family: var(--font-serif);
+    font-size: var(--fs-base);
+    font-weight: 500;
+    color: var(--color-ink);
+    letter-spacing: var(--ls-wide);
+    margin-bottom: var(--space-xs);
+}
+
+.ticket-link {
+    display: inline-block;
+    font-size: var(--fs-base);
+    color: var(--color-rose-deep);
+    border-bottom: 1px solid var(--color-gold-light);
+    padding-bottom: 2px;
+    transition: color var(--transition-fast), border-color var(--transition-fast);
+}
+
+.ticket-link:hover {
+    color: var(--color-rose-hover);
+    border-bottom-color: var(--color-gold);
+}
+
+.ticket-link-note {
+    margin-top: var(--space-xs);
+    font-size: var(--fs-sm);
+    color: var(--color-text-muted);
+}
+
+/* 金の罫で挟んだリード文（説明は残す） */
 .ticket-note {
     max-width: var(--w-text);
-    margin: var(--space-ml) auto;
+    margin: var(--space-ml) auto 0;
     padding: var(--space-ms) 0;
     border-top: 1px solid var(--color-gold-light);
     border-bottom: 1px solid var(--color-gold-light);
@@ -1180,57 +1250,13 @@ header[id] {
     color: var(--color-text-light);
 }
 
-.ticket-sub {
-    font-size: var(--fs-sm);
-    font-weight: 400;
-    color: var(--color-text-muted);
-}
-
-.ticket-purchase {
-    max-width: var(--w-text);
-    margin-inline: auto;
-    text-align: center;
-}
-
-/* 見出しは左右に金のヘアラインを渡す（セクション見出しと同じ語彙） */
-.ticket-purchase-title {
-    display: flex;
-    align-items: center;
-    gap: var(--space-ms);
-    font-family: var(--font-serif);
-    font-size: var(--fs-lg);
-    font-weight: 500;
-    color: var(--color-ink);
-    letter-spacing: var(--ls-wide);
-    margin-bottom: var(--space-sm);
-}
-
-.ticket-purchase-title::before,
-.ticket-purchase-title::after {
-    content: "";
-    flex: 1;
-    height: 1px;
-    background: var(--color-gold-light);
-}
-
-.ticket-purchase p {
-    color: var(--color-text-light);
-    font-size: var(--fs-base);
-}
-
-/* 購入ボタンとQRコードを左右2カラムで並べる */
-.ticket-cta {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: var(--space-lg);
-    flex-wrap: wrap;
-    margin-top: var(--space-md);
-}
-
 /* 配色とサイズは .btn / .btn--primary に統一。ここは配置のみ */
 .ticket-btn {
     margin: 0;
+}
+
+.ticket-purchase .ticket-btn {
+    margin-bottom: var(--space-xs);
 }
 
 .ticket-btn-icon {
@@ -1246,67 +1272,10 @@ header[id] {
     color: var(--color-text-muted);
 }
 
-.ticket-qr {
-    margin-top: 0;
-    text-align: center;
-    display: block;
-}
-
-.ticket-qr img {
-    border-radius: var(--radius-sm);
-    box-shadow: var(--shadow-sm);
-    display: inline-block;
-}
-
 .qr-caption {
     font-size: var(--fs-xs);
     color: var(--color-text-muted);
     margin-top: var(--space-xs);
-}
-
-/* 応援・ファンレター（OFUSE） */
-.support {
-    max-width: var(--w-text);
-    margin: var(--space-ml) auto 0;
-    padding-top: var(--space-ml);
-    border-top: 1px solid var(--color-gold-light);
-    text-align: center;
-}
-
-.support-title {
-    font-family: var(--font-serif);
-    font-size: var(--fs-lg);
-    font-weight: 500;
-    color: var(--color-ink);
-    letter-spacing: var(--ls-wide);
-    margin-bottom: var(--space-2xs);
-}
-
-.support-text {
-    font-size: var(--fs-base);
-    color: var(--color-text-light);
-    margin-bottom: var(--space-ms);
-}
-
-/* カレンダー登録 */
-.calendar-add {
-    margin-top: var(--space-lg);
-    text-align: center;
-}
-
-.calendar-title {
-    font-family: var(--font-serif);
-    font-size: var(--fs-base);
-    font-weight: 500;
-    color: var(--color-text);
-    letter-spacing: var(--ls-wide);
-    margin-bottom: var(--space-2xs);
-}
-
-.calendar-add p {
-    font-size: var(--fs-sm);
-    color: var(--color-text-muted);
-    margin-bottom: var(--space-md);
 }
 
 .calendar-buttons {
@@ -1828,14 +1797,11 @@ header[id] {
 }
 
 @media screen and (max-width: 768px) {
-    .ticket-prices {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        row-gap: var(--space-ms);
+    .ticket-main {
+        grid-template-columns: 1fr;
+        gap: var(--space-ml);
     }
 
-    .ticket-price:nth-child(odd) {
-        border-left: 0;
-    }
 
     :root {
         --space-lg: 3rem;
@@ -1969,23 +1935,6 @@ header[id] {
         font-size: var(--fs-lg);
     }
 
-    /* 料金カード：スマホ幅では2列を維持しつつコンパクトに */
-    .ticket-prices {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: var(--space-xs);
-    }
-
-    .ticket-price {
-        padding: var(--space-md) var(--space-xs);
-    }
-
-    .ticket-type {
-        font-size: var(--fs-base);
-    }
-
-    .ticket-amount {
-        font-size: var(--fs-2xl);
-    }
 }
 
 @media screen and (max-width: 480px) {
