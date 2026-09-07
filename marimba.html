@@ -92,8 +92,6 @@
             padding-bottom: var(--space-sm);
             margin-bottom: var(--space-ml);
             border-bottom: 1px solid var(--color-gold-light);
-            /* 狭い画面で最後の1文字だけが行に残らないようにする */
-            text-wrap: balance;
         }
 
         /* 本文の行長は全セクション共通。日本語40〜45字を超えさせない */
@@ -311,6 +309,12 @@
                 padding-top: calc(var(--nav-height) + var(--space-ml));
             }
 
+            /* 30pxのままだと見出しが2行に割れ、日本語として不自然な位置で折り返す */
+            .marimba-section-title {
+                font-size: var(--fs-xl);
+                margin-bottom: var(--space-md);
+            }
+
             .comparison-table {
                 font-size: var(--fs-sm);
             }
@@ -318,6 +322,69 @@
             .comparison-table th,
             .comparison-table td {
                 padding: var(--space-xs) var(--space-sm);
+            }
+        }
+
+        /* --- 狭い画面の比較表：3列を横に並べる幅がないため、
+               横スクロールをやめて項目ごとのブロックに組み替える --- */
+        @media screen and (max-width: 600px) {
+            .table-scroll {
+                overflow-x: visible;
+            }
+
+            .comparison-table {
+                min-width: 0;
+            }
+
+            /* 列見出しは data-label に持たせるので、読み上げにだけ残す */
+            .comparison-table thead {
+                position: absolute;
+                width: 1px;
+                height: 1px;
+                overflow: hidden;
+                clip-path: inset(50%);
+                white-space: nowrap;
+            }
+
+            .comparison-table,
+            .comparison-table tbody,
+            .comparison-table tr,
+            .comparison-table th,
+            .comparison-table td {
+                display: block;
+            }
+
+            .comparison-table tbody tr {
+                padding: var(--space-sm) 0;
+                border-bottom: 1px solid var(--color-gold-light);
+            }
+
+            .comparison-table tbody tr:last-child {
+                border-bottom: 0;
+            }
+
+            .comparison-table tbody th {
+                padding: 0 0 var(--space-xs);
+                font-family: var(--font-serif);
+                font-size: var(--fs-lg);
+                font-weight: 500;
+                color: var(--color-ink);
+                letter-spacing: var(--ls-wide);
+                border-bottom: 0;
+            }
+
+            .comparison-table td {
+                display: grid;
+                grid-template-columns: 8rem minmax(0, 1fr);
+                gap: var(--space-xs);
+                padding: var(--space-2xs) 0;
+                border-bottom: 0;
+            }
+
+            .comparison-table td::before {
+                content: attr(data-label);
+                font-weight: 600;
+                color: var(--color-text);
             }
         }
     </style>
@@ -454,27 +521,27 @@
                     <tbody>
                         <tr>
                             <th scope="row">音色</th>
-                            <td>柔らかく温かい</td>
-                            <td>明るく硬い</td>
-                            <td>軽やかで明るい</td>
+                            <td data-label="マリンバ">柔らかく温かい</td>
+                            <td data-label="シロフォン">明るく硬い</td>
+                            <td data-label="木琴（学校用）">軽やかで明るい</td>
                         </tr>
                         <tr>
                             <th scope="row">音域</th>
-                            <td>広い（約4〜5オクターブ）</td>
-                            <td>やや狭い（約3.5オクターブ）</td>
-                            <td>狭い（約2オクターブ）</td>
+                            <td data-label="マリンバ">広い（約4〜5オクターブ）</td>
+                            <td data-label="シロフォン">やや狭い（約3.5オクターブ）</td>
+                            <td data-label="木琴（学校用）">狭い（約2オクターブ）</td>
                         </tr>
                         <tr>
                             <th scope="row">共鳴管</th>
-                            <td>あり（長い）</td>
-                            <td>あり（短い）</td>
-                            <td>なし</td>
+                            <td data-label="マリンバ">あり（長い）</td>
+                            <td data-label="シロフォン">あり（短い）</td>
+                            <td data-label="木琴（学校用）">なし</td>
                         </tr>
                         <tr>
                             <th scope="row">用途</th>
-                            <td>ソロ・アンサンブル・オーケストラ</td>
-                            <td>オーケストラ・吹奏楽</td>
-                            <td>教育・入門</td>
+                            <td data-label="マリンバ">ソロ・アンサンブル・オーケストラ</td>
+                            <td data-label="シロフォン">オーケストラ・吹奏楽</td>
+                            <td data-label="木琴（学校用）">教育・入門</td>
                         </tr>
                     </tbody>
                     </table>
