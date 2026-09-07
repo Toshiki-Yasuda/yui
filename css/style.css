@@ -1218,6 +1218,22 @@ header[id] {
     border-bottom-color: var(--color-gold);
 }
 
+.ticket-support-btn {
+    margin-top: var(--space-2xs);
+    background: var(--color-white);
+    border-color: var(--color-gold);
+    color: var(--color-gold-deep);
+    box-shadow: var(--shadow-sm);
+}
+
+.ticket-support-btn:hover {
+    background: var(--color-cream);
+    border-color: var(--color-gold-deep);
+    color: var(--color-gold-deep);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
 .ticket-link-note {
     margin-top: var(--space-xs);
     font-size: var(--fs-sm);
@@ -1259,15 +1275,7 @@ header[id] {
     margin-bottom: var(--space-xs);
 }
 
-.ticket-btn-icon {
-    transition: transform var(--transition-fast);
-}
-
-.ticket-btn:hover .ticket-btn-icon {
-    transform: translateX(6px);
-}
-
-.ticket-notice {
+.ticket-btn:hover .ticket-notice {
     font-size: var(--fs-xs);
     color: var(--color-text-muted);
 }
