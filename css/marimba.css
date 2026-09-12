@@ -1,0 +1,400 @@
+/* マリンバページ専用スタイル
+           配色・タイポ・余白は共通のトークンに従い、
+           トップページと同じ語彙（金のヘアライン・明朝の見出し・罫線の区切り）で組む */
+        .marimba-page {
+            padding-top: calc(var(--nav-height) + var(--space-xl));
+            padding-bottom: var(--space-xl);
+            background: linear-gradient(180deg,
+                var(--color-photo-cream) 0%,
+                var(--color-bg-alt) 40%,
+                var(--color-bg) 100%);
+        }
+
+        /* --- ヒーロー：文章とイラストを重ねずに左右へ --- */
+        .marimba-hero {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+            align-items: center;
+            gap: clamp(var(--space-md), 4vw, var(--space-lg));
+            max-width: var(--w-wide);
+            margin: 0 auto var(--space-xl);
+        }
+
+        .marimba-hero-text {
+            max-width: var(--w-reading);
+        }
+
+        .marimba-hero-title {
+            font-family: var(--font-serif);
+            font-size: clamp(var(--fs-2xl), 4.5vw, var(--fs-3xl));
+            font-weight: 500;
+            line-height: var(--lh-tight);
+            color: var(--color-ink);
+            letter-spacing: var(--ls-wide);
+            margin-bottom: var(--space-sm);
+            /* 「楽器？」だけが行に残らないようにする */
+            text-wrap: balance;
+        }
+
+        .marimba-hero-subtitle {
+            font-size: var(--fs-md);
+            line-height: var(--lh-body);
+            color: var(--color-text-light);
+        }
+
+        .marimba-hero-figure {
+            justify-self: start;
+            width: 100%;
+            margin: 0;
+        }
+
+        .marimba-hero-figure img {
+            display: block;
+            width: 100%;
+            height: auto;
+            border-radius: var(--radius-lg);
+        }
+
+        /* --- セクション：コンテナ幅は全セクション共通。
+               タイトルの罫線と左端の基準線を1本に揃え、
+               行長は本文側（--w-reading）だけで制御する --- */
+        .marimba-section {
+            max-width: var(--w-wide);
+            margin: 0 auto var(--space-xl);
+        }
+
+        .marimba-section-title {
+            font-family: var(--font-serif);
+            font-size: var(--fs-2xl);
+            font-weight: 500;
+            color: var(--color-ink);
+            letter-spacing: var(--ls-wide);
+            padding-bottom: var(--space-sm);
+            margin-bottom: var(--space-ml);
+            border-bottom: 1px solid var(--color-gold-light);
+        }
+
+        /* 本文の行長は全セクション共通。日本語40〜45字を超えさせない */
+        .marimba-text {
+            max-width: var(--w-reading);
+            font-size: var(--fs-base);
+            line-height: var(--lh-body);
+            color: var(--color-text-light);
+            margin-bottom: var(--space-ms);
+        }
+
+        .marimba-text:last-child {
+            margin-bottom: 0;
+        }
+
+        .marimba-text strong {
+            color: var(--color-ink);
+            font-weight: 600;
+        }
+
+        /* --- 魅力：箱で囲わず、金の縦罫で区切る --- */
+        .marimba-features {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: var(--space-ml);
+        }
+
+        .marimba-feature {
+            padding-left: var(--space-md);
+            border-left: 1px solid var(--color-gold-light);
+        }
+
+        .marimba-feature-title {
+            font-family: var(--font-serif);
+            font-size: var(--fs-lg);
+            font-weight: 500;
+            color: var(--color-ink);
+            letter-spacing: var(--ls-wide);
+            margin-bottom: var(--space-xs);
+        }
+
+        .marimba-feature-text {
+            font-size: var(--fs-base);
+            line-height: var(--lh-body);
+            color: var(--color-text-light);
+        }
+
+        /* --- 用語の解説：太字ベタ組みをやめ、小見出しとして立たせる --- */
+        .marimba-parts {
+            max-width: var(--w-reading);
+        }
+
+        .marimba-parts dt {
+            font-family: var(--font-serif);
+            font-size: var(--fs-lg);
+            font-weight: 500;
+            color: var(--color-ink);
+            letter-spacing: var(--ls-wide);
+            margin-bottom: var(--space-2xs);
+        }
+
+        .marimba-parts dd {
+            font-size: var(--fs-base);
+            line-height: var(--lh-body);
+            color: var(--color-text-light);
+            margin-bottom: var(--space-ms);
+        }
+
+        .marimba-parts dd:last-child {
+            margin-bottom: 0;
+        }
+
+        /* --- ジャンル：トップページのFAQと同じ罫線リストの語彙で --- */
+        .marimba-genres {
+            max-width: var(--w-reading);
+            margin-bottom: var(--space-ms);
+            border-top: 1px solid var(--color-gold-light);
+        }
+
+        .marimba-genre {
+            display: grid;
+            grid-template-columns: 13rem minmax(0, 1fr);
+            gap: var(--space-sm);
+            padding: var(--space-sm) 0;
+            border-bottom: 1px solid var(--color-gold-light);
+        }
+
+        .marimba-genre dt {
+            font-weight: 600;
+            font-size: var(--fs-base);
+            line-height: var(--lh-snug);
+            color: var(--color-text);
+        }
+
+        .marimba-genre dd {
+            font-size: var(--fs-base);
+            line-height: var(--lh-snug);
+            color: var(--color-text-light);
+        }
+
+        /* --- 比較表：狭い画面では潰さず横に送る --- */
+        .table-scroll {
+            overflow-x: auto;
+        }
+
+        .comparison-table {
+            min-width: 34rem;
+            width: 100%;
+            border-collapse: collapse;
+            font-size: var(--fs-base);
+        }
+
+        .comparison-table th,
+        .comparison-table td {
+            padding: var(--space-sm) var(--space-ms);
+            text-align: left;
+            border-bottom: 1px solid var(--color-gold-light);
+        }
+
+        .comparison-table thead th {
+            font-size: var(--fs-xs);
+            font-weight: 600;
+            letter-spacing: var(--ls-wide);
+            color: var(--color-gold-deep);
+            border-bottom-color: var(--color-gold);
+        }
+
+        .comparison-table tbody th {
+            font-weight: 600;
+            color: var(--color-text);
+            white-space: nowrap;
+        }
+
+        .comparison-table td {
+            color: var(--color-text-light);
+        }
+
+        .comparison-table tbody tr:last-child th,
+        .comparison-table tbody tr:last-child td {
+            border-bottom: 0;
+        }
+
+        /* --- 結びのCTA --- */
+        .cta-section {
+            max-width: var(--w-text);
+            margin: 0 auto;
+            padding: var(--space-ml) 0;
+            border-top: 1px solid var(--color-gold-light);
+            text-align: center;
+        }
+
+        .cta-title {
+            font-family: var(--font-serif);
+            font-size: var(--fs-xl);
+            font-weight: 500;
+            color: var(--color-ink);
+            letter-spacing: var(--ls-wide);
+            margin-bottom: var(--space-xs);
+        }
+
+        .cta-text {
+            font-size: var(--fs-base);
+            color: var(--color-text-light);
+            margin-bottom: var(--space-ms);
+        }
+
+        .back-link-wrap {
+            margin-top: var(--space-xl);
+            text-align: center;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: baseline;
+            gap: var(--space-xs);
+            font-size: var(--fs-base);
+            color: var(--color-text-light);
+            transition: color var(--transition-fast);
+        }
+
+        .back-link:hover {
+            color: var(--color-rose-deep);
+        }
+
+        .back-link-icon {
+            color: var(--color-gold);
+        }
+
+        @media screen and (max-width: 900px) {
+            .marimba-hero {
+                grid-template-columns: 1fr;
+                gap: var(--space-md);
+            }
+
+            .marimba-hero-figure {
+                justify-self: stretch;
+                max-width: none;
+            }
+
+            .marimba-features {
+                grid-template-columns: 1fr;
+                gap: var(--space-md);
+            }
+        }
+
+        @media screen and (max-width: 600px) {
+            .marimba-genre {
+                grid-template-columns: 1fr;
+                gap: var(--space-2xs);
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            .marimba-page {
+                padding-top: calc(var(--nav-height) + var(--space-ml));
+            }
+
+            /* 30pxのままだと見出しが2行に割れ、日本語として不自然な位置で折り返す */
+            .marimba-section-title {
+                font-size: var(--fs-xl);
+                margin-bottom: var(--space-md);
+            }
+
+            .comparison-table {
+                font-size: var(--fs-sm);
+            }
+
+            .comparison-table th,
+            .comparison-table td {
+                padding: var(--space-xs) var(--space-sm);
+            }
+        }
+
+        /* --- 狭い画面の比較表：3列を横に並べる幅がないため、
+               横スクロールをやめて項目ごとのブロックに組み替える --- */
+        @media screen and (max-width: 600px) {
+            .table-scroll {
+                overflow-x: visible;
+            }
+
+            .comparison-table {
+                min-width: 0;
+            }
+
+            /* 列見出しは data-label に持たせるので、読み上げにだけ残す */
+            .comparison-table thead {
+                position: absolute;
+                width: 1px;
+                height: 1px;
+                overflow: hidden;
+                clip-path: inset(50%);
+                white-space: nowrap;
+            }
+
+            .comparison-table,
+            .comparison-table tbody,
+            .comparison-table tr,
+            .comparison-table th,
+            .comparison-table td {
+                display: block;
+            }
+
+            .comparison-table tbody tr {
+                padding: var(--space-sm) 0;
+                border-bottom: 1px solid var(--color-gold-light);
+            }
+
+            .comparison-table tbody tr:last-child {
+                border-bottom: 0;
+            }
+
+            .comparison-table tbody th {
+                padding: 0 0 var(--space-xs);
+                font-family: var(--font-serif);
+                font-size: var(--fs-lg);
+                font-weight: 500;
+                color: var(--color-ink);
+                letter-spacing: var(--ls-wide);
+                border-bottom: 0;
+            }
+
+            .comparison-table td {
+                display: grid;
+                grid-template-columns: 8rem minmax(0, 1fr);
+                gap: var(--space-xs);
+                padding: var(--space-2xs) 0;
+                border-bottom: 0;
+            }
+
+            .comparison-table td::before {
+                content: attr(data-label);
+                font-weight: 600;
+                color: var(--color-text);
+            }
+        }
+/* The instrument guide continues the same paper, scale and editorial rhythm. */
+.marimba-page { padding-top: calc(var(--nav-height) + var(--space-lg)); background: var(--color-photo-cream); }
+.marimba-hero { min-height: 62svh; grid-template-columns: .85fr 1.15fr; gap: var(--space-md); margin-bottom: var(--section-space); }
+.marimba-hero-title { font-size: var(--fs-heading); line-height: 1.7; }
+.marimba-hero-subtitle { font-size: var(--fs-base); }
+.marimba-hero-figure { mix-blend-mode: multiply; }
+.marimba-hero-figure img { border-radius: 0; mask-image: radial-gradient(ellipse 80% 70% at 55% 50%, #000 55%, transparent 85%); }
+.marimba-section { margin-bottom: var(--section-space); }
+.marimba-section-title { border-color: var(--color-paper-line); padding-top: var(--space-ms); font-size: var(--fs-2xl); margin-bottom: var(--space-ml); }
+.marimba-feature { border-top: 1px solid var(--color-paper-line); padding-top: var(--space-ms); }
+.marimba-feature-title { color: var(--color-rose-deep); }
+.marimba-text { font-size: var(--fs-md); line-height: 2.2; }
+.cta-section { max-width: none; background: var(--color-wine); color: var(--color-photo-cream); padding: var(--space-lg); border: 0; }
+.cta-title, .cta-text { color: inherit; }
+.cta-section .btn { color: var(--color-wine); background: var(--color-photo-cream); }
+.back-link { padding-block: var(--space-sm); }
+@media (max-width: 900px) {
+    .marimba-hero { grid-template-columns: 1fr; min-height: 0; gap: var(--space-md); }
+    .marimba-hero-figure { max-width: var(--w-reading); margin-inline: auto; }
+}
+@media (max-width: 600px) {
+    .marimba-page { padding-top: calc(var(--nav-height) + var(--space-md)); }
+    .marimba-hero { margin-bottom: var(--space-ml); }
+    .marimba-hero-title { max-width: 10em; font-size: var(--fs-2xl); }
+    .marimba-hero-figure { margin-inline: calc(-1 * var(--space-ms)); width: calc(100% + 2 * var(--space-ms)); }
+    .marimba-section-title { font-size: var(--fs-xl); margin-bottom: var(--space-md); }
+    .marimba-text { font-size: var(--fs-base); }
+    .cta-section { padding: var(--space-ml) var(--space-ms); }
+    .cta-title { font-size: var(--fs-lg); }
+    .comparison-table td { grid-template-columns: 6.5rem minmax(0, 1fr); }
+}

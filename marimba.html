@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="ja" class="no-js">
 <head>
-    <script>document.documentElement.classList.replace('no-js', 'js');</script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>マリンバってどんな楽器？ | 第18回マリンバ北星会 午後のコンサート〜結〜</title>
@@ -17,381 +16,13 @@
 
     <!-- Styles -->
     <link rel="stylesheet" href="css/style.css">
-    <style>
-        /* マリンバページ専用スタイル
-           配色・タイポ・余白は共通のトークンに従い、
-           トップページと同じ語彙（金のヘアライン・明朝の見出し・罫線の区切り）で組む */
-        .marimba-page {
-            padding-top: calc(var(--nav-height) + var(--space-xl));
-            padding-bottom: var(--space-xl);
-            background: linear-gradient(180deg,
-                var(--color-photo-cream) 0%,
-                var(--color-bg-alt) 40%,
-                var(--color-bg) 100%);
-        }
+    <link rel="stylesheet" href="css/marimba.css">
 
-        /* --- ヒーロー：文章とイラストを重ねずに左右へ --- */
-        .marimba-hero {
-            display: grid;
-            grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-            align-items: center;
-            gap: clamp(var(--space-md), 4vw, var(--space-lg));
-            max-width: var(--w-wide);
-            margin: 0 auto var(--space-xl);
-        }
-
-        .marimba-hero-text {
-            max-width: var(--w-reading);
-        }
-
-        .marimba-hero-title {
-            font-family: var(--font-serif);
-            font-size: clamp(var(--fs-2xl), 4.5vw, var(--fs-3xl));
-            font-weight: 500;
-            line-height: var(--lh-tight);
-            color: var(--color-ink);
-            letter-spacing: var(--ls-wide);
-            margin-bottom: var(--space-sm);
-            /* 「楽器？」だけが行に残らないようにする */
-            text-wrap: balance;
-        }
-
-        .marimba-hero-subtitle {
-            font-size: var(--fs-md);
-            line-height: var(--lh-body);
-            color: var(--color-text-light);
-        }
-
-        .marimba-hero-figure {
-            justify-self: start;
-            width: 100%;
-            margin: 0;
-        }
-
-        .marimba-hero-figure img {
-            display: block;
-            width: 100%;
-            height: auto;
-            border-radius: var(--radius-lg);
-        }
-
-        /* --- セクション：コンテナ幅は全セクション共通。
-               タイトルの罫線と左端の基準線を1本に揃え、
-               行長は本文側（--w-reading）だけで制御する --- */
-        .marimba-section {
-            max-width: var(--w-wide);
-            margin: 0 auto var(--space-xl);
-        }
-
-        .marimba-section-title {
-            font-family: var(--font-serif);
-            font-size: var(--fs-2xl);
-            font-weight: 500;
-            color: var(--color-ink);
-            letter-spacing: var(--ls-wide);
-            padding-bottom: var(--space-sm);
-            margin-bottom: var(--space-ml);
-            border-bottom: 1px solid var(--color-gold-light);
-        }
-
-        /* 本文の行長は全セクション共通。日本語40〜45字を超えさせない */
-        .marimba-text {
-            max-width: var(--w-reading);
-            font-size: var(--fs-base);
-            line-height: var(--lh-body);
-            color: var(--color-text-light);
-            margin-bottom: var(--space-ms);
-        }
-
-        .marimba-text:last-child {
-            margin-bottom: 0;
-        }
-
-        .marimba-text strong {
-            color: var(--color-ink);
-            font-weight: 600;
-        }
-
-        /* --- 魅力：箱で囲わず、金の縦罫で区切る --- */
-        .marimba-features {
-            display: grid;
-            grid-template-columns: repeat(3, minmax(0, 1fr));
-            gap: var(--space-ml);
-        }
-
-        .marimba-feature {
-            padding-left: var(--space-md);
-            border-left: 1px solid var(--color-gold-light);
-        }
-
-        .marimba-feature-title {
-            font-family: var(--font-serif);
-            font-size: var(--fs-lg);
-            font-weight: 500;
-            color: var(--color-ink);
-            letter-spacing: var(--ls-wide);
-            margin-bottom: var(--space-xs);
-        }
-
-        .marimba-feature-text {
-            font-size: var(--fs-base);
-            line-height: var(--lh-body);
-            color: var(--color-text-light);
-        }
-
-        /* --- 用語の解説：太字ベタ組みをやめ、小見出しとして立たせる --- */
-        .marimba-parts {
-            max-width: var(--w-reading);
-        }
-
-        .marimba-parts dt {
-            font-family: var(--font-serif);
-            font-size: var(--fs-lg);
-            font-weight: 500;
-            color: var(--color-ink);
-            letter-spacing: var(--ls-wide);
-            margin-bottom: var(--space-2xs);
-        }
-
-        .marimba-parts dd {
-            font-size: var(--fs-base);
-            line-height: var(--lh-body);
-            color: var(--color-text-light);
-            margin-bottom: var(--space-ms);
-        }
-
-        .marimba-parts dd:last-child {
-            margin-bottom: 0;
-        }
-
-        /* --- ジャンル：トップページのFAQと同じ罫線リストの語彙で --- */
-        .marimba-genres {
-            max-width: var(--w-reading);
-            margin-bottom: var(--space-ms);
-            border-top: 1px solid var(--color-gold-light);
-        }
-
-        .marimba-genre {
-            display: grid;
-            grid-template-columns: 13rem minmax(0, 1fr);
-            gap: var(--space-sm);
-            padding: var(--space-sm) 0;
-            border-bottom: 1px solid var(--color-gold-light);
-        }
-
-        .marimba-genre dt {
-            font-weight: 600;
-            font-size: var(--fs-base);
-            line-height: var(--lh-snug);
-            color: var(--color-text);
-        }
-
-        .marimba-genre dd {
-            font-size: var(--fs-base);
-            line-height: var(--lh-snug);
-            color: var(--color-text-light);
-        }
-
-        /* --- 比較表：狭い画面では潰さず横に送る --- */
-        .table-scroll {
-            overflow-x: auto;
-        }
-
-        .comparison-table {
-            min-width: 34rem;
-            width: 100%;
-            border-collapse: collapse;
-            font-size: var(--fs-base);
-        }
-
-        .comparison-table th,
-        .comparison-table td {
-            padding: var(--space-sm) var(--space-ms);
-            text-align: left;
-            border-bottom: 1px solid var(--color-gold-light);
-        }
-
-        .comparison-table thead th {
-            font-size: var(--fs-xs);
-            font-weight: 600;
-            letter-spacing: var(--ls-wide);
-            color: var(--color-gold-deep);
-            border-bottom-color: var(--color-gold);
-        }
-
-        .comparison-table tbody th {
-            font-weight: 600;
-            color: var(--color-text);
-            white-space: nowrap;
-        }
-
-        .comparison-table td {
-            color: var(--color-text-light);
-        }
-
-        .comparison-table tbody tr:last-child th,
-        .comparison-table tbody tr:last-child td {
-            border-bottom: 0;
-        }
-
-        /* --- 結びのCTA --- */
-        .cta-section {
-            max-width: var(--w-text);
-            margin: 0 auto;
-            padding: var(--space-ml) 0;
-            border-top: 1px solid var(--color-gold-light);
-            text-align: center;
-        }
-
-        .cta-title {
-            font-family: var(--font-serif);
-            font-size: var(--fs-xl);
-            font-weight: 500;
-            color: var(--color-ink);
-            letter-spacing: var(--ls-wide);
-            margin-bottom: var(--space-xs);
-        }
-
-        .cta-text {
-            font-size: var(--fs-base);
-            color: var(--color-text-light);
-            margin-bottom: var(--space-ms);
-        }
-
-        .back-link-wrap {
-            margin-top: var(--space-xl);
-            text-align: center;
-        }
-
-        .back-link {
-            display: inline-flex;
-            align-items: baseline;
-            gap: var(--space-xs);
-            font-size: var(--fs-base);
-            color: var(--color-text-light);
-            transition: color var(--transition-fast);
-        }
-
-        .back-link:hover {
-            color: var(--color-rose-deep);
-        }
-
-        .back-link-icon {
-            color: var(--color-gold);
-        }
-
-        @media screen and (max-width: 900px) {
-            .marimba-hero {
-                grid-template-columns: 1fr;
-                gap: var(--space-md);
-            }
-
-            .marimba-hero-figure {
-                justify-self: stretch;
-                max-width: none;
-            }
-
-            .marimba-features {
-                grid-template-columns: 1fr;
-                gap: var(--space-md);
-            }
-        }
-
-        @media screen and (max-width: 600px) {
-            .marimba-genre {
-                grid-template-columns: 1fr;
-                gap: var(--space-2xs);
-            }
-        }
-
-        @media screen and (max-width: 768px) {
-            .marimba-page {
-                padding-top: calc(var(--nav-height) + var(--space-ml));
-            }
-
-            /* 30pxのままだと見出しが2行に割れ、日本語として不自然な位置で折り返す */
-            .marimba-section-title {
-                font-size: var(--fs-xl);
-                margin-bottom: var(--space-md);
-            }
-
-            .comparison-table {
-                font-size: var(--fs-sm);
-            }
-
-            .comparison-table th,
-            .comparison-table td {
-                padding: var(--space-xs) var(--space-sm);
-            }
-        }
-
-        /* --- 狭い画面の比較表：3列を横に並べる幅がないため、
-               横スクロールをやめて項目ごとのブロックに組み替える --- */
-        @media screen and (max-width: 600px) {
-            .table-scroll {
-                overflow-x: visible;
-            }
-
-            .comparison-table {
-                min-width: 0;
-            }
-
-            /* 列見出しは data-label に持たせるので、読み上げにだけ残す */
-            .comparison-table thead {
-                position: absolute;
-                width: 1px;
-                height: 1px;
-                overflow: hidden;
-                clip-path: inset(50%);
-                white-space: nowrap;
-            }
-
-            .comparison-table,
-            .comparison-table tbody,
-            .comparison-table tr,
-            .comparison-table th,
-            .comparison-table td {
-                display: block;
-            }
-
-            .comparison-table tbody tr {
-                padding: var(--space-sm) 0;
-                border-bottom: 1px solid var(--color-gold-light);
-            }
-
-            .comparison-table tbody tr:last-child {
-                border-bottom: 0;
-            }
-
-            .comparison-table tbody th {
-                padding: 0 0 var(--space-xs);
-                font-family: var(--font-serif);
-                font-size: var(--fs-lg);
-                font-weight: 500;
-                color: var(--color-ink);
-                letter-spacing: var(--ls-wide);
-                border-bottom: 0;
-            }
-
-            .comparison-table td {
-                display: grid;
-                grid-template-columns: 8rem minmax(0, 1fr);
-                gap: var(--space-xs);
-                padding: var(--space-2xs) 0;
-                border-bottom: 0;
-            }
-
-            .comparison-table td::before {
-                content: attr(data-label);
-                font-weight: 600;
-                color: var(--color-text);
-            }
-        }
-    </style>
 </head>
-<body>
+<body class="page-marimba">
+    <a class="skip-link" href="#main">本文へスキップ</a>
     <!-- ナビゲーション -->
-    <nav class="nav">
+    <nav class="nav" aria-label="メインナビゲーション">
         <div class="nav-container">
             <a href="index.html" class="nav-logo">結</a>
             <button class="nav-toggle" type="button" aria-label="メニューを開く" aria-expanded="false" aria-controls="nav-menu">
@@ -404,7 +35,7 @@
                 <li><a href="index.html#program">プログラム</a></li>
                 <li><a href="index.html#listen">動画</a></li>
                 <li><a href="index.html#artists">出演者</a></li>
-                <li><a href="index.html#ticket">チケット</a></li>
+                <li><a href="index.html#ticket" class="nav-ticket">チケット<span aria-hidden="true"> ↗</span></a></li>
                 <li><a href="index.html#access">アクセス</a></li>
                 <li><a href="index.html#faq">FAQ</a></li>
                 <li><a href="index.html#contact">お問い合わせ</a></li>
@@ -412,10 +43,10 @@
         </div>
     </nav>
 
-    <main class="marimba-page">
+    <main class="marimba-page" id="main" tabindex="-1">
         <div class="container">
             <!-- ヒーロー：イラストと文章を分けて置く -->
-            <section class="marimba-hero fade-in">
+            <section class="marimba-hero">
                 <div class="marimba-hero-text">
                     <h1 class="marimba-hero-title">マリンバってどんな楽器？</h1>
                     <p class="marimba-hero-subtitle">木の温もりが奏でる、癒しの打楽器</p>
@@ -429,7 +60,7 @@
             </section>
 
             <!-- 基本説明 -->
-            <section class="marimba-section fade-in">
+            <section class="marimba-section">
                 <h2 class="marimba-section-title">マリンバとは</h2>
                 <p class="marimba-text">
                     マリンバは<strong>木の板を並べた大きな打楽器</strong>です。
@@ -451,7 +82,7 @@
             </section>
 
             <!-- 特徴 -->
-            <section class="marimba-section fade-in">
+            <section class="marimba-section">
                 <h2 class="marimba-section-title">マリンバの魅力</h2>
                 <ul class="marimba-features">
                     <li class="marimba-feature">
@@ -479,7 +110,7 @@
             </section>
 
             <!-- 仕組み -->
-            <section class="marimba-section fade-in">
+            <section class="marimba-section">
                 <h2 class="marimba-section-title">マリンバの仕組み</h2>
                 <p class="marimba-text">
                     マリンバは主に以下の部分で構成されています。
@@ -506,7 +137,7 @@
             </section>
 
             <!-- 比較表 -->
-            <section class="marimba-section fade-in">
+            <section class="marimba-section">
                 <h2 class="marimba-section-title">木琴・シロフォンとの違い</h2>
                 <div class="table-scroll">
                     <table class="comparison-table">
@@ -549,7 +180,7 @@
             </section>
 
             <!-- 演奏曲目 -->
-            <section class="marimba-section fade-in">
+            <section class="marimba-section">
                 <h2 class="marimba-section-title">どんな曲が演奏できるの？</h2>
                 <p class="marimba-text">
                     マリンバはとても幅広いジャンルの曲を演奏できます。
@@ -579,7 +210,7 @@
             </section>
 
             <!-- CTA -->
-            <div class="cta-section fade-in">
+            <div class="cta-section">
                 <h2 class="cta-title">マリンバの音色を体験しませんか？</h2>
                 <p class="cta-text">2026年10月25日（日）、HITARUクリエイティブスタジオにて</p>
                 <a href="index.html#ticket" class="btn btn--primary">
@@ -609,38 +240,6 @@
         </div>
     </footer>
 
-    <script>
-        // ナビゲーションのトグル
-        const navToggle = document.querySelector('.nav-toggle');
-        const navMenu = document.querySelector('.nav-menu');
-
-        const setNavOpen = (open) => {
-            navMenu.classList.toggle('active', open);
-            navToggle.classList.toggle('active', open);
-            navToggle.setAttribute('aria-expanded', String(open));
-            navToggle.setAttribute('aria-label', open ? 'メニューを閉じる' : 'メニューを開く');
-        };
-
-        navToggle.addEventListener('click', () => {
-            setNavOpen(!navMenu.classList.contains('active'));
-        });
-
-        document.querySelectorAll('.nav-menu a').forEach(link => {
-            link.addEventListener('click', () => setNavOpen(false));
-        });
-
-        // スクロールアニメーション
-        const observer = new IntersectionObserver((entries, obs) => {
-            entries.forEach(entry => {
-                if (!entry.isIntersecting) return;
-                entry.target.classList.add('visible');
-                obs.unobserve(entry.target);
-            });
-        }, { rootMargin: '0px 0px -8% 0px', threshold: 0.15 });
-
-        document.querySelectorAll('.fade-in, .fade-in-left, .fade-in-right, .scale-in').forEach(el => {
-            observer.observe(el);
-        });
-    </script>
+    <script src="js/site.js" defer></script>
 </body>
 </html>

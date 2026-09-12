@@ -16,7 +16,7 @@ https://toshiki-yasuda.github.io/yui/
 
 ## 技術仕様
 
-- HTML5 + CSS3
+- HTML5 + CSS3 + 依存ライブラリを使わない JavaScript
 - レスポンシブデザイン（モバイルファースト）
 - GitHub Pages でホスティング
 
@@ -29,7 +29,11 @@ yui/
 ├── pamphlet.html       # 印刷入稿用パンフレット（塗り足し対応）
 ├── flyer.html          # A4フライヤー（印刷用）
 ├── css/
-│   └── style.css       # スタイルシート
+│   ├── style.css       # 共通・メインページのスタイル
+│   └── marimba.css     # 楽器紹介のスタイル
+├── js/site.js          # ナビゲーション・スクロール・動画・画像拡大
+├── scripts/check-site.py # 内容とリンクの整合性検証
+├── docs/redesign-review.md # デザイン方針・検証記録
 ├── images/             # 画像フォルダ
 ├── favicon.svg         # ファビコン（「結」の文字）
 └── README.md           # このファイル
@@ -41,8 +45,18 @@ yui/
 # リポジトリをクローン
 git clone https://github.com/Toshiki-Yasuda/yui.git
 
-# index.htmlをブラウザで開く
-# または Live Server などで起動
+# リポジトリ内でローカルサーバーを起動
+python3 -m http.server 8001 --bind 127.0.0.1
+```
+
+[http://127.0.0.1:8001/index.html](http://127.0.0.1:8001/index.html) を開きます。ビルドは不要です。
+
+変更後は次の検証を実行します。`--baseline` は比較する変更前のコミットです。
+
+```bash
+python3 scripts/check-site.py --baseline cd9b215
+node --check js/site.js
+git diff --check
 ```
 
 ## 更新履歴
