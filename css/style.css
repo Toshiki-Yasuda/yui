@@ -275,7 +275,7 @@ ul { list-style: none; }
 .artist--yasuda .artist-name { font-size: var(--fs-heading); }
 .artist-instrument { font-size: var(--fs-sm); color: var(--color-rose-deep); letter-spacing: .07em; margin-top: var(--space-xs); }
 .artist-role { font-size: var(--fs-sm); margin-top: var(--space-sm); color: var(--color-text-light); }
-.artist-lead-badge { position: absolute; bottom: 0; left: 0; padding: var(--space-xs) var(--space-sm); background: var(--color-bg-alt); font-size: var(--fs-xs); color: var(--color-rose-deep); letter-spacing: .06em; }
+.artist-lead-badge { position: absolute; top: 0; right: 0; padding: var(--space-xs) var(--space-sm); background: var(--color-bg-alt); font-size: var(--fs-xs); color: var(--color-rose-deep); letter-spacing: .06em; }
 .artist-info { border-top: 1px solid var(--color-paper-line); }
 .artist-bio-toggle summary { list-style: none; padding-block: var(--space-sm); display: flex; align-items: center; justify-content: space-between; font-size: var(--fs-sm); color: var(--color-rose-deep); }
 summary::-webkit-details-marker { display: none; }
