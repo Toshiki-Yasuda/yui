@@ -465,7 +465,7 @@ body:has(.lightbox[open]) { overflow: hidden; }
     .date-year, .date-weekday { font-size: var(--fs-xs); }
     .hero-fact-sub { font-size: var(--fs-2xs); margin-top: var(--space-2xs); }
     .hero-booking { display: block; }
-    .hero-actions { display: grid; grid-template-columns: 1.6fr 1fr; gap: var(--space-sm); }
+    .hero-actions { display: grid; grid-template-columns: 1fr; gap: var(--space-sm); }
     .hero-actions .btn { gap: var(--space-2xs); font-size: var(--fs-xs); padding-inline: var(--space-xs); white-space: nowrap; }
     .hero-countdown { margin-top: var(--space-xs); text-align: right; }
     .hero-countdown-num { font-size: var(--fs-base); }
