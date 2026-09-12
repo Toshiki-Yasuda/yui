@@ -79,6 +79,15 @@ def main():
                 assert parsed.fragment in documents[target].ids, f'{name}: broken anchor {url}'
         if args.baseline:
             original_html = subprocess.check_output(['git', 'show', f'{args.baseline}:{name}'], cwd=ROOT, text=True)
+            # Explicit user corrections on 2026-09-12, after the initial redesign.
+            # Normalize only these approved edits; all other preservation checks remain.
+            if name == 'index.html':
+                original_html = original_html.replace(
+                    '<a href="#program" class="btn btn--ghost">演奏を聴く</a>', '')
+                original_html = original_html.replace(
+                    'ほか、当日のお楽しみに数曲を予定しております',
+                    '当日のお楽しみも含め、全12曲程度をお届けする予定です。')
+                original_html = original_html.replace('応援・ファンレター', '応援・ご支援はこちらから')
             original = Document(original_html)
             text = ''.join(page.text)
             missing = [segment for segment in original.text if segment not in text]
