@@ -1,0 +1,19 @@
+{
+  "source": "adams_classic_55_v5.blend",
+  "source_sha256": "28efca0b1b90b108ddd69cbf9ef4cc549da66aaad73bba3e4f9b7d62aacaa2d9",
+  "blender": "5.2.1 LTS",
+  "bars": 68,
+  "source_objects": 1691,
+  "source_triangles": 1019528,
+  "web_objects": 16,
+  "web_triangles": 411238,
+  "wood_objects": 80,
+  "wood_atlas": [
+    4096,
+    4096
+  ],
+  "roughness_atlas": [
+    1024,
+    1024
+  ]
+}

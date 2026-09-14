@@ -1,0 +1,44 @@
+{
+  "bytes": 1020992,
+  "sha256": "8dc2dc92cc4ec62d9489ab7334615c21ee5ae2e6a714ac71b52e34bff9db769b",
+  "triangles": 177300,
+  "primitives": 3,
+  "textures": [
+    {
+      "name": "wood-color",
+      "dimensions": [
+        2048,
+        2048
+      ],
+      "bytes": 297588
+    },
+    {
+      "name": "wood-roughness",
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "bytes": 20188
+    },
+    {
+      "name": "PaletteBaseColor",
+      "dimensions": [
+        64,
+        4
+      ],
+      "bytes": 194
+    },
+    {
+      "name": "PaletteMetallicRoughness",
+      "dimensions": [
+        64,
+        4
+      ],
+      "bytes": 226
+    }
+  ],
+  "validation": {
+    "errors": 0,
+    "warnings": 0
+  }
+}
