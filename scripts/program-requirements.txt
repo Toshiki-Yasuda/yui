@@ -1,0 +1,5 @@
+weasyprint==70.0
+pypdf==6.18.1
+fonttools==4.65.0
+Pillow==12.3.0
+brotli==1.2.0

@@ -1,0 +1,37 @@
+@font-face{font-family:ProgramSerif;src:url('../fonts/program-trifold/NotoSerifJP-Regular.ttf');font-weight:400}
+@font-face{font-family:ProgramSerif;src:url('../fonts/program/NotoSerifJP-Medium.ttf');font-weight:500}
+@font-face{font-family:ProgramSans;src:url('../fonts/program/NotoSansJP-Regular.ttf');font-weight:400}
+*{box-sizing:border-box}body,h1,h2,h3,p,figure{margin:0;padding:0}
+body{font-family:ProgramSerif,serif;color:#33302C;background:#FAF7F2}
+.panel{width:var(--w);height:var(--h);padding:9mm 9mm 14mm;position:relative;break-after:page;background:#FAF7F2}
+.panel:last-child{break-after:auto}
+.notes{padding-left:8mm;padding-right:8mm}
+.heading{height:10mm;border-top:.4pt solid #B98D95;padding-top:2mm;margin-bottom:2mm;display:flex;align-items:baseline;gap:3mm}
+.heading>span{font:italic 9pt Georgia,serif;color:#874D57}
+.heading h2{font-size:15pt;line-height:1.5;font-weight:400;color:#874D57}
+.song{margin-bottom:3mm;break-inside:avoid}
+.song h3{font-size:14pt;line-height:1.4;font-weight:500;margin-bottom:1mm}
+.inline-credit{font:10.5pt/1.45 ProgramSans,sans-serif;color:#57514C;white-space:nowrap}
+.number{font:15pt Georgia,serif;color:#84642B;margin-right:2mm}
+.credits{font:10.5pt/1.45 ProgramSans,sans-serif;color:#57514C;margin:1mm 0 1.5mm}
+.note{font-size:var(--body);line-height:var(--leading);text-align:justify;line-break:strict}
+.note+.note{margin-top:.6mm}
+footer{position:absolute;left:8mm;right:8mm;bottom:7mm;display:flex;justify-content:space-between;font:9pt ProgramSans,sans-serif;color:#57514C}
+.intermission{margin-top:7mm;border-top:.4pt solid #B98D95;padding-top:3mm;font:11pt/1.7 ProgramSerif,serif}
+.cover{padding:0;text-align:center}
+.cover>header{position:absolute;top:12mm;left:5mm;right:5mm;z-index:1}
+.cover>header p{font-size:11pt;letter-spacing:.05em}
+.cover>header h2{font-size:17pt;letter-spacing:.12em;font-weight:400;color:#874D57;margin-top:2mm}
+.cover-art{position:absolute;top:30mm;left:0;width:100%;height:auto}
+.event{position:absolute;bottom:15mm;left:7mm;right:7mm;font-size:12pt;line-height:1.8}
+.date{font-size:12pt;margin-bottom:1mm}.date strong{font-size:24pt;font-weight:400}
+.venue{font-size:12pt;line-height:1.65;border-top:.4pt solid #B98D95;margin-top:3mm;padding-top:3mm}
+.artists .heading{margin-bottom:1mm;height:10mm}
+.artist{margin-bottom:6mm}.artist header{display:flex;align-items:center;gap:5mm;margin-bottom:3mm;height:34mm}
+.artist header img{width:36mm;height:36mm;object-fit:contain}
+.artist header>div{flex:1;border-bottom:.4pt solid #D9CFC3;padding-bottom:2mm}
+.artist h3{font-size:17pt;font-weight:400;margin-bottom:1mm}.artist i{font:italic 11pt Georgia,serif;color:#874D57}
+.bio{font-size:var(--body);line-height:var(--leading);text-align:justify;line-break:strict}
+.bio+.bio{margin-top:1mm}
+.artist:first-of-type .bio:last-child{letter-spacing:-.012em}
+.organizers{font:10.5pt/1.7 ProgramSans,sans-serif;border-top:.4pt solid #B98D95;padding-top:2mm;margin-top:3mm}

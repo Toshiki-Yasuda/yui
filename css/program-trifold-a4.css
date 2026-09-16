@@ -1,0 +1,29 @@
+/* A4 original-size composition, not a scaled copy of the A3 layout. */
+.panel{padding:5.5mm 5.5mm 10mm}
+.heading{height:8mm;margin-bottom:1.5mm;padding-top:1mm;gap:2mm}
+.heading>span{font-size:7.5pt}
+.heading h2{font-size:11.5pt}
+.song{margin-bottom:2.2mm}
+.song h3{font-size:10.5pt;line-height:1.35;margin-bottom:.7mm}
+.number{font-size:11.5pt;margin-right:1.5mm}
+.credits,.inline-credit{font-size:8pt;line-height:1.4}
+.credits{margin:.5mm 0 1mm}
+.note+.note{margin-top:.4mm}
+footer{left:5.5mm;right:5.5mm;bottom:5.5mm;font-size:7pt}
+.intermission{margin-top:4mm;padding-top:2mm;font-size:9pt}
+.cover{padding:0}
+.cover>header{top:7mm}
+.cover>header p{font-size:8pt}
+.cover>header h2{font-size:12pt;margin-top:1mm}
+.cover-art{top:0;left:0;width:99mm;height:210mm;object-fit:cover}
+.event{bottom:10mm;left:5.5mm;right:5.5mm;font-size:9pt;line-height:1.7}
+.date{font-size:9pt}.date strong{font-size:18pt}
+.venue{font-size:9pt;margin-top:2mm;padding-top:2mm}
+.artists .heading{height:8mm;margin-bottom:3mm}
+.artist{margin-bottom:5mm}
+.artist header{display:flex;align-items:baseline;gap:3mm;height:auto;margin-bottom:2.5mm;padding:1mm 0 1.5mm;border-bottom:.35pt solid #D9CFC3}
+.artist h3{font-size:16pt;margin-bottom:0}
+.artist i{font-size:10pt}
+.bio{font-size:10.5pt;line-height:14.5pt}
+.bio+.bio{margin-top:.7mm}
+.organizers{position:absolute;left:5.5mm;right:5.5mm;bottom:8mm;font-size:8pt;line-height:1.65;padding-top:2mm;margin-top:3mm}

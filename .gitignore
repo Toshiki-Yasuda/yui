@@ -20,3 +20,8 @@ node_modules/
 
 # エージェント用の作業コピー
 .claude/worktrees/
+
+# 印刷PDFの生成・検証用（一時データ）
+tmp/pdfs/
+.venv-print/
+__pycache__/
