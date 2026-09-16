@@ -88,6 +88,10 @@ def main():
                     'ほか、当日のお楽しみに数曲を予定しております',
                     '当日のお楽しみも含め、全12曲程度をお届けする予定です。')
                 original_html = original_html.replace('応援・ファンレター', '応援・ご支援はこちらから')
+                # User-selected concert share image, approved on 2026-09-16.
+                original_html = original_html.replace(
+                    'https://toshiki-yasuda.github.io/yui/images/ogp.jpg',
+                    'https://toshiki-yasuda.github.io/yui/images/ogp-concert-2026.jpg')
             original = Document(original_html)
             text = ''.join(page.text)
             missing = [segment for segment in original.text if segment not in text]
