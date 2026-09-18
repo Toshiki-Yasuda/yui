@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<title>立体で見るマリンバ | 午後のコンサート〜結〜</title>
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/marimba-model.css">
+</head>
+<body>
+<main class="container model-page">
+<a class="model-back" href="marimba.html">← マリンバの紹介に戻る</a>
+            <section class="marimba-section marimba-model" id="marimba-3d" aria-labelledby="model-title">
+                <div class="model-heading">
+                    <h1 class="marimba-section-title" id="model-title">立体で見るマリンバ<span class="model-title-note">（画像から生成した３Dモデル）</span></h1>
+                    <p class="marimba-text">音板の並びや共鳴管、脚のつくりを、いろいろな角度から。今回の特注楽器そのものを再現したモデルではありません。</p>
+                </div>
+                <figure class="model-figure">
+                    <div class="model-stage" aria-busy="false">
+                        <img class="model-poster" src="images/marimba-3d-poster.webp" width="1600" height="1000" loading="lazy" decoding="async" alt="68枚の木製音板、低音側の折れ曲がった共鳴管、調整機構付きの脚を備えたマリンバの3Dモデル確認画像">
+                        <div class="model-mount"></div>
+                        <div class="model-start-wrap"><button class="btn btn--primary model-start" type="button" hidden>3Dで見る <span aria-hidden="true">↗</span></button></div>
+                    </div>
+                    <div class="model-toolbar" hidden aria-label="3Dモデルの操作">
+                        <div class="model-control-group" role="group" aria-label="回転">
+                            <button type="button" data-model-action="left" aria-label="左へ回転">←</button>
+                            <button type="button" data-model-action="right" aria-label="右へ回転">→</button>
+                            <button type="button" data-model-action="up" aria-label="上から見る">↑</button>
+                            <button type="button" data-model-action="down" aria-label="下から見る">↓</button>
+                        </div>
+                        <div class="model-control-group" role="group" aria-label="拡大と縮小">
+                            <button type="button" data-model-action="in" aria-label="拡大">＋</button>
+                            <button type="button" data-model-action="out" aria-label="縮小">−</button>
+                        </div>
+                        <button class="model-reset" type="button" data-model-action="reset">元の角度へ</button>
+                    </div>
+                    <div class="model-message">
+                        <p class="model-status" role="status" aria-live="polite"></p>
+                        <p class="model-help" id="model-help" hidden>ドラッグで回転、ホイール・ピンチで拡大縮小。スマートフォンは縦にスワイプするとページをスクロールできます。</p>
+                        <noscript><p>3Dの操作にはJavaScriptが必要です。確認画像はそのままご覧いただけます。</p></noscript>
+                    </div>
+                    <figcaption class="model-caption">ADAMS Artist Classic 5.5オクターブを参考にした3Dモデル</figcaption>
+                </figure>
+            </section>
+
+</main>
+<script src="js/marimba-3d.js" type="module"></script>
+</body>
+</html>
