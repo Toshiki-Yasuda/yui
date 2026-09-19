@@ -15,6 +15,9 @@
     let frame = 0;
     const visibleScenes = new Set();
     const scenes = [...document.querySelectorAll('.hero, .concept, .marimba-intro')];
+    const knot = document.querySelector('.knot');
+    const conceptStory = document.querySelector('.concept-story');
+    const conceptStatement = document.querySelector('.concept-statement');
     const knotPaths = [...document.querySelectorAll('.knot-ink path')];
     const portrait = document.querySelector('.hero-figure');
     const heroTitle = document.querySelector('.hero-title');
@@ -38,6 +41,10 @@
         const viewportHeight = window.innerHeight;
         const y = window.scrollY;
         const maxScroll = document.documentElement.scrollHeight - viewportHeight;
+        const knotTop = !reducedMotion.matches && knot && conceptStory && conceptStatement
+            ? conceptStory.getBoundingClientRect().top + y
+                + knot.getBoundingClientRect().top - conceptStatement.getBoundingClientRect().top
+            : 0;
         const metrics = reducedMotion.matches ? [] : [...visibleScenes].map(element => ({
             element, bounds: element.getBoundingClientRect()
         }));
@@ -50,7 +57,11 @@
                 if (portrait) portrait.style.transform = `translateY(${amount * 32}px)`;
                 if (heroTitle) heroTitle.style.transform = `translateY(${-amount * 20}px)`;
             } else if (element.classList.contains('concept')) {
-                const progress = clamp((viewportHeight * .7 - bounds.top) / (bounds.height * .85));
+                // The stacked mobile layout needs an earlier start; on wide screens the
+                // knot remains beside the copy, so its more deliberate timing is retained.
+                const startLine = viewportHeight * (mobile.matches ? .82 : .52);
+                const travel = viewportHeight * (mobile.matches ? .68 : .75);
+                const progress = knot ? clamp((y - (knotTop - startLine)) / travel) : 0;
                 for (const path of knotPaths) path.style.strokeDashoffset = String(1 - progress);
             } else if (instrument && window.innerWidth > 600) {
                 const progress = clamp((viewportHeight - bounds.top) / (viewportHeight + bounds.height));
