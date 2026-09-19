@@ -60,7 +60,7 @@
                 // The stacked mobile layout needs an earlier start; on wide screens the
                 // knot remains beside the copy, so its more deliberate timing is retained.
                 const startLine = viewportHeight * (mobile.matches ? .82 : .52);
-                const travel = viewportHeight * (mobile.matches ? .68 : .75);
+                const travel = viewportHeight * (mobile.matches ? .82 : .75);
                 const progress = knot ? clamp((y - (knotTop - startLine)) / travel) : 0;
                 for (const path of knotPaths) path.style.strokeDashoffset = String(1 - progress);
             } else if (instrument && window.innerWidth > 600) {
