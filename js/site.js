@@ -62,7 +62,12 @@
                 const startLine = viewportHeight * (mobile.matches ? .82 : .52);
                 const travel = viewportHeight * (mobile.matches ? .82 : .75);
                 const progress = knot ? clamp((y - (knotTop - startLine)) / travel) : 0;
-                for (const path of knotPaths) path.style.strokeDashoffset = String(1 - progress);
+                for (const [index, path] of knotPaths.entries()) {
+                    const delay = index * .055;
+                    const lineProgress = clamp((progress - delay) / (1 - delay));
+                    path.style.strokeDashoffset = String(1 - lineProgress);
+                    path.style.visibility = lineProgress > 0 ? 'visible' : 'hidden';
+                }
             } else if (instrument && window.innerWidth > 600) {
                 const progress = clamp((viewportHeight - bounds.top) / (viewportHeight + bounds.height));
                 instrument.style.transform = `translateY(${(1 - progress) * 24 - 12}px)`;
@@ -76,7 +81,8 @@
         for (const item of [portrait, heroTitle, instrument]) item?.style.removeProperty('transform');
         for (const path of knotPaths) {
             path.style.strokeDasharray = reducedMotion.matches ? 'none' : '1';
-            path.style.strokeDashoffset = '0';
+            path.style.strokeDashoffset = reducedMotion.matches ? '0' : '1';
+            path.style.visibility = reducedMotion.matches ? 'visible' : 'hidden';
         }
         scheduleFrame();
     }
