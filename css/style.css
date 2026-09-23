@@ -239,6 +239,7 @@ ul { list-style: none; }
 .program-name { grid-column: 1; font-family: var(--font-serif); font-size: var(--fs-xl); line-height: var(--lh-snug); letter-spacing: .03em; align-self: end; }
 .program-composer { grid-column: 1; font-size: var(--fs-sm); color: var(--color-text-muted); margin-top: var(--space-xs); }
 .program-description { grid-column: 2; grid-row: 1 / 3; line-height: 2; max-width: var(--w-reading); color: var(--color-text-light); }
+.program-description p + p { margin-top: var(--space-sm); }
 .program-video { grid-column: 1 / -1; margin-top: var(--space-ml); max-width: var(--w-wide); }
 .program-video-main { display: grid; grid-template-columns: minmax(0, 1fr) 216px; gap: var(--space-ms); align-items: center; }
 .program-video-main .video { grid-column: 2; grid-row: 1; }
@@ -405,6 +406,12 @@ body:has(.lightbox[open]) { overflow: hidden; }
     .ticket-prices, .ticket-purchase { padding: var(--space-ml); }
     .faq > .container { gap: var(--space-lg); }
 }
+@media (min-width: 901px) and (max-height: 800px) {
+    :root { --fs-display: clamp(9rem, 18vw, 16rem); }
+    .hero-stage { min-height: 0; padding-block: var(--space-ms); }
+    .hero-figure img { max-height: 46svh; }
+    .hero-bottom { padding-block: var(--space-ms); }
+}
 @media (max-width: 900px) {
     :root { --nav-height: 72px; }
     .js .nav-toggle { display: block; }
@@ -515,13 +522,17 @@ body:has(.lightbox[open]) { overflow: hidden; }
     .artist-photo img { aspect-ratio: 1.55; }
     .artist-head, .artist--yasuda .artist-head { padding-block: var(--space-ms); }
     .artist-name, .artist--yasuda .artist-name { font-size: var(--fs-2xl); }
+    .ticket { padding-top: var(--space-ml); }
+    .ticket .section-title { margin-bottom: var(--space-md); }
     .ticket-main { grid-template-columns: 1fr; }
-    .ticket-prices { padding: var(--space-md) var(--space-ms); }
-    .ticket-purchase { padding: var(--space-ml) var(--space-ms); border-left: 0; border-top: 1px dashed var(--color-gold); }
+    .ticket-prices { padding: var(--space-ms); }
+    .ticket-purchase { padding: var(--space-md) var(--space-ms); border-left: 0; border-top: 1px dashed var(--color-gold); }
+    .ticket-purchase-lead { margin-bottom: var(--space-sm); }
     .ticket-purchase::before { top: calc(-1 * var(--space-sm)); left: calc(-1 * var(--space-sm)); }
     .ticket-purchase::after { top: calc(-1 * var(--space-sm)); bottom: auto; left: auto; right: calc(-1 * var(--space-sm)); }
     .price-amount { font-size: var(--fs-2xl); }
-    .price-row { padding-block: var(--space-sm); }
+    .price-row { padding-block: calc(var(--space-xs) + var(--space-2xs)); }
+    .price-note { margin-top: var(--space-sm); }
     .ticket-links { grid-template-columns: 1fr; gap: var(--space-ml); }
     .ticket-note { margin-top: var(--space-ml); }
     .ticket-welcome br { display: none; }
@@ -557,8 +568,13 @@ body:has(.lightbox[open]) { overflow: hidden; }
     .ticket .section-title-ja, .ticket .section-title-en, .calendar-btn, .ticket-support-btn { color: var(--color-ink); }
 }
 .nav::after { content: ''; position: absolute; bottom: -1px; left: 0; right: 0; height: 2px; background: var(--color-rose-deep); transform: scaleX(var(--reading-progress, 0)); transform-origin: left; }
-@media (max-width: 600px) {
-    .ticket-qr { display: flex; align-items: center; gap: var(--space-sm); }
-    .ticket-qr img { width: 80px; height: 80px; }
-    .qr-caption { margin-top: 0; }
+@media screen and (max-width: 600px) {
+    .ticket-qr { display: none; }
+}
+@media screen and (max-width: 360px) {
+    .ticket .section-title { margin-bottom: var(--space-ms); }
+    .ticket-prices { padding-block: var(--space-sm); }
+    .price-row { padding-block: var(--space-xs); }
+    .ticket-purchase { padding-block: var(--space-ms); }
+    .ticket-purchase-lead { margin-bottom: var(--space-xs); }
 }

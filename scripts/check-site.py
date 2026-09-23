@@ -77,21 +77,26 @@ def main():
             assert (ROOT / target).is_file(), f'{name}: missing local target {url}'
             if parsed.fragment and target in documents:
                 assert parsed.fragment in documents[target].ids, f'{name}: broken anchor {url}'
-        if args.baseline:
+        # marimba.html was fully rewritten with user approval on 2026-09-18;
+        # its current links, assets, and structure are checked above.
+        if args.baseline and name == 'index.html':
             original_html = subprocess.check_output(['git', 'show', f'{args.baseline}:{name}'], cwd=ROOT, text=True)
             # Explicit user corrections on 2026-09-12, after the initial redesign.
             # Normalize only these approved edits; all other preservation checks remain.
-            if name == 'index.html':
-                original_html = original_html.replace(
-                    '<a href="#program" class="btn btn--ghost">演奏を聴く</a>', '')
-                original_html = original_html.replace(
-                    'ほか、当日のお楽しみに数曲を予定しております',
-                    '当日のお楽しみも含め、全12曲程度をお届けする予定です。')
-                original_html = original_html.replace('応援・ファンレター', '応援・ご支援はこちらから')
-                # User-selected concert share image, approved on 2026-09-16.
-                original_html = original_html.replace(
-                    'https://toshiki-yasuda.github.io/yui/images/ogp.jpg',
-                    'https://toshiki-yasuda.github.io/yui/images/ogp-concert-2026.jpg')
+            original_html = original_html.replace(
+                '<a href="#program" class="btn btn--ghost">演奏を聴く</a>', '')
+            original_html = original_html.replace(
+                'ほか、当日のお楽しみに数曲を予定しております',
+                '当日のお楽しみも含め、全12曲程度をお届けする予定です。')
+            original_html = original_html.replace('応援・ファンレター', '応援・ご支援はこちらから')
+            # User-confirmed stroller seating guidance, updated on 2026-09-19.
+            original_html = original_html.replace(
+                '会場内にベビーカー置き場をご用意いたします。',
+                'ベビーカーと並んで見られる優先スペースをご用意します。')
+            # User-selected concert share image, approved on 2026-09-16.
+            original_html = original_html.replace(
+                'https://toshiki-yasuda.github.io/yui/images/ogp.jpg',
+                'https://toshiki-yasuda.github.io/yui/images/ogp-concert-2026.jpg')
             original = Document(original_html)
             text = ''.join(page.text)
             missing = [segment for segment in original.text if segment not in text]
@@ -100,7 +105,8 @@ def main():
             original_data = re.findall(r'<script type="application/ld\+json">([\s\S]*?)</script>', original_html)
             current_data = re.findall(r'<script type="application/ld\+json">([\s\S]*?)</script>', (ROOT / name).read_text())
             assert list(map(json.loads, original_data)) == list(map(json.loads, current_data)), f'{name}: structured data changed'
-        print(f'PASS {name}: content, local links, assets, landmarks, image dimensions')
+        preservation = 'original content, ' if args.baseline and name == 'index.html' else ''
+        print(f'PASS {name}: {preservation}local links, assets, landmarks, image dimensions')
     for filename in ('flyer.html', 'pamphlet.html'):
         if args.baseline:
             original = subprocess.check_output(['git', 'show', f'{args.baseline}:{filename}'], cwd=ROOT)
