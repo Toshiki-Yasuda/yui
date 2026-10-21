@@ -107,11 +107,14 @@ def main():
             assert list(map(json.loads, original_data)) == list(map(json.loads, current_data)), f'{name}: structured data changed'
         preservation = 'original content, ' if args.baseline and name == 'index.html' else ''
         print(f'PASS {name}: {preservation}local links, assets, landmarks, image dimensions')
-    for filename in ('flyer.html', 'pamphlet.html'):
+    # pamphlet.html was separately redesigned by explicit user request on 2026-09-13.
+    # Its content and print output are checked by check-pamphlet.py.
+    for filename in ('flyer.html',):
         if args.baseline:
             original = subprocess.check_output(['git', 'show', f'{args.baseline}:{filename}'], cwd=ROOT)
             assert original == (ROOT / filename).read_bytes(), f'{filename}: print artifact modified'
-    print('PASS print artifacts unchanged')
+    if args.baseline:
+        print('PASS flyer.html unchanged; pamphlet has a separate print check')
 
 if __name__ == '__main__':
     main()

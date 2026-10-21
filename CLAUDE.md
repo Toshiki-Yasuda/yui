@@ -23,7 +23,7 @@
 進め方のルール：
 - 運用時は1コミット = 1つの視覚的変更を基本にする。今回の全面リデザインはユーザー承認の一体的な変更
 - 新しいCSS変数を増やす前に、既存トークンで組めないか必ず検討する
-- 印刷用ページ（pamphlet / flyer）はリニューアル対象外。巻き込まない
+- Web運用の変更では印刷物を巻き込まない。`pamphlet.html` は2026年9月13日の明示的依頼で別途全面改訂済み。`flyer.html` は引き続き対象外
 
 ## ファイル構成
 - `index.html` — メインページ（公演情報・チケット・出演者紹介・FAQ等）
@@ -35,6 +35,10 @@
 - `js/site.js` — 両ページ共通のナビ、スクロール演出、カウントダウン、動画、画像拡大
 - `scripts/check-site.py` — 元の文章・リンク・構造化データ、ローカル参照、画像寸法等の検証
 - `docs/redesign-review.md` — デザイン判断・実画面検証・未確認事項
+- `docs/pamphlet-production.md` — 三つ折り冊子の面付け、原稿、印刷仕様、PDF再生成、検証。冊子編集時は必ず読む
+- `css/pamphlet.css` / `js/pamphlet-preview.js` — 冊子専用の印刷組版と画面プレビュー
+- `output/pdf/` — A4版・3mm塗り足し版の2ページPDF。原稿を変えたら必ず再生成
+- `scripts/build-pamphlet.py` / `scripts/check-pamphlet.py` — PDF生成・内容・寸法・QRの検証
 - `favicon.svg` — ファビコン（「結」の文字）
 - `images/` — 画像フォルダ
 
@@ -129,6 +133,8 @@ push成功だけでは公開完了と判断しない。Pagesのビルド完了�
 ロールバックが必要な場合は対象コミットをrevertする通常のコミットで戻す（履歴を破壊しない）。
 
 ## 注意事項
+- 冊子の本文は `pamphlet.html` が原本。印刷用CSSはWeb用CSSと独立し、mm/pt指定を許容する。フォント追加文字は `prepare-pamphlet-assets.py` で再生成する
+- `check-site.py` から冊子の旧版不変チェックを外したのはユーザーの改訂依頼によるもの。冊子は別の `check-pamphlet.py` で検証する。Web本体と `flyer.html` の保護は維持
 - 印刷用ページ（pamphlet.html, flyer.html）は塗り足し・トンボなどの印刷仕様あり。編集時は印刷要件を崩さないこと
 - コンテンツは日本語。コミットメッセージも日本語プレフィックス（feat/fix/update/add/style/remove）で統一
 

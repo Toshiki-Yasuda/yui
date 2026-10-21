@@ -15,7 +15,6 @@
     mask-image: radial-gradient(ellipse 72% 68% at 55% 53%, #000 48%, transparent 80%);
     -webkit-mask-image: radial-gradient(ellipse 72% 68% at 55% 53%, #000 48%, transparent 80%);
 }
-.guide-hero-art figcaption { text-align: right; font-size: var(--fs-xs); color: var(--color-text-muted); margin-top: var(--space-xs); }
 .guide-contents { display: flex; flex-wrap: wrap; border-block: 1px solid var(--color-paper-line); gap: var(--space-md); padding-block: var(--space-sm); }
 .guide-contents a { min-height: 44px; display: inline-flex; align-items: baseline; gap: var(--space-sm); color: var(--color-text); padding-block: var(--space-xs); font-size: var(--fs-sm); }
 .guide-contents span { color: var(--color-rose-deep); font-family: Georgia, serif; }

@@ -3,12 +3,13 @@
 .heading{height:8mm;margin-bottom:1.5mm;padding-top:1mm;gap:2mm}
 .heading>span{font-size:7.5pt}
 .heading h2{font-size:11.5pt}
-.song{margin-bottom:2.2mm}
+.song{margin-bottom:1.5mm}
+.song+.song{border-top:.4pt solid #C9AAA8;padding-top:.9mm}
 .song h3{font-size:10.5pt;line-height:1.35;margin-bottom:.7mm}
 .number{font-size:11.5pt;margin-right:1.5mm}
 .credits,.inline-credit{font-size:8pt;line-height:1.4}
 .credits{margin:.5mm 0 1mm}
-.note+.note{margin-top:.4mm}
+.note+.note{margin-top:.2mm}
 footer{left:5.5mm;right:5.5mm;bottom:5.5mm;font-size:7pt}
 .intermission{margin-top:4mm;padding-top:2mm;font-size:9pt}
 .cover{padding:0}
@@ -27,3 +28,11 @@ footer{left:5.5mm;right:5.5mm;bottom:5.5mm;font-size:7pt}
 .bio{font-size:10.5pt;line-height:14.5pt}
 .bio+.bio{margin-top:.7mm}
 .organizers{position:absolute;left:5.5mm;right:5.5mm;bottom:8mm;font-size:8pt;line-height:1.65;padding-top:2mm;margin-top:3mm}
+.organization-row{display:flex;gap:1em}
+.organization-label{flex:0 0 2em}
+/* Keep all revised notes at 10pt/12pt; part 2 uses one paragraph per song. */
+.notes:nth-of-type(5){padding:5mm 5mm 10mm}
+.notes:nth-of-type(5) .heading{height:6mm;margin-bottom:.7mm}
+.notes:nth-of-type(5) .song{margin-bottom:.8mm}
+.notes:nth-of-type(5) .song h3{margin-bottom:.2mm}
+.notes:nth-of-type(5) .note+.note{margin-top:0}

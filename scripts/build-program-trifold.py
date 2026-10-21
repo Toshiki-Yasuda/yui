@@ -16,7 +16,10 @@ os.environ.setdefault('XDG_CACHE_HOME', str(ROOT / 'tmp/pdfs/program/cache'))
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--paper', choices=['a4', 'a3', 'a2'], default='a3')
+    parser.add_argument('--comparison-10pt', action='store_true', help='Write a separate A4 10pt comparison edition')
     args = parser.parse_args()
+    if args.comparison_10pt and args.paper != 'a4':
+        parser.error('--comparison-10pt requires --paper a4')
     from weasyprint import HTML
     from pypdf import PdfReader, PdfWriter, Transformation
     from pypdf.generic import RectangleObject, DictionaryObject, NameObject, DecodedStreamObject
@@ -26,8 +29,11 @@ def main():
         if artist['name'] in overrides['artist_bios']:
             artist['bio']=overrides['artist_bios'][artist['name']]
     if args.paper == 'a4':
-        revised = json.loads((ROOT/'プログラム/source/program-trifold-a4-part2.json').read_text())
-        data['parts'][1]['songs'] = revised['songs']
+        for index in (0, 1):
+            revised = json.loads((ROOT/f'プログラム/source/program-trifold-a4-part{index+1}.json').read_text())
+            data['parts'][index]['songs'] = revised['songs']
+            if 'intermission' in revised:
+                data['parts'][index]['intermission'] = revised['intermission']
     from fontTools.ttLib import TTFont
     cmap=TTFont(ROOT/'fonts/program-trifold/NotoSerifJP-Regular.ttf').getBestCmap()
     body_text=''.join(p for part in data['parts'] for song in part['songs'] for p in song['paragraphs'])+''.join(p for a in data['artists'] for p in a['bio'])
@@ -36,7 +42,10 @@ def main():
     e = escape
     event = data['event']
     year,month,day,weekday=re.fullmatch(r'(\d+)年(\d+)月(\d+)日（(.)）',event['date']).groups()
-    width, height, size, leading = {'a4':(99,210,9,12),'a3':(140,297,12.5,18),'a2':(198,420,15,22)}[args.paper]
+    width, height, size, leading = {'a4':(99,210,10,12),'a3':(140,297,12.5,18),'a2':(198,420,15,22)}[args.paper]
+    if args.comparison_10pt:
+        size = 10
+    suffix = '-10pt' if args.comparison_10pt else ''
     cover_asset = 'images/program-trifold/cover-narrow-v2.png' if args.paper=='a4' else 'images/program/cover-art-v2.png'
     panels = []
     venue = '<br>'.join(e(x) for x in event['venue'])
@@ -45,8 +54,13 @@ def main():
         content = ''
         for song in songs:
             credits = '<br>'.join(e(c) for c in song['credits'])
-            paragraphs = ''.join(f'<p class="note">{e(p)}</p>' for p in song['paragraphs'])
+            display_paragraphs = song['paragraphs']
+            if args.paper == 'a4' and part['number'] == 2:
+                display_paragraphs = [''.join(display_paragraphs)]
+            paragraphs = ''.join(f'<p class="note">{e(p)}</p>' for p in display_paragraphs)
             inline = song['id'] not in ('p1-01','p1-04','p2-03')
+            if args.paper == 'a4' and song['id'] in ('p1-01', 'p2-03'):
+                inline = True
             heading = e(song['title']) + (f' <span class="inline-credit">{credits}</span>' if inline else '')
             credit_line = '' if inline else f'<p class="credits">{credits}</p>'
             content += f'''<article class="song" data-song-id="{song['id']}"><h3><span class="number">{song['number']:02d}</span>{heading}</h3>{credit_line}{paragraphs}</article>'''
@@ -63,11 +77,15 @@ def main():
         else:
             artists += f'''<article class="artist"><header>{portrait}<div><h3>{e(artist['name'])}</h3><i>{e(artist['instrument'])}</i></div></header>{bio}</article>'''
     supporters = ' ／ '.join(e(x) for x in event['supporters'])
-    panels.append(f'''<section class="panel artists"><header class="heading"><span>Artists</span><h2>出演者</h2></header>{artists}<div class="organizers"><p>主催　{e(event['organizer'])}</p><p>後援　{supporters}</p></div></section>''')
+    organizer_markup = f'<p>主催　{e(event["organizer"])}</p><p>後援　{supporters}</p>'
+    if args.paper == 'a4':
+        supporters = ' ／ '.join(e(x) for x in event['supporters'][:2]) + '<br>' + ' ／ '.join(e(x) for x in event['supporters'][2:])
+        organizer_markup = f'<p class="organization-row"><span class="organization-label">主催</span><span>{e(event["organizer"])}</span></p><p class="organization-row"><span class="organization-label">後援</span><span>{supporters}</span></p>'
+    panels.append(f'''<section class="panel artists"><header class="heading"><span>Artists</span><h2>出演者</h2></header>{artists}<div class="organizers">{organizer_markup}</div></section>''')
     css = f''':root{{--w:{width}mm;--h:{height}mm;--body:{size}pt;--leading:{leading}pt;}} @page{{size:{width}mm {height}mm;margin:0;}}'''
     extra='<link rel="stylesheet" href="css/program-trifold-a4.css">' if args.paper=='a4' else ''
     markup = '<!doctype html><html lang="ja"><meta charset="utf-8"><title>結・三つ折り当日プログラム</title><link rel="stylesheet" href="css/program-trifold.css">'+extra+'<style>'+css+'</style><body>'+''.join(panels)+'</body></html>'
-    html_path = ROOT / ('program-trifold-a4.html' if args.paper=='a4' else 'program-trifold.html')
+    html_path = ROOT / (f'program-trifold-a4{suffix}.html' if args.paper=='a4' else 'program-trifold.html')
     html_path.write_text(markup)
     doc = HTML(filename=str(html_path)).render()
     if len(doc.pages)!=6:
@@ -112,11 +130,13 @@ def main():
     for text in [event['date'],event['series'],*event['venue'],event['open'],event['start'],event['organizer'],*event['supporters']]:
         assert norm(text) in full, 'Missing event information: '+text
     out=ROOT/'output/pdf'
-    reading=out/f'yui-program-trifold-{args.paper}-reading.pdf'
+    reading=out/f'yui-program-trifold-{args.paper}{suffix}-reading.pdf'
     reading.write_bytes(raw)
     writer=PdfWriter()
     pt=72/25.4
-    print_orders = ([0,1,2],[3,4,5]) if args.paper == 'a4' else ([4,5,0],[1,2,3])
+    # A4: user-approved left-cover layout, front 1 | 2 | 3, back 6 | 4 | 5.
+    # Viewed from either PDF page: mountain at 99 mm, valley at 198 mm.
+    print_orders = ([0,1,2],[5,3,4]) if args.paper == 'a4' else ([4,5,0],[1,2,3])
     for order in print_orders:
         target=writer.add_blank_page(width=width*3*pt,height=height*pt)
         forms=DictionaryObject()
@@ -135,8 +155,8 @@ def main():
         stream.set_data('\n'.join(commands).encode())
         target[NameObject('/Contents')]=writer._add_object(stream)
         target.trimbox=RectangleObject([0,0,width*3*pt,height*pt])
-    writer.add_metadata({'/Title':'結 当日プログラム 三つ折り','/Subject':f'{args.paper.upper()} landscape Z-fold, panel order {print_orders}, actual size. Body {size}pt.'})
-    printing=out/f'yui-program-trifold-{args.paper}.pdf'
+    writer.add_metadata({'/Title':'結 当日プログラム 三つ折り','/Subject':f'{args.paper.upper()} landscape Z-fold, panel order {print_orders}, actual size. Body {size}pt, leading {leading}pt.'})
+    printing=out/f'yui-program-trifold-{args.paper}{suffix}.pdf'
     writer.write(printing)
     for page_number,order in enumerate(print_orders,1):
         for column,index in enumerate(order):

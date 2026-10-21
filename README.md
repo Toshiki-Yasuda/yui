@@ -61,6 +61,9 @@ git diff --check
 
 ## 更新履歴
 
+- 三つ折り冊子は [pamphlet.html](pamphlet.html) でプレビューできます。[A4 PDF](output/pdf/yui-pamphlet-a4.pdf)・[塗り足し付きPDF](output/pdf/yui-pamphlet-bleed.pdf) と [制作・印刷メモ](docs/pamphlet-production.md) を同梱しています。
+- 2026-09-13: Webのデザインに合わせて三つ折りパンフレットを全面改訂
+
 - 2026-01-26: 初版公開
 
 ## マリンバ3D表示
