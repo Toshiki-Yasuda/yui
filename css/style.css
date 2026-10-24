@@ -188,6 +188,10 @@ ul { list-style: none; }
 .hero-fact-sub { display: block; font-size: var(--fs-xs); color: var(--color-text-light); margin-top: var(--space-xs); }
 .hero-actions { display: flex; flex-direction: column; align-items: stretch; gap: var(--space-xs); }
 .hero-countdown { text-align: center; font-size: var(--fs-xs); color: var(--color-text-muted); margin-top: var(--space-xs); font-variant-numeric: tabular-nums; }
+/* Concert day: the status spans the hero's lower band so it reads first. */
+.hero-countdown.is-today { grid-column: 1 / -1; word-break: auto-phrase; display: flex; flex-wrap: wrap; align-items: baseline; gap: var(--space-2xs) var(--space-ms); margin: 0; padding-bottom: var(--space-ms); border-bottom: 1px solid var(--color-paper-line); font-size: var(--fs-base); color: var(--color-text-light); letter-spacing: .06em; text-align: left; white-space: normal; }
+.hero-countdown-label { font-family: Georgia, var(--font-serif); font-size: var(--fs-xl); font-style: italic; color: var(--color-rose-deep); letter-spacing: .04em; }
+.hero-countdown-main { font-family: var(--font-serif); font-size: var(--fs-2xl); line-height: 1.4; letter-spacing: .08em; color: var(--color-ink); }
 .hero-countdown-num { display: inline-block; min-width: 2ch; font-family: Georgia,serif; font-size: var(--fs-lg); color: var(--color-rose-deep); margin-inline: var(--space-2xs); }
 .btn { line-height: 1.5; display: inline-flex; align-items: center; justify-content: space-between; gap: var(--space-md); min-height: 56px; padding: var(--space-sm) var(--space-ms); font-size: var(--fs-sm); font-weight: 500; letter-spacing: .06em; border: 1px solid transparent; transition: background-color var(--transition-normal), color var(--transition-normal), border-color var(--transition-normal); }
 .btn::after { line-height: 1; content: '↗'; font-size: var(--fs-lg); font-weight: 400; transition: transform var(--transition-normal); }
@@ -487,6 +491,9 @@ body:has(.lightbox[open]) { overflow: hidden; }
     .hero-actions .btn { gap: var(--space-2xs); font-size: var(--fs-xs); padding-inline: var(--space-xs); white-space: nowrap; }
     .hero-countdown { margin-top: var(--space-xs); text-align: right; }
     .hero-countdown-num { font-size: var(--fs-base); }
+    .hero-countdown.is-today { flex-direction: column; align-items: flex-start; padding-bottom: var(--space-sm); font-size: var(--fs-sm); }
+    .hero-countdown-label { font-size: var(--fs-lg); }
+    .hero-countdown-main { font-size: var(--fs-xl); }
     .section-title { margin-bottom: var(--space-ml); padding-top: var(--space-sm); }
     .section-title-en { font-size: var(--fs-lg); }
     .section-title-ja { font-size: var(--fs-lg); letter-spacing: .04em; }

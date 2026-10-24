@@ -96,7 +96,26 @@
         countdown.hidden = days < 0;
         if (days < 0) return;
         if (days === 0) {
-            if (countdown.textContent !== '本日開催！') countdown.textContent = '本日開催！';
+            // The concert day follows the published door, start and end times.
+            const now = Date.now();
+            const at = time => Date.parse(`2026-10-25T${time}:00+09:00`);
+            const ended = now >= at('15:15');
+            const [main, sub] = now < at('13:00') ? ['本日開催', '13:00 開場 ／ 13:30 開演']
+                : now < at('13:30') ? ['ただいま開場中', '13:30 開演']
+                : !ended ? ['ただいま公演中です', '15:15 終演予定']
+                : ['本日の公演は終演いたしました', 'ご来場いただき、誠にありがとうございました。'];
+            countdown.classList.add('is-today');
+            countdown.closest('.hero-bottom')?.prepend(countdown);
+            countdown.classList.toggle('is-ended', ended);
+            if (countdown.textContent !== `Today${main}${sub}`) {
+                const span = (className, text) => Object.assign(document.createElement('span'), { className, textContent: text });
+                countdown.replaceChildren(span('hero-countdown-label', 'Today'), span('hero-countdown-main', main), sub);
+            }
+            const ticket = document.querySelector('.hero-actions .btn--primary');
+            if (ticket) {
+                ticket.textContent = '当日券のご案内';
+                ticket.parentElement.hidden = now >= at('15:15');
+            }
         } else {
             const number = document.getElementById('countdown-days');
             if (number) number.textContent = String(days);
