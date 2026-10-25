@@ -88,17 +88,15 @@
     }
 
     // The thank-you video loads only once the concert has ended, and plays only while visible.
+    // With reduced motion it stays on its poster frame.
     const thanks = document.getElementById('thanks');
     const thanksVideo = thanks?.querySelector('.thanks-video');
-    const thanksToggle = thanks?.querySelector('.thanks-toggle');
     let thanksObserver;
     let thanksVisible = true;
-    let thanksStopped = reducedMotion.matches;
     function playThanks() {
         if (!thanksVideo || thanks.hidden) return;
-        if (thanksStopped || !thanksVisible) thanksVideo.pause();
+        if (reducedMotion.matches || !thanksVisible) thanksVideo.pause();
         else thanksVideo.play().catch(() => {});
-        if (thanksToggle) thanksToggle.textContent = thanksStopped ? '背景の動画を再生' : '背景の動画を停止';
     }
     function showThanks(show) {
         if (!thanks || thanks.hidden === !show) return;
@@ -192,7 +190,7 @@
         window.addEventListener('resize', resetMotion, { passive: true, signal });
         reducedMotion.addEventListener('change', resetMotion, { signal });
         resetMotion();
-        thanksToggle?.addEventListener('click', () => { thanksStopped = !thanksStopped; playThanks(); }, { signal });
+        reducedMotion.addEventListener('change', playThanks, { signal });
         if (thanks && 'IntersectionObserver' in window) {
             thanksObserver = new IntersectionObserver(([entry]) => { thanksVisible = entry.isIntersecting; playThanks(); });
             thanksObserver.observe(thanks);

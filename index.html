@@ -36,7 +36,7 @@
     <meta name="theme-color" content="#FAF7F2">
 
     <!-- Styles -->
-    <link rel="stylesheet" href="css/style.css?v=20261026a">
+    <link rel="stylesheet" href="css/style.css?v=20261026d">
 
     <!-- 構造化データ (JSON-LD) -->
     <script type="application/ld+json">
@@ -167,16 +167,6 @@
 
     <!-- 一枚のポスターから、公演の物語へ。既存の水彩と文章を使用 -->
     <main id="main" tabindex="-1">
-    <!-- 終演後の御礼。終演時刻を過ぎるとJSで表示し、背景動画もそのときに読み込む -->
-    <div class="thanks" id="thanks" hidden>
-        <video class="thanks-video" muted loop playsinline preload="none" poster="images/thanks-poster.jpg" data-src="images/thanks.mp4" aria-hidden="true"></video>
-        <div class="thanks-inner">
-            <p class="thanks-label" lang="en">Thank you</p>
-            <h2 class="thanks-title">ご来場<br class="thanks-br">ありがとうございました</h2>
-            <p class="thanks-text">おかげさまで、第18回マリンバ北星会 午後のコンサート〜結〜は盛況のうちに終演いたしました。心より御礼申し上げます。</p>
-        </div>
-        <button class="thanks-toggle" type="button">背景の動画を停止</button>
-    </div>
     <header class="hero" id="hero" tabindex="-1">
         <div class="hero-inner">
             <div class="hero-stage">
@@ -225,6 +215,20 @@
             </div>
         </div>
     </header>
+
+    <!-- 終演後の御礼。終演時刻を過ぎるとJSで表示し、動画もそのときに読み込む。映像が粗いので小さな窓で見せる -->
+    <div class="thanks" id="thanks" hidden>
+        <div class="thanks-inner">
+            <div class="thanks-body">
+                <p class="thanks-label" lang="en">Thank you</p>
+                <h2 class="thanks-title">ご来場<br class="thanks-br">ありがとうございました</h2>
+                <p class="thanks-text">おかげさまで、<span class="thanks-name">第18回マリンバ北星会</span> 午後のコンサート〜結〜は盛況のうちに終演いたしました。心より御礼申し上げます。</p>
+            </div>
+            <div class="thanks-media">
+                <video class="thanks-video" muted loop playsinline preload="none" poster="images/thanks-poster.jpg" data-src="images/thanks.mp4" aria-hidden="true"></video>
+            </div>
+        </div>
+    </div>
 
     <!-- マリンバ紹介セクション -->
     <!-- コンセプトセクション -->
@@ -754,6 +758,6 @@
         <span>↑</span>
     </button>
 
-    <script src="js/site.js?v=20261026a" defer></script>
+    <script src="js/site.js?v=20261026d" defer></script>
 </body>
 </html>

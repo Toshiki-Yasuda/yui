@@ -163,24 +163,23 @@ ul { list-style: none; }
 .nav-toggle.active span:nth-child(2) { opacity: 0; transform: scaleX(0); }
 .nav-toggle.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg) scaleX(1.08); }
 /* Opening poster. Type, portrait, and the fine double thread share a canvas. */
-/* After the concert: the performance video sits behind the thank-you message. */
-.thanks { word-break: auto-phrase; position: relative; display: grid; align-items: end; min-height: 100svh; padding: calc(var(--nav-height) + var(--space-xl)) 0 var(--space-xl); color: var(--color-white); background: var(--color-ink); overflow: clip; isolation: isolate; }
+/* After the concert: below the hero, a thank-you note with the performance video in a small window. */
+.thanks { word-break: auto-phrase; padding-bottom: var(--space-xl); }
 .thanks[hidden] { display: none; }
-.thanks::before { content: ''; position: absolute; inset: 0; z-index: -1; background: linear-gradient(to top, color-mix(in srgb, var(--color-ink) 82%, transparent) 0%, color-mix(in srgb, var(--color-ink) 40%, transparent) 55%, color-mix(in srgb, var(--color-ink) 25%, transparent) 100%); }
-.thanks-video { position: absolute; inset: 0; z-index: -2; width: 100%; height: 100%; object-fit: cover; }
-.thanks-inner { width: 100%; max-width: var(--w-full); padding-inline: var(--gutter); margin-inline: auto; }
-.thanks-label { font-family: Georgia, var(--font-serif); font-size: var(--fs-2xl); font-style: italic; letter-spacing: .04em; margin-bottom: var(--space-sm); }
-.thanks-title { font-family: var(--font-serif); font-size: var(--fs-heading); font-weight: 400; line-height: 1.5; letter-spacing: .08em; margin-bottom: var(--space-ms); }
+.thanks-inner { display: grid; grid-template-columns: minmax(0, 3fr) minmax(0, 2fr); align-items: center; gap: var(--space-ml) var(--space-xl); width: 100%; max-width: var(--w-full); padding-inline: var(--gutter); margin-inline: auto; }
+.thanks-inner::before { content: ''; grid-column: 1 / -1; border-top: 1px solid var(--color-paper-line); }
+.thanks-label { font-family: Georgia, var(--font-serif); font-size: var(--fs-xl); font-style: italic; letter-spacing: .04em; color: var(--color-rose-deep); margin-bottom: var(--space-2xs); }
+.thanks-title { font-family: var(--font-serif); font-size: var(--fs-2xl); font-weight: 400; line-height: 1.5; letter-spacing: .08em; color: var(--color-ink); margin-bottom: var(--space-sm); }
 .thanks-br { display: none; }
-.thanks-text { max-width: var(--w-reading); font-size: var(--fs-md); line-height: 2; letter-spacing: .04em; }
-.thanks-toggle { position: absolute; right: var(--gutter); bottom: var(--space-md); min-height: 44px; padding: var(--space-xs) var(--space-sm); font-size: var(--fs-xs); letter-spacing: .06em; color: var(--color-white); background: transparent; border: 1px solid color-mix(in srgb, var(--color-white) 60%, transparent); border-radius: var(--radius-full); cursor: pointer; transition: background-color var(--transition-normal); }
-.thanks-toggle:hover { background: color-mix(in srgb, var(--color-white) 15%, transparent); }
-.thanks-toggle:focus-visible { outline: 2px solid var(--color-white); outline-offset: 3px; }
-.thanks:not([hidden]) + .hero { padding-top: 0; }
+.thanks-name { white-space: nowrap; }
+.thanks-text { max-width: var(--w-reading); line-height: 2; letter-spacing: .04em; color: var(--color-text-light); }
+.thanks-media { width: 100%; max-width: 25rem; justify-self: end; }
+.thanks-video { display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: cover; background: var(--color-ink); border-radius: var(--radius-md); box-shadow: var(--shadow-md); }
 @media (prefers-reduced-motion: no-preference) {
-    .thanks.is-shown .thanks-inner > * { animation: thanks-in 1.2s var(--ease-out) both; }
+    .thanks.is-shown :is(.thanks-body > *, .thanks-media) { animation: thanks-in 1.2s var(--ease-out) both; }
     .thanks.is-shown .thanks-title { animation-delay: .15s; }
     .thanks.is-shown .thanks-text { animation-delay: .3s; }
+    .thanks.is-shown .thanks-media { animation-delay: .45s; }
 }
 @keyframes thanks-in { from { opacity: 0; transform: translateY(16px); } }
 .hero { padding-top: var(--nav-height); overflow: clip; }
@@ -514,12 +513,12 @@ body:has(.lightbox[open]) { overflow: hidden; }
     .hero-countdown.is-today { flex-direction: column; align-items: flex-start; padding-bottom: var(--space-sm); font-size: var(--fs-sm); }
     .hero-countdown-label { font-size: var(--fs-lg); }
     .hero-countdown-main { font-size: var(--fs-xl); }
-    .thanks { min-height: 88svh; padding-bottom: calc(var(--space-xl) + var(--space-md)); }
-    .thanks-label { font-size: var(--fs-xl); }
+    .thanks { padding-bottom: var(--space-lg); }
+    .thanks-inner { grid-template-columns: minmax(0, 1fr); gap: var(--space-md); }
+    .thanks-label { font-size: var(--fs-lg); }
     .thanks-title { font-size: var(--fs-xl); }
     .thanks-br { display: inline; }
-    .thanks-text { font-size: var(--fs-base); }
-    .thanks-toggle { bottom: var(--space-ms); }
+    .thanks-media { max-width: none; }
     .section-title { margin-bottom: var(--space-ml); padding-top: var(--space-sm); }
     .section-title-en { font-size: var(--fs-lg); }
     .section-title-ja { font-size: var(--fs-lg); letter-spacing: .04em; }
