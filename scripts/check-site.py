@@ -97,6 +97,12 @@ def main():
             original_html = original_html.replace(
                 'https://toshiki-yasuda.github.io/yui/images/ogp.jpg',
                 'https://toshiki-yasuda.github.io/yui/images/ogp-concert-2026.jpg')
+            # Ticket sales ended; the user asked on 2026-10-26 to remove the teket route and the menu entry.
+            original_html = original_html.replace('<li><a href="#ticket">チケット</a></li>', '')
+            original_html = original_html.replace('<a href="#ticket" class="btn btn--primary">チケットを購入する</a>', '')
+            original_html = re.sub(
+                r'<p class="ticket-purchase-lead">.*?<div class="ticket-qr">.*?</div>',
+                '<p class="ticket-purchase-lead">チケットの販売は終了しました。</p>', original_html, flags=re.S)
             original = Document(original_html)
             text = ''.join(page.text)
             missing = [segment for segment in original.text if segment not in text]

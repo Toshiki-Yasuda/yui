@@ -112,8 +112,6 @@
         const at = time => Date.parse(`2026-10-25T${time}:00+09:00`);
         const ended = now >= at('15:15');
         showThanks(ended);
-        const ticket = document.querySelector('.hero-actions .btn--primary');
-        if (ticket) ticket.parentElement.hidden = ended;
         const countdown = document.getElementById('countdown');
         if (!countdown) return;
         countdown.hidden = ended;
@@ -131,7 +129,6 @@
                 const span = (className, text) => Object.assign(document.createElement('span'), { className, textContent: text });
                 countdown.replaceChildren(span('hero-countdown-label', 'Today'), span('hero-countdown-main', main), sub);
             }
-            if (ticket) ticket.textContent = '当日券のご案内';
         } else {
             const number = document.getElementById('countdown-days');
             if (number) number.textContent = String(days);
