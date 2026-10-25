@@ -191,7 +191,7 @@ ul { list-style: none; }
 .hero-title-ja { font-family: var(--font-serif); font-size: var(--fs-display); line-height: 1; font-weight: 400; color: var(--color-rose-deep); margin-left: -.06em; }
 .hero-title-en { font-family: Georgia, var(--font-serif); font-size: clamp(2rem, 4.3vw, 4.5rem); font-weight: 400; font-style: italic; letter-spacing: .04em; line-height: 1.1; padding-bottom: var(--space-ms); color: var(--color-rose-deep); }
 .hero-figure { grid-column: 2; grid-row: 1 / 3; align-self: center; margin: 0 calc(-1 * var(--space-md)) 0 calc(-1 * var(--space-lg)); position: relative; z-index: 1; }
-.hero-figure img { width: 100%; max-height: clamp(420px, 51svh, 560px); object-fit: contain; mix-blend-mode: multiply; mask-image: radial-gradient(ellipse 76% 72% at 56% 46%, #000 48%, transparent 78%); }
+.hero-figure img { width: 100%; max-height: clamp(420px, 51svh, 560px); object-fit: contain; mix-blend-mode: multiply; mask-image: radial-gradient(ellipse 70% 90% at 58% 46%, #000 44%, transparent 74%); }
 .hero-figcaption { font-size: var(--fs-xs); color: var(--color-text-muted); text-align: right; letter-spacing: var(--ls-wide); margin-top: calc(-1 * var(--space-ms)); padding-right: var(--space-md); }
 .hero-lead { grid-column: 1; grid-row: 2; z-index: 2; padding-block: var(--space-md) var(--space-xs); font-family: var(--font-serif); white-space: nowrap; }
 .hero-lead-main { background: var(--color-photo-cream); width: fit-content; display: block; font-size: clamp(1.35rem, 2.05vw, 2rem); letter-spacing: .08em; margin-bottom: var(--space-xs); }
