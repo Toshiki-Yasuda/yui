@@ -138,6 +138,21 @@ push成功だけでは公開完了と判断しない。Pagesのビルド完了�
 - 印刷用ページ（pamphlet.html, flyer.html）は塗り足し・トンボなどの印刷仕様あり。編集時は印刷要件を崩さないこと
 - コンテンツは日本語。コミットメッセージも日本語プレフィックス（feat/fix/update/add/style/remove）で統一
 
+## 終演後の御礼（背景動画）
+
+2026年10月25日 15:15（終演予定）以降、`index.html` 冒頭の `#thanks` に公演動画を背景にした御礼を表示し、ヒーローの購入ボタンとカウントダウンは出さない（`js/site.js` の `updateCountdown`）。
+
+- 動画は `images/thanks.mp4`（音なし・1280×720・H.264・約3MB）、静止画は `images/thanks-poster.jpg`。元動画は公開しない
+- 音は入れない。演奏音源の公開は著作権の手続きが要る場合があり、自動再生も無音でしか始まらないため
+- 動画を差し替えるときは、同じファイル名で作り直し、`index.html` の `css/style.css?v=` と `js/site.js?v=` を新しい値にする。動画もキャッシュされるため、ファイル名を変える場合は `data-src` と `poster` も合わせる
+
+```bash
+ffmpeg -i 元動画.mp4 -an -vf "scale=1280:-2,fps=24" -c:v libx264 -preset slow -crf 30 -pix_fmt yuv420p -movflags +faststart images/thanks.mp4
+ffmpeg -ss 40 -i 元動画.mp4 -frames:v 1 -vf scale=1280:-2 -q:v 4 images/thanks-poster.jpg
+```
+
+- 確認は、時刻を切り替える一時デモページ（iframe で `index.html` を開き `Date.now` を差し替えて `visibilitychange` を送る）で行い、公開前に削除する
+
 ## マリンバ3D表示
 
 「マリンバとは」ページ末尾に「立体で見るマリンバ（画像から生成した３Dモデル）」を配置。約1.02MBのGLBと、開始時のみ読み込むローカル配信のmodel-viewer 4.3.1を使用。元のBlenderファイルは変更していない。再生成方法・構成・検証結果と実機未検証の制約は [docs/marimba-3d.md](docs/marimba-3d.md) を参照。
