@@ -87,35 +87,53 @@
         scheduleFrame();
     }
 
+    // The thank-you video loads only once the concert has ended, and plays only while visible.
+    const thanks = document.getElementById('thanks');
+    const thanksVideo = thanks?.querySelector('.thanks-video');
+    const thanksToggle = thanks?.querySelector('.thanks-toggle');
+    let thanksObserver;
+    let thanksVisible = true;
+    let thanksStopped = reducedMotion.matches;
+    function playThanks() {
+        if (!thanksVideo || thanks.hidden) return;
+        if (thanksStopped || !thanksVisible) thanksVideo.pause();
+        else thanksVideo.play().catch(() => {});
+        if (thanksToggle) thanksToggle.textContent = thanksStopped ? '背景の動画を再生' : '背景の動画を停止';
+    }
+    function showThanks(show) {
+        if (!thanks || thanks.hidden === !show) return;
+        thanks.hidden = !show;
+        thanks.classList.toggle('is-shown', show);
+        if (show && thanksVideo && !thanksVideo.getAttribute('src')) thanksVideo.src = thanksVideo.dataset.src;
+        playThanks();
+    }
+
     // JST calendar days, including a stable same-day state and midnight rollover.
     function updateCountdown() {
+        const now = Date.now();
+        const at = time => Date.parse(`2026-10-25T${time}:00+09:00`);
+        const ended = now >= at('15:15');
+        showThanks(ended);
+        const ticket = document.querySelector('.hero-actions .btn--primary');
+        if (ticket) ticket.parentElement.hidden = ended;
         const countdown = document.getElementById('countdown');
         if (!countdown) return;
+        countdown.hidden = ended;
+        if (ended) return;
         const day = ms => Math.floor((ms + 9 * 3600000) / 86400000);
-        const days = day(Date.parse('2026-10-25T00:00:00+09:00')) - day(Date.now());
-        countdown.hidden = days < 0;
-        if (days < 0) return;
+        const days = day(Date.parse('2026-10-25T00:00:00+09:00')) - day(now);
         if (days === 0) {
-            // The concert day follows the published door, start and end times.
-            const now = Date.now();
-            const at = time => Date.parse(`2026-10-25T${time}:00+09:00`);
-            const ended = now >= at('15:15');
+            // The concert day follows the published door and start times.
             const [main, sub] = now < at('13:00') ? ['本日開催', '13:00 開場 ／ 13:30 開演']
                 : now < at('13:30') ? ['ただいま開場中', '13:30 開演']
-                : !ended ? ['ただいま公演中です', '15:15 終演予定']
-                : ['本日の公演は終演いたしました', 'ご来場いただき、誠にありがとうございました。'];
+                : ['ただいま公演中です', '15:15 終演予定'];
             countdown.classList.add('is-today');
             countdown.closest('.hero-bottom')?.prepend(countdown);
-            countdown.classList.toggle('is-ended', ended);
             if (countdown.textContent !== `Today${main}${sub}`) {
                 const span = (className, text) => Object.assign(document.createElement('span'), { className, textContent: text });
                 countdown.replaceChildren(span('hero-countdown-label', 'Today'), span('hero-countdown-main', main), sub);
             }
-            const ticket = document.querySelector('.hero-actions .btn--primary');
-            if (ticket) {
-                ticket.textContent = '当日券のご案内';
-                ticket.parentElement.hidden = now >= at('15:15');
-            }
+            if (ticket) ticket.textContent = '当日券のご案内';
         } else {
             const number = document.getElementById('countdown-days');
             if (number) number.textContent = String(days);
@@ -174,6 +192,11 @@
         window.addEventListener('resize', resetMotion, { passive: true, signal });
         reducedMotion.addEventListener('change', resetMotion, { signal });
         resetMotion();
+        thanksToggle?.addEventListener('click', () => { thanksStopped = !thanksStopped; playThanks(); }, { signal });
+        if (thanks && 'IntersectionObserver' in window) {
+            thanksObserver = new IntersectionObserver(([entry]) => { thanksVisible = entry.isIntersecting; playThanks(); });
+            thanksObserver.observe(thanks);
+        }
         updateCountdown();
         countdownTimer = setInterval(updateCountdown, 60000);
         document.addEventListener('visibilitychange', () => {
@@ -236,6 +259,8 @@
         observer?.disconnect();
         sectionObserver?.disconnect();
         resizeObserver?.disconnect();
+        thanksObserver?.disconnect();
+        thanksVideo?.pause();
         visibleScenes.clear();
         cancelAnimationFrame(frame);
         frame = 0;
